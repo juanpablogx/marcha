@@ -45,10 +45,9 @@
 							  <tr>
 			                      <th>Categoria</th>
 			                      <th>Lote</th>
-			                      <th>Acción</th>
+			                      <th>Acciones</th>
 			                    </tr>
                                 <tr class="bg-dark">
-                                <th>Acciones</th>
                                 <th>
                                    <select class="form-control mx-auto" name="cod_lote" id="cod_lote" style="width: 80%;">
                                         <option value="Lote1">Lote1</option>
