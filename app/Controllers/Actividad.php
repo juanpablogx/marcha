@@ -4,7 +4,7 @@ namespace App\Controllers;
 use App\Models\ActividadesModel;
 
 class Actividad extends BaseController
-{
+{ 
 
 	public function vista_actividad(){
 
@@ -139,5 +139,16 @@ class Actividad extends BaseController
 					];
 		}
 		echo json_encode($data);
+	}
+	public function filtrarActividad() {
+		$finca = $this->session->get('session-finca')['id_finca'];
+		$opcion = $this->request->getPost('opcion');
+		$actividad_db = new ActividadesModel();
+		$respuesta = $actividad_db->ListaActividad($finca, $opcion);
+		if(count($respuesta) > 0) {
+			return json_encode($respuesta);
+		} else {
+			return json_encode(false);
+		}
 	}
 }

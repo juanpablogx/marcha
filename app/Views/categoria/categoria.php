@@ -54,7 +54,7 @@
 											<th>Tipo</th>
 											<th>Produce</th>
 											<th>ACCIONES</th>
-											<th></th>
+											<th>Acciones</th>
 										</tr>
 									</thead>
 									<tbody id="lista_categorias">

@@ -52,7 +52,7 @@
 								<tr>
 									<th>Lote</th>
 									<th>Extensión</th>
-									<th></th>
+									<th>Acciones</th>
 								</tr>
 								</thead>
 								<tbody id="lista_lote">

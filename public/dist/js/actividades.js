@@ -4,6 +4,73 @@ function iniciar(){
 	$("#btn_registrar").on("click", guardar_actividad);
 	$(".editar").off("click").on("click", editar_actividad);
 	$(".eliminar").off("click").on("click", eliminar_actividad);
+	$(".radioPrimary1").on("click", function(){
+		var opcion = $("input:radio[name=r1]:checked").val();
+		alert(opcion);
+		var datos = {'opcion': opcion};
+		jQuery.ajax({
+			type:"POST",
+			data:datos, //los datos que quiero enviar 
+			url: URL_BASE+'FiltrarActividad', //a donde quiero llevar los datos
+			dataType: "json",
+			success:function(response){ //mensaje que llega del guardar
+				console.log(response);
+				if (response.estado == 'ok') {
+					Swal.fire({
+						position: 'center',
+						icon: 'success',
+						title: response.mensaje,
+						showConfirmButton: false,
+						timer: 2000
+					});
+					$.each(response, function (key, value) {
+					jQuery('#id_boton_agregar').prop('disabled', false);
+					var fila = `<tr>
+									<td class="td_nom">`+value.nombre+`</td>
+									<td class="td_desc">`+value.descripcion+`</td>
+									<td class="td_estado">`+value.estado+`</td>
+									<td>
+										<div class="btn-group" role="group" aria-label="Basic example">
+											<button type="button" class="btn btn-success editar"  data-num_id="`+value.id+`" data-toggle="modal" data-target="#editar_actividad">
+												<i class="fas fa-edit"></i>
+											</button>
+											<button type="button" class="btn btn-danger eliminar"  data-num_id="`+value.id+`">
+												<i class="fas fa-trash-alt"></i>
+											</button>
+												
+										</div>
+									</td>
+								</tr>`;
+					
+					$("#listar_actividad").append(fila);
+						
+					$("#nombre").val('');
+					$("#descripcion").val('');
+					$("#estado").val('');
+
+	
+					$(".editar").off("click").on("click", editar_actividad);
+					$(".eliminar").off("click").on("click", eliminar_actividad);
+				});	
+				}
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: response.mensaje,
+						showConfirmButton: false,
+						timer: 2000
+					});
+				}
+			
+			},
+			error: function (x, r, e) {
+				console.log(x);
+				console.log(r);
+				console.log(e);
+			}
+		});
+	});
 	
 }
 
@@ -32,7 +99,7 @@ function guardar_actividad(e) {
 						showConfirmButton: false,
 						timer: 2000
 					});
-	
+					
 					var fila = `<tr>
 									<td class="td_nom">`+nombre+`</td>
 									<td class="td_desc">`+descripcion+`</td>

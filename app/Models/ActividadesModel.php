@@ -21,6 +21,7 @@ class ActividadesModel extends Model{
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
+
     public function insertarActividad($nombre, $descripcion, $estado, $finca) {
         $data = array(
             'nombre' => $nombre,
@@ -35,6 +36,8 @@ class ActividadesModel extends Model{
             return false;
         }
     }
+
+
 
     public function get_Actividad($finca) {
         $sql = "SELECT id_actividad, nombre, descripcion, estado FROM actividad WHERE finca = ?";
@@ -78,4 +81,13 @@ class ActividadesModel extends Model{
         $actividades = $this->db->query($sql, [$act]);
         return $actividades->getResult();
     }
+
+    public function ListaActividad($finca, $opcion) {
+        $sql = "SELECT * FROM actividad WHERE finca = ? AND estado = ? ";
+
+        $registros = $this->db->query($sql, [$finca, $opcion]);
+
+        return $registros->getResultArray();
+    }
+
 }

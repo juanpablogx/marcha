@@ -56,7 +56,7 @@
                                     <th>Tipo</th>
                                     <th>Precio Und.</th>
                                     <th>Cantidad</th>
-                                    <th></th>
+                                    <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="lista_inventario">

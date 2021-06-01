@@ -55,7 +55,7 @@
 										<th>T_contrato</th>
 										<th>Salario</th>
 										<th>Estado</th>
-										<th></th>
+										<th>Acciones</th>
 									</tr>
 								</thead>
 								<tbody id="lista_empleados">
