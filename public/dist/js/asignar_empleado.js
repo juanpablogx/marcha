@@ -3,7 +3,70 @@ $(document).ready(iniciar);
 function iniciar(){
 	$("#btn_registrar").on("click", guardar_actividad);
 	$(".editar").off("click").on("click", editar_actividad);
-	$(".eliminar").off("click").on("click", eliminar_actividad);	
+	$(".eliminar").off("click").on("click", eliminar_actividad);
+	$(".radioPrimary1").on("click", function(){
+		var opcion = $("input:radio[name=r1]:checked").val();
+		var datos = {'opcion': opcion};
+		jQuery.ajax({
+			type:"POST",
+			data:datos, //los datos que quiero enviar 
+			url: URL_BASE+'FiltrarActividad', //a donde quiero llevar los datos
+			dataType: "json",
+			success:function(response){ //mensaje que llega del guardar
+				console.log(response);
+				if (response.estado) {
+					
+					$("#listar_actividad").html('');
+					$.each(response.datos, function (key, value) {
+					var fila = `<tr>
+									<td class="td_nom">`+value.nombre+`</td>
+									<td class="td_desc">`+value.descripcion+`</td>
+									<td class="td_estado">`+value.estado+`</td>
+									<td>
+										<div class="btn-group" role="group" aria-label="Basic example">
+											<button type="button" class="btn btn-success editar"  data-num_id="`+value.id+`" data-toggle="modal" data-target="#editar_actividad">
+												<i class="fas fa-edit"></i>
+											</button>
+											<button type="button" class="btn btn-danger eliminar"  data-num_id="`+value.id+`">
+												<i class="fas fa-trash-alt"></i>
+											</button>
+												
+										</div>
+									</td>
+								</tr>`;
+					
+					$("#listar_actividad").prepend(fila);
+						
+					$("#nombre").val('');
+					$("#descripcion").val('');
+					$("#estado").val('');
+
+	
+					$(".editar").off("click").on("click", editar_actividad);
+					$(".eliminar").off("click").on("click", eliminar_actividad);
+				});	
+				}
+				else{
+					Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: 'No hay registros',
+						showConfirmButton: false,
+						timer: 2000
+					});
+
+					$("#listar_actividad").html('');
+				}
+			
+			},
+			error: function (x, r, e) {
+				console.log(x);
+				console.log(r);
+				console.log(e);
+			}
+		});
+	});
+	
 }
 
 function guardar_actividad(e) {
@@ -11,8 +74,9 @@ function guardar_actividad(e) {
 
 	var nombre = $("#nombre").val();
 	var descripcion = $("#descripcion").val();
+	var estado = $("#estado").val();
 
-	if (nombre != '' && descripcion != '') {
+	if (nombre != '' && descripcion != '' && estado != '') {
 
 		jQuery.ajax({
 			type:"POST",
@@ -34,6 +98,7 @@ function guardar_actividad(e) {
 					var fila = `<tr>
 									<td class="td_nom">`+nombre+`</td>
 									<td class="td_desc">`+descripcion+`</td>
+									<td class="td_estado">`+estado+`</td>
 									<td>
 										<div class="btn-group" role="group" aria-label="Basic example">
 											<button type="button" class="btn btn-success editar"  data-num_id="`+response.id+`" data-toggle="modal" data-target="#editar_actividad">
@@ -51,7 +116,9 @@ function guardar_actividad(e) {
 	
 					$("#nombre").val('');
 					$("#descripcion").val('');
+					$("#estado").val('');
 
+	
 					$(".editar").off("click").on("click", editar_actividad);
 					$(".eliminar").off("click").on("click", eliminar_actividad);
 	
@@ -89,30 +156,34 @@ function editar_actividad(e){
 	var id_actividad = $(this).data('num_id');
 	var nombre = $(this).parents("tr").find(".td_nom").text();
 	var descripcion = $(this).parents("tr").find(".td_desc").text();
+	var estado = $(this).parents("tr").find(".td_estado").text();
 
 	$(this).parents("tr").attr("id","por_editar");
 
 	$("#codigo").text(id_actividad);
 	$("#edit_nombre").val(nombre);
 	$("#edit_descripcion").val(descripcion);
+	$("#edit_estado").val(estado);
 
 
 	$("#btn_editar").off('click').on('click',function() { 
-		actualizar_actividad(id_actividad);
+		actualizar_actividad(id_actividad, estado);
 	});
 
 }	
 
-function actualizar_actividad(id_actividad){
+function actualizar_actividad(id_actividad, estado){
 	var nuevo_nombre = $("#edit_nombre").val();
 	var nueva_descripcion = $("#edit_descripcion").val();
+	var nuevo_estado = $("#edit_estado").val();
 	console.log(nuevo_nombre);
-	if (nuevo_nombre != '' && nueva_descripcion != '') {
+	if (nuevo_nombre != '' && nueva_descripcion != '' && nuevo_estado != '') {
 
 		var datos = {
 			'id_actividad':id_actividad,
 			'nombre': nuevo_nombre,
-			'descripcion': nueva_descripcion
+			'descripcion': nueva_descripcion,
+			'estado': nuevo_estado
 		};
 
 		jQuery.ajax({
@@ -132,6 +203,13 @@ function actualizar_actividad(id_actividad){
 	
 					$("#por_editar").find('.td_nom').text(nuevo_nombre);
 					$("#por_editar").find('.td_desc').text(nueva_descripcion);
+					$("#por_editar").find('.td_estado').text(nuevo_estado);
+					
+					if (nuevo_estado == estado) {
+						$("#por_editar").removeAttr("id");
+					} else{
+						$("#por_editar").remove('');
+					}
 				}
 				else{
 					Swal.fire(data.mensaje);

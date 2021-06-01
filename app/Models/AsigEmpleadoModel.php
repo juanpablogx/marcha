@@ -3,14 +3,14 @@
 namespace App\Models;
 use CodeIgniter\Model;
 
-class ActividadesModel extends Model{
-    protected $table      = 'actividad';
-    protected $primaryKey = 'id_actividad';
+class AsigEmpleadoModel extends Model{
+    protected $table      = 'asignar_empleado';
+    protected $primaryKey = 'id_asignar';
 
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['nombre', 'descripcion', 'estado', 'finca'];
+    protected $allowedFields = ['empleado', 'actividad_l', 'fecha_inicio', 'fecha_fin', 'calificacion', 'descripcion', 'estado'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
@@ -35,6 +35,7 @@ class ActividadesModel extends Model{
             return false;
         }
     }
+
 
     public function get_Actividad($finca) {
         $sql = "SELECT id_actividad, nombre, descripcion FROM actividad WHERE finca = ?";
@@ -75,6 +76,15 @@ class ActividadesModel extends Model{
 
         $actividades = $this->db->query($sql, [$act]);
         return $actividades->getResult();
+    }
+
+    public function ListaActividad($finca, $opcion) {
+        $opcion = $this->escapeString($opcion);
+
+        $sql = "SELECT * FROM actividad WHERE estado = ? AND finca = ?;";
+        $registros = $this->db->query($sql, [$opcion, $finca]);
+
+        return $registros->getResultArray();
     }
 
 }

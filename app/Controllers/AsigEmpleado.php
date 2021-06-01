@@ -1,27 +1,25 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\ActividadesModel;
+use App\Models\AsigEmpleadoModel;
 
-class Actividad extends BaseController
+class AsigEmpleado extends BaseController
 { 
 
-	public function vista_actividad(){
+	public function vista_asig_empleado(){
 
-		$actividad_db = new ActividadesModel();
+        $asigempleado_db = new AsigEmpleadoModel();
 
 		$data = [
-					'titulo' => 'Actividad',
-					'archivo_js' => 'actividades.js'
+					'titulo' => 'Asignar Empleado',
+					'archivo_js' => 'asignar_empleado.js'
 				];
-
-		$data['actividades'] = $actividad_db->get_Actividad($this->session->get('session-finca')['id_finca']);
 
 		$data_encabezado['session_finca'] = $this->session->get('session-finca');
 		echo view('encabezado',$data_encabezado);;
-		echo view('actividad/actividad',$data);
+		echo view('actividad/asignar_empleado',$data);
 		echo view('footer');
-		echo view('actividad/modal_actividad',$data);
+		echo view('actividad/modal_asignar_empleado',$data);
 		echo view('scripts');
 	}
 
@@ -43,12 +41,13 @@ class Actividad extends BaseController
 
 		$nombre = $this->request->getPost('nombre'); 
 		$descripcion = $this->request->getPost('descripcion');
+		$estado = $this->request->getPost('estado');
 		$finca = $this->session->get('session-finca')['id_finca'];  
 
-		if ($nombre != '' && $descripcion != '') {
+		if ($nombre != '' && $descripcion != '' && $estado != '') {
 
 			$actividad_db = new ActividadesModel();
-			$respuesta = $actividad_db->insertarActividad($nombre, $descripcion, $finca);
+			$respuesta = $actividad_db->insertarActividad($nombre, $descripcion, $estado, $finca);
 
 			if($respuesta != false) {
 				$data = array(
@@ -77,12 +76,13 @@ class Actividad extends BaseController
 		$id_actividad = $this->request->getPost('id_actividad'); 
 		$nombre = $this->request->getPost('nombre'); 
 		$descripcion = $this->request->getPost('descripcion');
+		$estado = $this->request->getPost('estado');
 		$finca = $this->session->get('session-finca')['id_finca'];  
 
-		if ($nombre != '' && $descripcion != '') {
+		if ($nombre != '' && $descripcion != '' && $estado != '') {
 
 			$actividad_db = new ActividadesModel();
-			$respuesta = $actividad_db->editarActividad($id_actividad, $nombre, $descripcion, $finca);
+			$respuesta = $actividad_db->editarActividad($id_actividad, $nombre, $descripcion, $estado, $finca);
 
 			if($respuesta) {
 				$data = array(

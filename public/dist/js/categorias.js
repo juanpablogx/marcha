@@ -47,7 +47,7 @@ function guardar_categoria(e) {
                                     </td>
                                 </tr>`;
 
-					$("#lista_categorias").append(fila);
+					$("#lista_categorias").prepend(fila);
 
 					$("#nom_categ").val('');
 					$("#t_categoria").val('');

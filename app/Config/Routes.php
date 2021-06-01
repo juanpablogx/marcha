@@ -85,10 +85,11 @@ $routes->get('Actividades', 'Actividad::vista_actividad');
 $routes->post('AgregarActividad', 'Actividad::agregarActividad');
 $routes->post('EditarActividad', 'Actividad::editarActividad');
 $routes->post('EliminarActividad', 'Actividad::eliminarActividad');
-$routes->post('FiltrarActividad', 'Actividad::filtrarActividad');
+// $routes->post('FiltrarActividad', 'Actividad::filtrarActividad');
 
 
-$routes->get('Asig_empleado', 'Actividad::vista_asig_empleado');
+$routes->get('Asig_empleado', 'AsigEmpleado::vista_asig_empleado');
+
 $routes->get('herramientas', 'Actividad::vista_herramientas');
 
 /*

@@ -1667,6 +1667,10 @@ ALTER TABLE `municipios`
   ADD CONSTRAINT `municipios_ibfk_1` FOREIGN KEY (`departamento_id`) REFERENCES `departamentos` (`id_departamento`);
 COMMIT;
 
+ALTER TABLE `asignar_empleado` ADD`estado` ENUM('Pendiente','Proceso','Terminada') CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL;
+
+ALTER TABLE `actividad` DROP `estado`;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

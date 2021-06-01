@@ -49,7 +49,7 @@ function guardar_lote(e) {
 									</td>
 								</tr>`;
 					
-					$("#lista_lote").append(fila);
+					$("#lista_lote").prepend(fila);
 	
 					$("#nom_lot").val('');
 					$("#tam_lote").val('');

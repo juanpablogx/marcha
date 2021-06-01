@@ -57,7 +57,7 @@ function listar_empleados() {
 										</div>
 									</td>
 								</tr>`;
-						$('#lista_empleados').append(fila);
+						$('#lista_empleados').prepend(fila);
 
 						$(".editar").off("click").on("click", editar_empleado);
 						$(".eliminar").off("click").on("click", eliminar_empleado);
@@ -84,7 +84,7 @@ function listar_empleados() {
 										</div>
 									</td>
 								</tr>`;
-						$('#lista_empleados').append(fila);
+						$('#lista_empleados').prepend(fila);
 
 						$(".editar").off("click").on("click", editar_empleado);
 						$(".restaurar").off("click").on("click", restaurar_empleado);
@@ -156,7 +156,7 @@ function guardar_empleado(e) {
 									</td>
 								</tr>`;
 					
-					$("#lista_empleados").append(fila);
+					$("#lista_empleados").prepend(fila);
 	
 					$("#cedula").val('');
 					$("#nombre").val('');

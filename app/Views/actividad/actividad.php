@@ -31,35 +31,15 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">Tabla de contenido</h3>
-								<div class="card-tools">
-									<div class="form-group clearfix">
-										<div class="d-inline mr-2">
-											<span>Filtrar por:</span>
-										</div>
-										<div class="icheck-primary d-inline">
-											<input type="radio" id="radioPrimary1" class="radioPrimary1" name="r1" value="proceso">
-											<label for="radioPrimary1">Proceso</label>
-										</div>
-										<div class="icheck-warning d-inline">
-											<input type="radio" id="radioPrimary2" class="radioPrimary1" name="r1" value="pendiente">
-											<label for="radioPrimary2">Pendiente</label>
-										</div>
-										<div class="icheck-success d-inline">
-											<input type="radio" id="radioPrimary3" class="radioPrimary1" name="r1" value="terminada">
-											<label for="radioPrimary3">Terminada</label>
-										</div>
-									</div>
-								</div>
+								<h3 class="card-title">Tabla de contenido</h3>	
 							</div>
 							<!-- /.card-header -->
-							<div class="card-body table-responsive p-0" style="height: 300px;">
+							<div class="card-body table-responsive p-0" style="height: 40vh;">
 								<table class="table table-head-fixed text-nowrap text-center">
 								<thead>
 									<tr>
 										<th>Nombre</th>
 										<th>Descripcion</th>
-										<th>Estado</th>
 										<th>Acciones</th>
 									</tr>
 								</thead>
@@ -68,7 +48,6 @@
 										<tr>
 											<td class="td_nom"><?php echo $actividad['nombre'] ?></td>
 											<td class="td_desc"><?php echo $actividad['descripcion'] ?></td>
-											<td class="td_estado"><?php echo $actividad['estado'] ?></td>
 											<td>
 												<div class="btn-group" role="group" aria-label="Basic example">
 

@@ -53,7 +53,7 @@ function guardar_inventario(e) {
 									</td>
 								</tr>`;
 					
-					$("#lista_inventario").append(fila);
+					$("#lista_inventario").prepend(fila);
 	
 					$("#nombre").val('');
 					$("#descripcion").val('');

@@ -19,14 +19,6 @@
 				                <label for="descripcion" class="col-md-10">Descripcion:</label>
 				                <textarea type="text" class="form-control col-md-10" name="descripcion" id="descripcion"></textarea>
 				            </div>
-				            <div class="form-group row d-flex justify-content-center">
-				                <label for="estado" class="col-md-10">Estado:</label>
-				                <select class="form-control col-md-10" name="estado" id="estado">
-				                    <option value="Pendiente">Pendiente</option>
-				                    <option value="Proceso">Proceso</option>
-				                    <option value="Terminada">Terminada</option>
-				                </select>
-				            </div>
 						</div>
 					</div>
 			      	<div class="modal-footer">
@@ -63,14 +55,6 @@
 				            <div class="form-group row d-flex justify-content-center">
 				                <label for="edit_descripcion" class="col-md-10">Descripcion:</label>
 				                <textarea type="text" class="form-control col-md-10" name="edit_descripcion" id="edit_descripcion"></textarea>
-				            </div>
-				            <div class="form-group row d-flex justify-content-center">
-				                <label for="edit_estado" class="col-md-10">Estado:</label>
-				                <select class="form-control col-md-10" name="edit_estado" id="edit_estado">
-				                    <option value="Pendiente">Pendiente</option>
-				                    <option value="Proceso">Proceso</option>
-				                    <option value="Terminada">Terminada</option>
-				                </select>
 				            </div>
 						</div>
 					</div>
