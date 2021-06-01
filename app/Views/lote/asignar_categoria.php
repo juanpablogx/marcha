@@ -43,7 +43,6 @@
 			                <table class="table table-head-fixed text-nowrap text-center">
 			                  <thead>
 							  <tr>
-			                      <th>ID</th>
 			                      <th>Categoria</th>
 			                      <th>Lote</th>
 			                      <th>Acción</th>
@@ -71,14 +70,10 @@
 			                  </thead>
 			                  <tbody>
 			                    <tr>
-			                      <td>1</td>
 			                      <td>Gallinas</td>
 			                      <td>Brucelas</td>
 			                      <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-primary ver" data-num_id="1">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
 
                                             <button type="button" class="btn btn-success editar" data-num_id="1">
                                                 <i class="fas fa-edit"></i>
