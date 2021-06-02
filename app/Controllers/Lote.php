@@ -6,6 +6,16 @@ use App\Models\LoteModel;
 class Lote extends BaseController
 {
 
+	public function __construct(){
+		$session = \Config\Services::session();
+		if ($session->has('session-marcha') == true && $session->has('session-finca') == true) {
+			return false;
+		}else{
+			header('Location: '.base_url('inicioAdmin'));
+			die();
+		}
+	}
+
 	public function vista_lote(){
 		$lotes_db = new LoteModel();
 

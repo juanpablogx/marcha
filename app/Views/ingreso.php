@@ -60,9 +60,11 @@
 								<a href="#recuperar" class="card-text text-white" data-bs-toggle="modal" data-bs-target="#modalRecuperar">¿Olvidaste tu contraseña?</a>
 							</div>
 							<?php if (isset($mensaje_ingreso) && $mensaje_ingreso=="ERROR") { ?>
-									<div class="alert alert-danger">
-										Datos Incorrectos <br>
-									</div> 
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									<strong>Error:</strong>
+									<strong>Datos Incorrectos</strong> 
+									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+								</div>
 							<?php } ?>
 						</div>
 					</div>

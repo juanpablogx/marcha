@@ -7,6 +7,16 @@ use App\Models\FincasModel;
 class Dashboard extends BaseController
 {
 
+    public function __construct(){
+		$session = \Config\Services::session();
+		if ($session->has('session-marcha')) {
+			return false;
+		}else{
+			header('Location: '.base_url('Ingreso'));
+			die();
+		}
+	}
+
     public function inicio_dashboard($id_finca) {
         $fincas_db = new FincasModel();
         $id_user = $this->session->get('session-marcha')['cedula'];

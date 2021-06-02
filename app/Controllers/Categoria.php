@@ -6,6 +6,16 @@ use App\Models\CategoriasModel;
 class Categoria extends BaseController
 {
 
+	public function __construct(){
+		$session = \Config\Services::session();
+		if ($session->has('session-marcha') == true && $session->has('session-finca') == true) {
+			return false;
+		}else{
+			header('Location: '.base_url('inicioAdmin'));
+			die();
+		}
+	}
+
 	public function vista_categoria()
 	{
 		$categoria_db = new CategoriasModel();
