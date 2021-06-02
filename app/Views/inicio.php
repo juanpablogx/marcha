@@ -43,24 +43,24 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="<?php echo base_url('dist/img/campo1.jpg'); ?>" class="d-block w-100" alt="..." style="height: 500px;">
+                        <img src="<?php echo base_url('dist/img/campo1.jpg'); ?>" class="d-block w-100" alt="..." style="min-height: 50vh; max-height: 70vh; filter: brightness(60%);">
                         <div class="carousel-caption d-none d-md-block" >
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+                        <h2 class="display-4">Bienvenido a MARCHA</h2>
+                        <p class="text-">Ponte en MARCHA y avanza.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="<?php echo base_url('dist/img/campo2.jpg'); ?>" class="d-block w-100" alt="..." style="height: 500px;">
+                        <img src="<?php echo base_url('dist/img/campo2.jpg'); ?>" class="d-block w-100" alt="..." style="min-height: 50vh; max-height: 70vh; filter: brightness(60%);">
                         <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
+                        <h2 class="display-4">Administración de Fincas Agropecuarias</h2>
+                        <p>Registrate y crea tu finca.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="<?php echo base_url('dist/img/campo3.jpg'); ?>" class="d-block w-100" alt="..."style="height: 500px;">
+                        <img src="<?php echo base_url('dist/img/campo3.jpg'); ?>" class="d-block w-100" alt="..."style="min-height: 50vh; max-height: 70vh; filter: brightness(60%);">
                         <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
+                        <h2 class="display-4">Toda tu información en un solo lugar</h2>
+                        <p>Todo lo que hacías en papel, ahora digital.</p>
                         </div>
                     </div>
                 </div>
