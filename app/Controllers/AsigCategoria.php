@@ -104,4 +104,24 @@ class AsigCategoria extends BaseController {
 			return json_encode($data);
 	}
 
+    public function eliminarAsigCategoria(){
+		$id = $this->request->getPost('id');
+
+		$asigcategoria_db = new AsigCategoriaModel();
+		$respuesta = $asigcategoria_db->eliminarAsigCategoria($id);
+
+		if ($respuesta) {
+			$data = array(
+				'estado' => 'ok',
+				'mensaje' => 'Se eliminó exitosamente',
+			);
+		}else{
+			$data = array(
+				'estado' => 'error',
+				'mensaje' => 'Ocurrió un error al eliminar'
+			);
+		}
+		return json_encode($data);
+	}
+
 }

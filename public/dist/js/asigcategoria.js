@@ -90,8 +90,6 @@ function guardar_asig_categoria(e) {
 	
 }
 
-// Desde acá todavía no funciona
-
 function editar_asig_categoria(e){
 	e.preventDefault();
 	var id = $(this).data('num_id');
@@ -170,8 +168,8 @@ function actualizar_asig_categoria(e){
 
 function eliminar_asig_categoria() {
 	Swal.fire({
-		title: 'Estas Seguro de Eliminarlo?',
-		text: "Al eliminar el articulo no lo podras recuperar!!",
+		title: 'Estas Seguro de Eliminar?',
+		text: "Al eliminar la relación no la podrás recuperar!!",
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#117E09',
@@ -183,11 +181,13 @@ function eliminar_asig_categoria() {
 			var id = $(this).data('num_id');
 			$(this).parents("tr").attr("id","eliminando");
 
-			var datos = { "id_producto":id };
+			var datos = { "id":id };
+
+            console.log(id);
 
 			$.ajax({
 				type: "POST",
-				url: URL_BASE+"EliminarInventario",
+				url: URL_BASE+"EliminarAsigCategoria",
 				data: datos,
 				dataType: "json",
 				success: function (response) {

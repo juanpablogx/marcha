@@ -57,4 +57,12 @@ class AsigCategoriaModel extends Model{
         
     }
 
+    public function eliminarAsigCategoria($id){
+        $id = $this->escapeString($id);
+        $sql = "DELETE FROM cat_lote WHERE id_lot_cat = ?;";
+
+        $delete = $this->db->query($sql, [$id]);
+        return $delete;
+    }
+
 }
