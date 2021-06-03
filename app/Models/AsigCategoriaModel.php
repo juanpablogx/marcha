@@ -47,4 +47,14 @@ class AsigCategoriaModel extends Model{
         }
     }
 
+    public function editarAsigCategoria($id, $cantidad) {
+        $cantidad = $this->escapeString($cantidad);
+
+        $data = array(
+            'cantidad' => $cantidad
+        );
+        return $this->update($id, $data);
+        
+    }
+
 }

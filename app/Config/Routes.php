@@ -73,6 +73,7 @@ $routes->post('EliminarLote', 'Lote::eliminarLote');
 
 $routes->get('Asig_Categoria', 'AsigCategoria::vista_asig_categoria');
 $routes->post('AgregarAsigCategoria', 'AsigCategoria::agregarAsigCategoria');
+$routes->post('EditarAsigCategoria', 'AsigCategoria::editarAsigCategoria');
 
 $routes->get('Asig_Actividad', 'Lote::vista_asig_actividad');
 

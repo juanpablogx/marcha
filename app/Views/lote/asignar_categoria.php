@@ -27,7 +27,7 @@
 			                	<h3 class="card-title">Tabla de contenido</h3>
 			              </div>
 			              <!-- /.card-header -->
-			              <div class="card-body table-responsive p-0" style="height: 40vh;">
+			              <div class="card-body table-responsive p-0" style="height: 50vh;">
 			                <table class="table table-head-fixed text-nowrap text-center">
 								<thead>
 									<tr>

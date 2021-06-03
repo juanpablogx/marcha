@@ -72,4 +72,36 @@ class AsigCategoria extends BaseController {
 
 	}
 
+    public function editarAsigCategoria(){
+
+		$id = $this->request->getPost('id');
+		$cantidad = $this->request->getPost('cantidad');
+
+		if ($id != '' && $cantidad != '') {
+
+			$asigcategoria_db = new AsigCategoriaModel();
+			$respuesta = $asigcategoria_db->editarAsigCategoria($id, $cantidad);
+
+			if($respuesta) {
+				$data = array(
+					'estado' => 'ok',
+					'mensaje' => 'Se edito exitosamente',
+				);
+			} else {
+				$data = array(
+					'estado' => 'error',
+					'mensaje' => 'Ocurrió un error al editar'
+				);
+				
+			}
+		}else{
+			$data = array(
+				'estado' => 'error',
+				'mensaje' => 'Debe llenar Todos los campos'
+			);
+
+			}
+			return json_encode($data);
+	}
+
 }

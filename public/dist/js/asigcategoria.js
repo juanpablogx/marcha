@@ -95,54 +95,32 @@ function guardar_asig_categoria(e) {
 function editar_asig_categoria(e){
 	e.preventDefault();
 	var id = $(this).data('num_id');
-	var nombre = $(this).parents("tr").find(".td_nombre").text();
-	var descripcion = $(this).parents("tr").find(".td_descripcion").text();
-	var medida = $(this).parents("tr").find(".td_medida").text();
-	var tipo = $(this).parents("tr").find(".td_tipo").text();
-	var precio_und = $(this).parents("tr").find(".td_precio_und").text();
-	var stock = $(this).parents("tr").find(".td_stock").text();
+	var cantidad = $(this).parents("tr").find(".td_cantidad").text();
 
 	$(this).parents("tr").attr("id","por_editar");
 
 	$("#btnEditar").data('num_id', id);
-	$("#edit_nombre").val(nombre);
-	$("#edit_descripcion").val(descripcion);
-	$("#edit_medida").val(medida);
-	$("#edit_tipo").val(tipo);
-	$("#edit_precio_und").val(precio_und);
-	$("#edit_stock").val(stock);
-	//seleccionar un select automaticamente
-	// $("[value="+contrato+"]").attr("selected",true); 
+	$("#edit_cantidad").val(cantidad);
 
-	$("#btnEditar").off('click').on('click', actualizar_inventario);
+	$("#btnEditar").off('click').on('click', actualizar_asig_categoria);
 
 }	
 
-function actualizar_inventario(e){
+function actualizar_asig_categoria(e){
     e.preventDefault();
     var id = $(this).data('num_id');
 
-	var nuevo_nombre = $("#edit_nombre").val();
-	var nuevo_descripcion = $("#edit_descripcion").val();
-	var nuevo_medida = $("#edit_medida").val();
-	var nuevo_tipo = $("#edit_tipo").val();
-	var nuevo_precio_und = $("#edit_precio_und").val();
-	var nuevo_stock = $("#edit_stock").val();
+	var nuevo_cantidad = $("#edit_cantidad").val();
 
-	if (nuevo_nombre != '' && nuevo_medida != '' && nuevo_tipo != '' && nuevo_precio_und != '' && nuevo_stock != '') {
+	if (nuevo_cantidad != '') {
 		var datos = {
-			'id_producto': id,
-			'nombre': nuevo_nombre,
-			'descripcion': nuevo_descripcion,
-			'medida': nuevo_medida,
-			'tipo': nuevo_tipo,
-			'precio_und': nuevo_precio_und,
-			'stock': nuevo_stock
+			'id': id,
+			'cantidad': nuevo_cantidad,
 		};
 		jQuery.ajax({
 			type:"POST",
 			data: datos, //los datos que quiero enviar 
-			url: URL_BASE+'EditarInventario', //a donde quiero llevar los datos
+			url: URL_BASE+'EditarAsigCategoria', //a donde quiero llevar los datos
 			dataType: 'json',
 			success:function(response){ //mensaje que llega del guardar
 				console.log(response);
@@ -154,12 +132,7 @@ function actualizar_inventario(e){
 						'success' //icono
 					);
 	
-					$("#por_editar").find('.td_nombre').text(nuevo_nombre);
-					$("#por_editar").find('.td_descripcion').text(nuevo_descripcion);
-					$("#por_editar").find('.td_medida').text(nuevo_medida);
-					$("#por_editar").find('.td_tipo').text(nuevo_tipo);
-					$("#por_editar").find('.td_precio_und').text(nuevo_precio_und);
-					$("#por_editar").find('.td_stock').text(nuevo_stock);
+					$("#por_editar").find('.td_cantidad').text(nuevo_cantidad);
 	
 					$("#por_editar").removeAttr("id");//remover el id
 	
@@ -185,7 +158,7 @@ function actualizar_inventario(e){
 		Swal.fire({
 			position: 'center',
 			icon: 'error',
-			title: 'Debe llenar Todos los campos (excepto descripción)',
+			title: 'Debe llenar Todos los campos',
 			showConfirmButton: false,
 			timer: 2000
 		});
