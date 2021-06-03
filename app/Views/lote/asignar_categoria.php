@@ -25,67 +25,62 @@
 			            <div class="card">
 			              	<div class="card-header">
 			                	<h3 class="card-title">Tabla de contenido</h3>
-
-			                	<div class="card-tools">
-			                 	 	<div class="input-group input-group-sm" style="width: 150px;">
-			                    		<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-			                    		<div class="input-group-append">
-			                      			<button type="submit" class="btn btn-default">
-			                        		<i class="fas fa-search"></i>
-			                      			</button>
-			                    		</div>
-			                  		</div>
-			                	</div>
 			              </div>
 			              <!-- /.card-header -->
 			              <div class="card-body table-responsive p-0" style="height: 40vh;">
 			                <table class="table table-head-fixed text-nowrap text-center">
-			                  <thead>
-							  <tr>
-			                      <th>Categoria</th>
-			                      <th>Lote</th>
-			                      <th>Acciones</th>
-			                    </tr>
-                                <tr class="bg-dark">
-                                <th>
-                                   <select class="form-control mx-auto" name="cod_lote" id="cod_lote" style="width: 80%;">
-                                        <option value="Lote1">Lote1</option>
-                                        <option value="Lote2">Lote2</option>
-                                        <option value="Lote3">Lote3</option>
-				                    </select>
-                                </th>
-                                <th>
-                                   <select class="form-control  mx-auto" name="cod_categoria" id="cod_categoria" style="width: 80%;">
-                                        <option value="Cate1">Cate1</option>
-                                        <option value="Cate2">Cate2</option>
-                                        <option value="Cate3">Cate3</option>
-				                    </select>
-                                </th>
-                                <th>
-                                    <button type="submit" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Agregar</button> 
-                                </th>
-                                </tr>
-			                  </thead>
-			                  <tbody>
-			                    <tr>
-			                      <td>Gallinas</td>
-			                      <td>Brucelas</td>
-			                      <td>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
+								<thead>
+									<tr>
+										<th>Categoría</th>
+										<th>Lote</th>
+										<th>Cantidad</th>
+										<th>Acciones</th>
+									</tr>
+									<tr class="bg-dark">
+										<th>
+											<select class="form-control mx-auto" name="categoria" id="categoria" style="width: 80%;">
+											<?php foreach ($categorias as $cate): ?>
+												<option value="<?php echo $cate['id_cat'] ?>"><?php echo $cate['categoria'] ?></option>
+												<?php endforeach; ?>
+											</select>
+										</th>
+										<th>
+											<select class="form-control mx-auto" name="lote" id="lote" style="width: 80%;">
+												<?php foreach ($lotes as $lote): ?>
+												<option value="<?php echo $lote['id_lote'] ?>"><?php echo $lote['nombre'] ?></option>
+												<?php endforeach; ?>
+											</select>											
+										</th>
+										<th>
+											<input type="number" name="cantidad" id="cantidad" class="form-control mx-auto" style="width: 80%;">
+										</th>
+										<th>
+											<button type="submit" class="btn text-white" style="background:#77942E;">Agregar</button> 
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php foreach ($asigcategoria as $asigcate): ?>
+									<tr>
+										<td><?php echo $asigcate['categoria'] ?></td>
+										<td><?php echo $asigcate['lote'] ?></td>
+										<td style="width: 25%;"><?php echo $asigcate['cantidad'] ?></td>
+										<td>
+											<div class="btn-group" role="group" aria-label="Basic example">
 
-                                            <button type="button" class="btn btn-success editar" data-num_id="1">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+												<button type="button" class="btn btn-success editar" data-toggle="modal" data-target="#modalEditar" data-num_id="<?php echo $asigcate['id_lot_cat'] ?>">
+													<i class="fas fa-edit"></i>
+												</button>
 
-                                            <button type="button" class="btn btn-danger eliminar" data-num_id="1">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            
-                                        </div>
-                                    </td>
-			                    </tr>
-			                  </tbody>
+												<button type="button" class="btn btn-danger eliminar" data-num_id="<?php echo $asigcate['id_lot_cat'] ?>">
+													<i class="fas fa-trash-alt"></i>
+												</button>
+												
+											</div>
+										</td>
+									</tr>
+								<?php endforeach; ?>
+								</tbody>
 			                </table>
 			              </div>
 			              <!-- /.card-body -->

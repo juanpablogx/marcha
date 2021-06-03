@@ -71,7 +71,9 @@ $routes->post('AgregarLote', 'Lote::agregarLote');
 $routes->post('EditarLote', 'Lote::editarLote');
 $routes->post('EliminarLote', 'Lote::eliminarLote');
 
-$routes->get('Asig_Categoria', 'Lote::vista_asig_categoria');
+$routes->get('Asig_Categoria', 'AsigCategoria::vista_asig_categoria');
+
+
 $routes->get('Asig_Actividad', 'Lote::vista_asig_actividad');
 
 //Rutas controlador Inventario
