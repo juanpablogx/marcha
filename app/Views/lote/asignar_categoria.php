@@ -37,34 +37,36 @@
 										<th>Acciones</th>
 									</tr>
 									<tr class="bg-dark">
-										<th>
-											<select class="form-control mx-auto" name="categoria" id="categoria" style="width: 80%;">
-											<?php foreach ($categorias as $cate): ?>
-												<option value="<?php echo $cate['id_cat'] ?>"><?php echo $cate['categoria'] ?></option>
-												<?php endforeach; ?>
-											</select>
-										</th>
-										<th>
-											<select class="form-control mx-auto" name="lote" id="lote" style="width: 80%;">
-												<?php foreach ($lotes as $lote): ?>
-												<option value="<?php echo $lote['id_lote'] ?>"><?php echo $lote['nombre'] ?></option>
-												<?php endforeach; ?>
-											</select>											
-										</th>
-										<th>
-											<input type="number" name="cantidad" id="cantidad" class="form-control mx-auto" style="width: 80%;">
-										</th>
-										<th>
-											<button type="submit" class="btn text-white" style="background:#77942E;">Agregar</button> 
-										</th>
+										<form action="#" id="formRegistrar">
+											<th>
+												<select class="form-control mx-auto" name="categoria" id="categoria" style="width: 80%;">
+												<?php foreach ($categorias as $cate): ?>
+													<option value="<?php echo $cate['id_cat'] ?>"><?php echo $cate['categoria'] ?></option>
+													<?php endforeach; ?>
+												</select>
+											</th>
+											<th>
+												<select class="form-control mx-auto" name="lote" id="lote" style="width: 80%;">
+													<?php foreach ($lotes as $lote): ?>
+													<option value="<?php echo $lote['id_lote'] ?>"><?php echo $lote['nombre'] ?></option>
+													<?php endforeach; ?>
+												</select>											
+											</th>
+											<th>
+												<input type="number" name="cantidad" id="cantidad" class="form-control mx-auto" style="width: 80%;">
+											</th>
+											<th>
+												<button type="submit" class="btn text-white" id="btnRegistrar" style="background:#77942E;">Agregar</button> 
+											</th>
+										</form>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="lista_asig_categoria">
 								<?php foreach ($asigcategoria as $asigcate): ?>
 									<tr>
-										<td><?php echo $asigcate['categoria'] ?></td>
-										<td><?php echo $asigcate['lote'] ?></td>
-										<td style="width: 25%;"><?php echo $asigcate['cantidad'] ?></td>
+										<td class="td_categoria"><?php echo $asigcate['categoria'] ?></td>
+										<td class="td_lote"><?php echo $asigcate['lote'] ?></td>
+										<td style="width: 25%;" class="td_cantidad"><?php echo $asigcate['cantidad'] ?></td>
 										<td>
 											<div class="btn-group" role="group" aria-label="Basic example">
 

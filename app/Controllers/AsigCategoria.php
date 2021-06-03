@@ -39,6 +39,37 @@ class AsigCategoria extends BaseController {
 		echo view('scripts');
 	}
 
+    public function agregarAsigCategoria(){
 
+		$lote = $this->request->getPost('lote');
+		$categoria = $this->request->getPost('categoria'); 
+		$cantidad = $this->request->getPost('cantidad'); 
+
+		if ($lote != '' && $categoria != '' && $cantidad != '') {
+			$asigcategoria_db = new AsigCategoriaModel();
+			$respuesta = $asigcategoria_db->insertarAsigCategoria($lote, $categoria, $cantidad);
+
+			if($respuesta != false) {
+				$data = array(
+					'estado' => 'ok',
+					'mensaje' => 'Se resgistro la relación exitosamente',
+					'lastid' => $respuesta
+				);
+			} else {
+				$data = array(
+					'estado' => 'error',
+					'mensaje' => 'Ocurrió un error al registar la relación'
+				);
+			}
+		}else{
+			$data = array(
+				'estado' => 'error',
+				'mensaje' => 'Debe llenar Todos los campos'
+			);
+
+		}
+		return json_encode($data);
+
+	}
 
 }
