@@ -71,8 +71,15 @@ $routes->post('AgregarLote', 'Lote::agregarLote');
 $routes->post('EditarLote', 'Lote::editarLote');
 $routes->post('EliminarLote', 'Lote::eliminarLote');
 
+//Rutas controlador Lote Actividad
+$routes->get('LoteActividad', 'LoteActividad::vista_asig_actividad');
+$routes->post('AgregarLoteActividad', 'LoteActividad::agregarLoteActividad');
+$routes->post('EliminarLoteActividad', 'LoteActividad::eliminarLoteActividad');
+$routes->post('EditarLoteActividad', 'LoteActividad::editarLoteActividad');
+$routes->post('EditarLoteActividadEstado', 'LoteActividad::editarLoteActividadEstado');
+$routes->post('FiltrarActividadEstado', 'LoteActividad::filtrarActividadbyEstado');
+
 $routes->get('Asig_Categoria', 'Lote::vista_asig_categoria');
-$routes->get('Asig_Actividad', 'Lote::vista_asig_actividad');
 
 //Rutas controlador Inventario
 $routes->get('Inventario', 'Inventario::vista_inventario');
@@ -85,7 +92,7 @@ $routes->get('Actividades', 'Actividad::vista_actividad');
 $routes->post('AgregarActividad', 'Actividad::agregarActividad');
 $routes->post('EditarActividad', 'Actividad::editarActividad');
 $routes->post('EliminarActividad', 'Actividad::eliminarActividad');
-// $routes->post('FiltrarActividad', 'Actividad::filtrarActividad');
+
 
 
 $routes->get('Asig_empleado', 'AsigEmpleado::vista_asig_empleado');
