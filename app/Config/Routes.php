@@ -91,6 +91,9 @@ $routes->post('EliminarActividad', 'Actividad::eliminarActividad');
 $routes->get('Asig_empleado', 'AsigEmpleado::vista_asig_empleado');
 
 $routes->get('herramientas', 'Actividad::vista_herramientas');
+$routes->post('AgregarAsigEmpleado', 'AsigEmpleado::agregarAsignarEmpleado');
+$routes->post('EditarAsigEmpleado', 'AsigEmpleado::editarAsigEmp');
+$routes->post('EliminarAsigEmpleado', 'AsigEmpleado::eliminarAsigEmpleado');
 
 /*
  * --------------------------------------------------------------------

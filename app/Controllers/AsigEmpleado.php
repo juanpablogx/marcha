@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Models\LoteActividadModel;
 use App\Models\AsigEmpleadoModel;
+use App\Models\EmpleadosModel;
 
 class AsigEmpleado extends BaseController
 { 
 
 	public function __construct(){
-		$session = \Config\Services::session();
+		$session = \Config\Services::session(); 
 		if ($session->has('session-marcha') == true && $session->has('session-finca') == true) {
 			return false;
 		}else{
@@ -17,13 +20,18 @@ class AsigEmpleado extends BaseController
 	}
 
 	public function vista_asig_empleado(){
-
-        $asigempleado_db = new AsigEmpleadoModel();
+        $asigempleado_db = new EmpleadosModel();
+		$activida_l_db = new LoteActividadModel();
+		$mostrar_db = new AsigEmpleadoModel();
 
 		$data = [
 					'titulo' => 'Asignar Empleado',
 					'archivo_js' => 'asignar_empleado.js'
 				];
+				
+		$data['mostrar_asig_emp'] = $mostrar_db->obtenerListaAsigEmp($this->session->get('session-finca')['id_finca']);
+		$data['actividad_l'] = $activida_l_db->obtenerListaLoteActividadbyFinca($this->session->get('session-finca')['id_finca']);
+		$data['asig_emp'] = $asigempleado_db->obtenerListaEmpleadosbyFincaActivos($this->session->get('session-finca')['id_finca']);
 
 		$data_encabezado['session_finca'] = $this->session->get('session-finca');
 		echo view('encabezado',$data_encabezado);;
@@ -33,42 +41,28 @@ class AsigEmpleado extends BaseController
 		echo view('scripts');
 	}
 
-	public function vista_herramientas(){
 
-		$data = [
-					'titulo' => 'Herramientas',
-					'archivo_js' => 'actividad.js'
-				];
+	public function agregarAsignarEmpleado(){
 
-		$data_encabezado['session_finca'] = $this->session->get('session-finca');
-		echo view('encabezado',$data_encabezado);;
-		echo view('actividad/herramientas',$data);
-		echo view('footer');
-		echo view('scripts');
-	}
+		$empleado = $this->request->getPost('cod_empleado'); 
+		$actividad_l = $this->request->getPost('cod_act');
 
-	public function agregarActividad(){
+		if ($empleado != '' && $actividad_l != '') {
 
-		$nombre = $this->request->getPost('nombre'); 
-		$descripcion = $this->request->getPost('descripcion');
-		$estado = $this->request->getPost('estado');
-		$finca = $this->session->get('session-finca')['id_finca'];  
-
-		if ($nombre != '' && $descripcion != '' && $estado != '') {
-
-			$actividad_db = new ActividadesModel();
-			$respuesta = $actividad_db->insertarActividad($nombre, $descripcion, $estado, $finca);
+			$asignarEmp_db = new AsigEmpleadoModel();
+			$respuesta = $asignarEmp_db->insertarAsignarEmpleado($empleado, $actividad_l);
 
 			if($respuesta != false) {
 				$data = array(
 					'estado' => 'ok',
-					'mensaje' => 'Se agrego la Actividad exitosamente',
+					'mensaje' => 'Se agrego Asignar Empleado exitosamente',
 					'id' => $respuesta
 				);
 			} else {
 				$data = array(
 					'estado' => 'error',
-					'mensaje' => 'Ocurrió un error al agregar Actividad'
+					'mensaje' => 'Ocurrió un error al agregar Asignar Empleado',
+					'id' => $respuesta
 				);
 			}
 		}else{
@@ -82,27 +76,24 @@ class AsigEmpleado extends BaseController
 
 	}
 
-	public function editarActividad(){
-		$id_actividad = $this->request->getPost('id_actividad'); 
-		$nombre = $this->request->getPost('nombre'); 
-		$descripcion = $this->request->getPost('descripcion');
-		$estado = $this->request->getPost('estado');
-		$finca = $this->session->get('session-finca')['id_finca'];  
+	public function editarAsigEmp(){
+		$id_asig_empleado = $this->request->getPost('id_asig_empleado'); 
+		$calificacion = $this->request->getPost('edit_cod_calificar');  
 
-		if ($nombre != '' && $descripcion != '' && $estado != '') {
+		if ($calificacion != '') {
 
-			$actividad_db = new ActividadesModel();
-			$respuesta = $actividad_db->editarActividad($id_actividad, $nombre, $descripcion, $estado, $finca);
+			$asig_empleado_db = new AsigEmpleadoModel();
+			$respuesta = $asig_empleado_db->editarAsigEmpleado($id_asig_empleado, $calificacion);
 
 			if($respuesta) {
 				$data = array(
 					'estado' => 'ok',
-					'mensaje' => 'Se edito la Actividad exitosamente'
+					'mensaje' => 'Se edito Asignar Empleado exitosamente'
 				);
 			} else {
 				$data = array(
 					'estado' => 'error',
-					'mensaje' => 'Ocurrió un error al editar Actividad'
+					'mensaje' => 'Ocurrió un error al editar Asignar Empleado'
 				);
 			}
 		}else{
@@ -115,11 +106,11 @@ class AsigEmpleado extends BaseController
 		return json_encode($data);
 
 	}
-	public function eliminarActividad(){
-		$id_actividad = $this->request->getPost('id_actividad');
+	public function eliminarAsigEmpleado(){
+		$id_asig_empleado = $this->request->getPost('id_asig_empleado');
 
-		$actividad_db = new ActividadesModel();
-		$respuesta = $actividad_db->eliminarActividad($id_actividad);
+		$asig_empleado_db = new  AsigEmpleadoModel();
+		$respuesta = $asig_empleado_db->eliminarAsigEmp($id_asig_empleado);
 
 		if ($respuesta) {
 					$data = [
@@ -132,23 +123,5 @@ class AsigEmpleado extends BaseController
 					];
 		}
 		echo json_encode($data);
-	}
-	public function filtrarActividad() {
-		$finca = $this->session->get('session-finca')['id_finca'];
-		$opcion = $this->request->getPost('opcion');
-		
-		$actividad_db = new ActividadesModel();
-		$respuesta = $actividad_db->ListaActividad($finca, $opcion);
-		if (count($respuesta) > 0) {
-			$data = [
-				'estado'=>true,
-				'datos'=>$respuesta
-			];
-		}else{
-			$data = [
-				'estado'=> false
-			];
-		}
-		return json_encode($data);
 	}
 }
