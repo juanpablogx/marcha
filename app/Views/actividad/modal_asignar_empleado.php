@@ -60,6 +60,7 @@
 							<div class="form-group row d-flex justify-content-center">
 								<label for="cod_calificar" class="col-md-10">Calificacion:</label>
 								<select class="form-control  mx-auto" name="edit_cod_calificar" id="edit_cod_calificar" style="width: 80%;">
+									<option value="Pendiente" disabled>Pendiente</option>
 									<option value="Muy_bueno">Muy Bueno</option>
 									<option value="Bueno">Bueno</option>
 									<option value="Regular">Regular</option>
