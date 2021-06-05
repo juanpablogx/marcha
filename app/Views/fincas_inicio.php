@@ -51,14 +51,20 @@
 						foreach ($fincas as $finca):
 						?>
 						<div class="col-sm-8 col-md-4 col-lg-3">
-							<div class="card rounded-3 text-center pt-2">
+							<div class="card rounded-3 text-center pt-2 padre">
 								<a class="btn" href="<?php echo base_url(); ?>/Dashboard/<?php echo $finca['id_finca']; ?>">
-									<div class="card-body">
-										<h4 class="card-title"><?php echo $finca['nombre'] ?></h4>
+									<div class="card-body hijo">
+										<h4 class="card-title cd_nombre"><?php echo $finca['nombre'] ?></h4>
 										<h5 class="card-subtitle mb-2 text-muted"><?php echo $finca['departamento'].', '.$finca['municipio'] ?></h5>
-										<p class="card-text"><?php echo $finca['extencion'] ?></p>
+										<p class="card-text cd_extension"><?php echo $finca['extencion'] ?></p>
 									</div>
 								</a>
+								<div>
+									<button type="button" class="btn btn-success mb-3 editar" data-bs-toggle="modal" data-bs-target="#editarFinca" data-id_finca="<?php echo $finca['id_finca']; ?>">
+										
+									<i class="fas fa-edit"></i>
+									</button>
+								</div>
 							</div>
 						</div>
 						<?php
@@ -103,7 +109,7 @@
 									<option value="<?php echo $depto['id_departamento']; ?>"><?php echo $depto['departamento'] ?></option>
 									<?php endforeach; ?>
 								</select>
-							</div>
+							</div> 
 							<div class="mb-3">
 								<label for="municipio" class="form-label">Municipio</label>
 								<select name="municipio" id="municipio" class="form-select">
@@ -125,6 +131,38 @@
 			</div>
 		</div>
 			
+		<!-- Modal EDITAR Finca-->
+		<div class="modal fade" id="editarFinca" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Editar Finca</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<form id="formEditar" action="#" method="POST">
+						<div class="modal-body">
+							<div class="form-group row d-flex justify-content-center">
+								<strong>COD SOLICITUD:</strong>
+								<p id="codigo"></p>
+							</div>
+							<div class="mb-3">
+								<label for="edit_nombre" class="form-label">Nuevo nombre de la Finca</label>
+								<input type="text" class="form-control" id="edit_nombre" name="edit_nombre" required>
+							</div>
+							<div class="mb-3">
+								<label for="edit_extension" class="form-label">Nueva extensión (metros cuadrados)</label>
+								<input type="number" class="form-control" id="edit_extension" name="edit_extension" required>
+							</div>
+							<span id="alerta" class="text-danger"></span>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-success" id="btn_editar_finca">Editar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

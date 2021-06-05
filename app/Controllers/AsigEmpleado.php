@@ -74,7 +74,7 @@ class AsigEmpleado extends BaseController
 		}
 		return json_encode($data);
 
-	}
+	} 
 
 	public function editarAsigEmp(){
 		$id_asig_empleado = $this->request->getPost('id_asig_empleado'); 

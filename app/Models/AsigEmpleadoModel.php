@@ -43,7 +43,7 @@ class AsigEmpleadoModel extends Model{
         return $registros->getResultArray();
     }
     
-
+   
 
     public function editarAsigEmpleado($id_asig_empleado, $calificacion) {
         $data = array(

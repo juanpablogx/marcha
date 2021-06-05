@@ -41,12 +41,14 @@ $routes->get('Registro', 'Inicio::paginaRegistro');
 $routes->post('emailRecuperar', 'Inicio::email_recuperar');
 $routes->post('crearRegistroUsuario', 'Inicio::crearRegistroUsuario');
 
+
 //Rutas sesión en fincas
 $routes->post('validarIngreso', 'Inicio::validarDatosIngreso');
 $routes->get('inicioAdmin', 'Fincas::index');
 $routes->post('getMunicipios', 'Fincas::obtenerMunicipios');
 $routes->post('registrarFinca', 'Fincas::agregarFinca');
 $routes->get('logOut', 'Inicio::cerrarSesion');
+$routes->post('EditarFinca', 'Fincas::editarFincas');
 
 $routes->get('Dashboard/(:num)', 'Dashboard::inicio_dashboard/$1');
 

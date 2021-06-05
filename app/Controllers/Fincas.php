@@ -17,7 +17,7 @@ class Fincas extends BaseController {
 		}
 	}
 
-	public function index(){
+	public function index(){ 
 		$fincas_db = new FincasModel();
 		$deptos_db = new DepartamentosModel();
 
@@ -60,5 +60,34 @@ class Fincas extends BaseController {
 		}
 		return json_encode($data);
 	}
+	public function editarFincas(){
+		$id_finca = $this->request->getPost('id_finca'); 
+		$nombre = $this->request->getPost('edit_nombre');  
+		$extension = $this->request->getPost('edit_extension'); 
+		if ($nombre != '' && $extension != '') {
 
+			$finca_db = new  FincasModel();
+			$respuesta = $finca_db->editarFinca($id_finca, $nombre, $extension);
+
+			if($respuesta) {
+				$data = array(
+					'estado' => 'ok',
+					'mensaje' => 'Se edito la finca exitosamente'
+				);
+			} else {
+				$data = array(
+					'estado' => 'error',
+					'mensaje' => 'Ocurrió un error al editar la finca'
+				);
+			}
+		}else{
+			$data = array(
+				'estado' => 'error',
+				'mensaje' => 'Debe llenar Todos los campos'
+			);
+
+		}
+		return json_encode($data);
+
+	}
 }

@@ -52,5 +52,14 @@ class FincasModel extends Model{
         $registros = $this->db->query($sql, [$id_finca, $id_usuario])->getResultArray();
         return $registros[0];
     }
-
-}
+    
+    public function editarFinca($id_finca, $nombre, $extension) {
+        $data = array(
+            'id_finca'=> $id_finca,
+            'nombre' => $nombre,
+            'extencion' => $extension
+        );
+        $respuesta = $this->update($id_finca, $data);
+        return $respuesta;
+    }
+} 
