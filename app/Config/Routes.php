@@ -90,7 +90,11 @@ $routes->post('EliminarActividad', 'Actividad::eliminarActividad');
 
 $routes->get('Asig_empleado', 'AsigEmpleado::vista_asig_empleado');
 
-$routes->get('herramientas', 'Actividad::vista_herramientas');
+// Rutas controlador Herramientas
+$routes->get('herramientas', 'Herramientas::vista_herramientas');
+$routes->post('AgregarHerramientas', 'Herramientas::agregarHerramienta');
+$routes->post('EditarHerramientas', 'Herramientas::editarHerramienta');
+$routes->post('EliminarHerramientas', 'Herramientas::eliminarHerramienta');
 
 /*
  * --------------------------------------------------------------------

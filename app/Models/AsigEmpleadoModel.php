@@ -8,9 +8,9 @@ class AsigEmpleadoModel extends Model{
     protected $primaryKey = 'id_asignar';
 
     protected $returnType = 'array';
-    protected $useSoftDeletes = false;
+    protected $useSoftDeletes = false; 
 
-    protected $allowedFields = ['empleado', 'actividad_l', 'fecha_inicio', 'fecha_fin', 'calificacion', 'descripcion', 'estado'];
+    protected $allowedFields = ['empleado', 'actividad_l', 'calificacion'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
@@ -22,11 +22,11 @@ class AsigEmpleadoModel extends Model{
     protected $skipValidation     = false;
 
 
-    public function insertarActividad($nombre, $descripcion, $finca) {
+    public function insertarAsignarEmpleado($empleado, $actividad_l, $calificacion) {
         $data = array(
-            'nombre' => $nombre,
-            'descripcion' => $descripcion,
-            'finca' => $finca
+            'empleado' => $empleado,
+            'actividad_l' => $actividad_l,
+            'calificacion' => $calificacion
         );
         $respuesta = $this->insert($data);
         if($respuesta) {
@@ -36,55 +36,33 @@ class AsigEmpleadoModel extends Model{
         }
     }
 
+    public function obtenerListaAsigEmp($finca) {
+        $sql = "SELECT asignar_empleado.id_asignar, asignar_empleado.empleado, asignar_empleado.actividad_l, asignar_empleado.calificacion, empleado.nombres, empleado.apellidos FROM asignar_empleado INNER JOIN empleado ON asignar_empleado.empleado = empleado.id_empleado WHERE empleado.finca = ?";
 
-    public function get_Actividad($finca) {
-        $sql = "SELECT id_actividad, nombre, descripcion FROM actividad WHERE finca = ?";
-
-        $registros = $this->db->query($sql, [$finca]); 
+        $registros = $this->db->query($sql, [$finca]);
 
         return $registros->getResultArray();
     }
+    
 
-    public function editarActividad($id_actividad, $nombre, $descripcion, $finca) {
+
+    public function editarAsigEmpleado($id_asig_empleado, $calificacion) {
         $data = array(
-            'id_actividad'=>$id_actividad,
-            'nombre' => $nombre,
-            'descripcion' => $descripcion,
-            'finca' => $finca
+            'id_asignar'=>$id_asig_empleado,
+            'calificacion' => $calificacion,
         );
-        $respuesta = $this->update($id_actividad, $data);
+        $respuesta = $this->update($id_asig_empleado, $data);
         return $respuesta;
         
     }
 
-    public function editarActividadByFinca($id_actividad, $nombre, $descripcion, $finca) {
 
-        $id_actividad = $this->escapeString($id_actividad);
-        $nombre = $this->escapeString($nombre);
-        $descripcion = $this->escapeString($descripcion);
-        
-        $sql = "UPDATE actividad SET nombre = ?, descripcion = ? WHERE id_actividad = ?;";
+    public function eliminarAsigEmp($id_asig_empleado){
+        $asig = $this->escapeString($id_asig_empleado);
+        $sql = "DELETE FROM asignar_empleado WHERE id_asignar = ?;";
 
-        $registros = $this->db->query($sql, [$nombre, $descripcion, $id_actividad]);
-
-        return $registros->getResultArray();
-    }
-
-    public function eliminarActividad($id_actividad){
-        $act = $this->escapeString($id_actividad);
-        $sql = "DELETE FROM actividad WHERE id_actividad = ?;";
-
-        $actividades = $this->db->query($sql, [$act]);
-        return $actividades->getResult();
-    }
-
-    public function ListaActividad($finca, $opcion) {
-        $opcion = $this->escapeString($opcion);
-
-        $sql = "SELECT * FROM actividad WHERE estado = ? AND finca = ?;";
-        $registros = $this->db->query($sql, [$opcion, $finca]);
-
-        return $registros->getResultArray();
+        $asig_empleado = $this->db->query($sql, [$asig]);
+        return $asig_empleado->getResult();
     }
 
 }

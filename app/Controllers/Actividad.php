@@ -32,21 +32,7 @@ class Actividad extends BaseController
 		echo view('actividad/actividad',$data);
 		echo view('footer');
 		echo view('actividad/modal_actividad',$data);
-		echo view('scripts');
-	}
-
-	public function vista_herramientas(){
-
-		$data = [
-					'titulo' => 'Herramientas',
-					'archivo_js' => 'actividad.js'
-				];
-
-		$data_encabezado['session_finca'] = $this->session->get('session-finca');
-		echo view('encabezado',$data_encabezado);;
-		echo view('actividad/herramientas',$data);
-		echo view('footer');
-		echo view('scripts');
+		echo view('scripts',$data);
 	}
 
 	public function agregarActividad(){
