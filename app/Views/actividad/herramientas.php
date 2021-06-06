@@ -68,7 +68,7 @@
 										<td>
 											<div class="btn-group" role="group" aria-label="Basic example">
 
-												<button type="button" class="btn btn-success editar"  data-toggle="modal" data-target="#editar_herramienta" data-num_id="<?php echo $herramienta['id'] ?>" data-num_actL="<?php echo $herramienta['id_la'] ?>" data-num_product="<?php echo $herramienta['cod_producto'] ?>">
+												<button type="button" class="btn btn-success editar"  data-toggle="modal" data-target="#editar_herramienta" data-num_id="<?php echo $herramienta['id'] ?>" data-num_actl="<?php echo $herramienta['id_act_lote'] ?>" data-num_product="<?php echo $herramienta['cod_producto'] ?>">
 													<i class="fas fa-edit"></i>
 												</button>
 

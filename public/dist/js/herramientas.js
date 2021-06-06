@@ -43,7 +43,7 @@ function guardar_herramienta(e) {
 									<td class="td_tipo">`+tipo+`</td>
 									<td>
 										<div class="btn-group" role="group" aria-label="Basic example">
-											<button type="button" class="btn btn-success editar"  data-num_id="`+response.id+`" data-toggle="modal" data-target="#editar_herramienta">
+											<button type="button" class="btn btn-success editar"  data-num_id="`+response.id+`" data-num_actl="`+cod_act+`" data-num_product="`+cod_producto+`" data-toggle="modal" data-target="#editar_herramienta">
 												<i class="fas fa-edit"></i>
 											</button>
 											<button type="button" class="btn btn-danger eliminar"  data-num_id="`+response.id+`">
@@ -99,8 +99,8 @@ function editar_herramienta(e){
 	e.preventDefault();
 
 	var id = $(this).data('num_id');
-	var actL = $(this).data('num_actL');
-	console.log(actL);
+	var actl = $(this).data('num_actl');
+	console.log(actl);
 	var product = $(this).data('num_product');
 	var cantidad = $(this).parents("tr").find(".td_cantidad").text();
 	var tipo = $(this).parents("tr").find(".td_tipo").text();
@@ -108,7 +108,7 @@ function editar_herramienta(e){
 	$(this).parents("tr").attr("id","por_editar");
 
 	$("#codigo").text(id);
-	$("#edit_cod_actL").val(actL);
+	$("#edit_cod_actL").val(actl);
 	// $("[value="+actL+"]").attr("selected",true);
 	$("#edit_cod_producto").val(product);
 	$("#edit_cantidad").val(cantidad);
