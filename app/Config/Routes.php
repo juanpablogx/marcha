@@ -40,6 +40,8 @@ $routes->get('Ingreso', 'Inicio::paginaIngreso');
 $routes->get('Registro', 'Inicio::paginaRegistro');
 $routes->post('emailRecuperar', 'Inicio::email_recuperar');
 $routes->post('crearRegistroUsuario', 'Inicio::crearRegistroUsuario');
+$routes->get('cambiarContrasena/(:any)', 'Inicio::vista_cambiar_pass/$1');
+$routes->post('editarContrasena', 'Inicio::editarContrasena');
 
 //Rutas sesión en fincas
 $routes->post('validarIngreso', 'Inicio::validarDatosIngreso');

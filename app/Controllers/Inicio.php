@@ -27,7 +27,119 @@ class Inicio extends BaseController {
 	}
 
 	public function email_recuperar(){
-		return json_encode( "Estamos en el metodo.. llego desde el AJAX" );
+		$correo = $this->request->getPost('correo');
+		$usuario_db = new UsuariosModel();
+		$respuesta = $usuario_db->validarCorreo($correo);
+
+		if(count($respuesta) > 0) {
+			$email = \Config\Services::email();
+
+			$config['protocol'] = 'smtp';
+			$config['SMTPHost'] = 'smtp.gmail.com';
+			$config['SMTPUser'] = 'pruebamarcha351@gmail.com';
+			$config['SMTPPass'] = 'marchasena1#';
+			// $config['SMTPPort'] = 465;
+			// $config['SMTPCrypto'] = 'ssl';
+			$config['mailType'] = 'html';
+			// $config['wordWrap'] = true;
+			// $config['charset']  = 'utf-8';
+
+			$email->initialize($config);
+			$email->setFrom('pruebamarcha351@gmail.com', 'Equipo MARCHA');
+			$email->setTo($correo);
+
+			$token = uniqid();
+
+			// Pendiente por mejorar
+			$mensaje = '<h1 style="background-color: #234F1E; color: #fff; text-align: center;">Equipo MARCHA - Recuperación de Cuenta</h1>
+						<p style="text-align: center;">Deberás cambiar tu contraseña para recuperar la cuenta.</p>
+						<div style="display: flex; justify-content: center;">
+							<a href="'.base_url('cambiarContrasena').'/'.$token.'" style="background-color: #77942E; color: #fff; padding: 5px; border: none; border-radius: 3px; text-decoration: none;">Haz click aquí</a>
+						</div>';
+
+			$email->setSubject('Recuperar la cuenta');
+			$email->setMessage($mensaje);
+
+			if($email->send()) {
+				$respuesta = $usuario_db->insertarToken($token, $correo);
+				if($respuesta) {
+					$data = array(
+						'estado' => true,
+						'mensaje' => 'Se envió correctamente el email. Revisa tu correo'
+					);
+				} else {
+					$data = array(
+						'estado' => false,
+						'mensaje' => 'Error al crear el token'
+					);
+				}
+			} else {
+				$data = array(
+					'estado' => false,
+					'mensaje' => 'Hubo un error al enviar el email'
+				);
+			}
+		} else {
+			$data = array(
+				'estado' => false,
+				'mensaje' => 'El correo brindado no pertenece a un usuario'
+			);
+		}
+
+		return json_encode($data);
+	}
+
+	public function vista_cambiar_pass($token) {
+		if($token != '' || $token != NULL) {
+			$usuario_db = new UsuariosModel();
+			$respuesta = $usuario_db->validarToken($token);
+			if(count($respuesta) > 0) {
+				$data['token'] = $token;
+				$this->session->set($data);
+				return view('cambiar_pass');
+			} else {
+				header('Location: '.base_url('Ingreso'));
+				die();
+			}
+		} else {
+			header('Location: '.base_url('Ingreso'));
+			die();
+		}
+	}
+
+	public function editarContrasena() {
+		$pass = $this->request->getPost('contrasena');
+		$confpass = $this->request->getPost('confcontrasena');
+
+		if(($pass != '' || $confpass != '') && $pass == $confpass) {
+			$usuario_db = new UsuariosModel();
+			$respuesta = $usuario_db->editarContrasena($confpass, $this->session->get('token'));
+			if($respuesta) {
+				$resultado = $usuario_db->eliminarToken($this->session->get('token'));
+				if($resultado) {
+					$this->session->remove('token');
+					return redirect('Ingreso');
+				} else {
+					$data = [
+						'estado' => 'error',
+						'mensaje' => 'Problema con el token'
+					];
+					return view('cambiar_pass', $data);
+				}
+			} else {
+				$data = [
+					'estado' => 'error',
+					'mensaje' => 'Problema al cambiar la contraseña'
+				];
+				return view('cambiar_pass', $data);
+			}
+		} else {
+			$data = [
+				'estado' => 'error',
+				'mensaje' => 'Las contraseñas no coinciden'
+			];
+			return view('cambiar_pass', $data);
+		}
 	}
 
 	public function crearRegistroUsuario(){

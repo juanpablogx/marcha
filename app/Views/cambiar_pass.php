@@ -19,17 +19,7 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav">
-						<li class="nav-item ms-4">
-								<a class="nav-link" href="<?php echo base_url(); ?>">Inicio</a>
-						</li>
-						<li class="nav-item ms-4">
-								<a class="nav-link" href="<?php echo base_url('Registro'); ?>">Registro</a>
-						</li>
-						<li class="nav-item ms-4">
-								<a class="nav-link active" href="<?php echo base_url('Ingreso'); ?>">Ingreso</a>
-						</li>
-					</ul>
+					
 				</div>
 			</div>
 		</nav>
@@ -41,28 +31,27 @@
 					<div class="col-12 col-md-6 col-lg-4">
 						<div class="card" style="background: rgba(0, 0, 0, 0.4);">
 							<div class="card-body" style="color: #fff;"> 
-								<h2 class="card-title text-center">Inicio de Sesión</h2>
-								<form class="row g-3" action="<?php echo base_url('validarIngreso') ?>" method="POST"> 
+								<h2 class="card-title text-center">Cambiar Contraseña</h2>
+								<form class="row g-3" action="<?php echo base_url('editarContrasena') ?>" method="POST"> 
 									<div class="row g-3">
 										<div class="col-md-12">
-											<label for="usuario" class="form-label">Correo</label>
-											<input type="text" class="form-control" id="usuario" name="email" value="<?php echo (isset($valor_email))? $valor_email:''; ?>">
-										</div>
-										<div class="col-md-12">
 											<label for="contrasena" class="form-label">Contraseña</label>
-											<input type="password" class="form-control" id="contrasena" name="password">
+											<input type="password" class="form-control" id="contrasena" name="contrasena" required>
+										</div>
+                                        <div class="col-md-12">
+											<label for="confcontrasena" class="form-label">Confirmar Contraseña</label>
+											<input type="password" class="form-control" id="confcontrasena" name="confcontrasena" required>
 										</div>
 									</div>
 									<div class="col-12 text-center py-3">
-										<button type="submit" class="btn" style="background: rgba(41,125,22,1);border: none; color: #fff;">Ingresar</button>
+										<button type="submit" class="btn" style="background: rgba(41,125,22,1);border: none; color: #fff;">Cambiar</button>
 									</div>
 								</form>
-								<a href="#recuperar" class="card-text text-white" data-bs-toggle="modal" data-bs-target="#modalRecuperar">¿Olvidaste tu contraseña?</a>
 							</div>
-							<?php if (isset($mensaje_ingreso) && $mensaje_ingreso=="ERROR") { ?>
+							<?php if (isset($estado) && $estado=="error") { ?>
 								<div class="alert alert-danger alert-dismissible fade show" role="alert">
 									<strong>Error:</strong>
-									<strong>Datos Incorrectos</strong> 
+									<strong><?php echo $mensaje; ?></strong> 
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 								</div>
 							<?php } ?>
@@ -81,32 +70,8 @@
 			</footer>
 		</div>
 
-	<!-- Modal -->
-			<div class="modal fade" id="modalRecuperar" tabindex="-1">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Recuperar Cuenta</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<div class="row g-3">
-								<div class="col-md-12">
-									<label for="correoReiniciar" class="form-label">Correo Electrónico</label>
-									<input type="email" class="form-control" id="correoReiniciar">
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-							<button type="button" class="btn btn-primary" id="btnRecuperar">Enviar</button>
-						</div>
-					</div>
-				</div>
-			</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="<?php echo base_url('dist/js/ingreso.js'); ?>"></script>
   </body>
 </html>
 

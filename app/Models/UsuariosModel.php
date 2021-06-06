@@ -9,7 +9,7 @@ class UsuariosModel extends Model{
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['id_usuario', 'nombres', 'apellidos', 'correo', 'contrasena'];
+    protected $allowedFields = ['id_usuario', 'nombres', 'apellidos', 'correo', 'contrasena', 'token'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
@@ -53,6 +53,42 @@ class UsuariosModel extends Model{
                         ->where(['correo'=>$correo])
                         ->find();
         return $registros[0];
+    }
+
+    public function validarCorreo($correo) {
+        $correo = $this->escapeString($correo);
+        $sql = "SELECT id_usuario FROM usuario WHERE correo = ?";
+        $registros = $this->db->query($sql, [$correo]);
+
+        return $registros->getResultArray();
+    }
+
+    public function insertarToken($token, $correo) {
+        $sql = "UPDATE usuario SET token = ? WHERE correo = ?";
+        $respuesta = $this->db->query($sql, [$token, $correo]);
+
+        return $respuesta;
+    }
+
+    public function validarToken($token) {
+        $sql = "SELECT token FROM usuario WHERE token = ?";
+        $registros = $this->db->query($sql, [$token]);
+
+        return $registros->getResultArray();
+    }
+
+    public function eliminarToken($token) {
+        $sql = "UPDATE usuario SET token = NULL WHERE token = ?";
+        $respuesta = $this->db->query($sql, [$token]);
+
+        return $respuesta;
+    }
+
+    public function editarContrasena($pass, $token) {
+        $sql = "UPDATE usuario SET contrasena = ? WHERE token = ?";
+        $respuesta = $this->db->query($sql, [md5($pass), $token]);
+
+        return $respuesta;
     }
 
 }
