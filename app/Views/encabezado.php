@@ -96,9 +96,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url().'/Asig_Actividad'; ?>" class="nav-link">
+                <a href="<?php echo base_url().'/LoteActividad'; ?>" class="nav-link">
                   <i class="far fa-circle nav-icon" style="color: white;"></i>
-                  <p class="text-light">Asignar Actividad</p>
+                  <p class="text-light">Asignar Lote Actividad</p>
                 </a>
               </li>
             </ul>
