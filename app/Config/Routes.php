@@ -43,12 +43,14 @@ $routes->post('crearRegistroUsuario', 'Inicio::crearRegistroUsuario');
 $routes->get('cambiarContrasena/(:any)', 'Inicio::vista_cambiar_pass/$1');
 $routes->post('editarContrasena', 'Inicio::editarContrasena');
 
+
 //Rutas sesión en fincas
 $routes->post('validarIngreso', 'Inicio::validarDatosIngreso');
 $routes->get('inicioAdmin', 'Fincas::index');
 $routes->post('getMunicipios', 'Fincas::obtenerMunicipios');
 $routes->post('registrarFinca', 'Fincas::agregarFinca');
 $routes->get('logOut', 'Inicio::cerrarSesion');
+$routes->post('EditarFinca', 'Fincas::editarFincas');
 
 $routes->get('Dashboard/(:num)', 'Dashboard::inicio_dashboard/$1');
 
@@ -103,6 +105,9 @@ $routes->post('EliminarActividad', 'Actividad::eliminarActividad');
 $routes->get('Asig_empleado', 'AsigEmpleado::vista_asig_empleado');
 
 $routes->get('herramientas', 'Actividad::vista_herramientas');
+$routes->post('AgregarAsigEmpleado', 'AsigEmpleado::agregarAsignarEmpleado');
+$routes->post('EditarAsigEmpleado', 'AsigEmpleado::editarAsigEmp');
+$routes->post('EliminarAsigEmpleado', 'AsigEmpleado::eliminarAsigEmpleado');
 
 /*
  * --------------------------------------------------------------------

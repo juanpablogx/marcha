@@ -1,87 +1,24 @@
 $(document).ready(iniciar);
 
 function iniciar(){
-	$("#btn_registrar").on("click", guardar_actividad);
-	$(".editar").off("click").on("click", editar_actividad);
-	$(".eliminar").off("click").on("click", eliminar_actividad);
-	$(".radioPrimary1").on("click", function(){
-		var opcion = $("input:radio[name=r1]:checked").val();
-		var datos = {'opcion': opcion};
-		jQuery.ajax({
-			type:"POST",
-			data:datos, //los datos que quiero enviar 
-			url: URL_BASE+'FiltrarActividad', //a donde quiero llevar los datos
-			dataType: "json",
-			success:function(response){ //mensaje que llega del guardar
-				console.log(response);
-				if (response.estado) {
-					
-					$("#listar_actividad").html('');
-					$.each(response.datos, function (key, value) {
-					var fila = `<tr>
-									<td class="td_nom">`+value.nombre+`</td>
-									<td class="td_desc">`+value.descripcion+`</td>
-									<td class="td_estado">`+value.estado+`</td>
-									<td>
-										<div class="btn-group" role="group" aria-label="Basic example">
-											<button type="button" class="btn btn-success editar"  data-num_id="`+value.id+`" data-toggle="modal" data-target="#editar_actividad">
-												<i class="fas fa-edit"></i>
-											</button>
-											<button type="button" class="btn btn-danger eliminar"  data-num_id="`+value.id+`">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-												
-										</div>
-									</td>
-								</tr>`;
-					
-					$("#listar_actividad").prepend(fila);
-						
-					$("#nombre").val('');
-					$("#descripcion").val('');
-					$("#estado").val('');
-
-	
-					$(".editar").off("click").on("click", editar_actividad);
-					$(".eliminar").off("click").on("click", eliminar_actividad);
-				});	
-				}
-				else{
-					Swal.fire({
-						position: 'center',
-						icon: 'error',
-						title: 'No hay registros',
-						showConfirmButton: false,
-						timer: 2000
-					});
-
-					$("#listar_actividad").html('');
-				}
-			
-			},
-			error: function (x, r, e) {
-				console.log(x);
-				console.log(r);
-				console.log(e);
-			}
-		});
-	});
-	
+	$("#btn_registrar_asig_empleado").on("click", guardar_asig_empleado);
+	$(".editar").off("click").on("click", editar_asig_empleado);
+	$(".eliminar").off("click").on("click", eliminar_asig_empleado);
 }
 
-function guardar_actividad(e) {
+function guardar_asig_empleado(e) {
 	e.preventDefault();
 
-	var nombre = $("#nombre").val();
-	var descripcion = $("#descripcion").val();
-	var estado = $("#estado").val();
+	var empleado = $("#cod_empleado").val();
+	var actividad_l = $("#cod_act").val();
 
-	if (nombre != '' && descripcion != '' && estado != '') {
-
+	if (empleado != '' && actividad_l != '') {
+		empleado = $("#cod_empleado option:selected").text();
+		actividad_l = $("#cod_act option:selected").text();
 		jQuery.ajax({
 			type:"POST",
-			data: $("#form_registrar_act").serialize(), //los datos que quiero enviar 
-			url: URL_BASE+'AgregarActividad', //a donde quiero llevar los datos
+			data: $("#form_registrar_asig_empleado").serialize(), //los datos que quiero enviar 
+			url: URL_BASE+'AgregarAsigEmpleado', //a donde quiero llevar los datos
 			dataType: "json",
 			success:function(response){ //mensaje que llega del guardar
 				console.log(response);
@@ -96,15 +33,15 @@ function guardar_actividad(e) {
 					});
 					
 					var fila = `<tr>
-									<td class="td_nom">`+nombre+`</td>
-									<td class="td_desc">`+descripcion+`</td>
-									<td class="td_estado">`+estado+`</td>
+									<td class="td_nom_empleado">`+empleado+`</td>
+									<td class="td_act_lote">`+actividad_l+`</td>
+									<td class="td_calificacion">Pendiente</td>
 									<td>
 										<div class="btn-group" role="group" aria-label="Basic example">
-											<button type="button" class="btn btn-success editar"  data-num_id="`+response.id+`" data-toggle="modal" data-target="#editar_actividad">
+											<button type="button" class="btn btn-success editar"  data-num_id="" data-toggle="modal" data-target="#modal_editar_asig_empleado">
 												<i class="fas fa-edit"></i>
 											</button>
-											<button type="button" class="btn btn-danger eliminar"  data-num_id="`+response.id+`">
+											<button type="button" class="btn btn-danger eliminar"  data-num_id="">
 												<i class="fas fa-trash-alt"></i>
 											</button>
 												
@@ -112,16 +49,14 @@ function guardar_actividad(e) {
 									</td>
 								</tr>`;
 					
-					$("#listar_actividad").prepend(fila);
+					$("#listarAsignacion").prepend(fila);
 	
-					$("#nombre").val('');
-					$("#descripcion").val('');
-					$("#estado").val('');
+					$("#cod_empleado").val('');
+					$("#cod_act").val('');
+					$("#cod_calificar").val('');
 
-	
-					$(".editar").off("click").on("click", editar_actividad);
-					$(".eliminar").off("click").on("click", eliminar_actividad);
-	
+					$(".editar").off("click").on("click", editar_asig_empleado);
+					$(".eliminar").off("click").on("click", eliminar_asig_empleado);
 				}
 				else{
 					Swal.fire({
@@ -151,45 +86,37 @@ function guardar_actividad(e) {
 	}
 	
 }
-function editar_actividad(e){
+function editar_asig_empleado(e){
 	e.preventDefault();
-	var id_actividad = $(this).data('num_id');
-	var nombre = $(this).parents("tr").find(".td_nom").text();
-	var descripcion = $(this).parents("tr").find(".td_desc").text();
-	var estado = $(this).parents("tr").find(".td_estado").text();
+	var id_asig_empleado = $(this).data('num_id');
+	var calificacion = $(this).parents("tr").find(".td_calificacion").text();
 
 	$(this).parents("tr").attr("id","por_editar");
 
-	$("#codigo").text(id_actividad);
-	$("#edit_nombre").val(nombre);
-	$("#edit_descripcion").val(descripcion);
-	$("#edit_estado").val(estado);
+	$("#codigo").text(id_asig_empleado);
+	$("#edit_cod_calificar").val(calificacion);
 
 
-	$("#btn_editar").off('click').on('click',function() { 
-		actualizar_actividad(id_actividad, estado);
+	$("#btn_editar_asig_empleado").off('click').on('click',function() { 
+		actualizar_asig_empleado(id_asig_empleado);
 	});
 
 }	
 
-function actualizar_actividad(id_actividad, estado){
-	var nuevo_nombre = $("#edit_nombre").val();
-	var nueva_descripcion = $("#edit_descripcion").val();
-	var nuevo_estado = $("#edit_estado").val();
-	console.log(nuevo_nombre);
-	if (nuevo_nombre != '' && nueva_descripcion != '' && nuevo_estado != '') {
+function actualizar_asig_empleado(id_asig_empleado){
+	var nueva_calificacion = $("#edit_cod_calificar").val();
+	console.log(nueva_calificacion);
+	if (nueva_calificacion != '') {
 
 		var datos = {
-			'id_actividad':id_actividad,
-			'nombre': nuevo_nombre,
-			'descripcion': nueva_descripcion,
-			'estado': nuevo_estado
+			'id_asig_empleado':id_asig_empleado,
+			'edit_cod_calificar': nueva_calificacion
 		};
 
 		jQuery.ajax({
 			type:"POST",
 			data: datos, //los datos que quiero enviar 
-			url: URL_BASE+'EditarActividad', //a donde quiero llevar los datos
+			url: URL_BASE+'EditarAsigEmpleado', //a donde quiero llevar los datos
 			dataType: 'json',
 			success:function(data){ //mensaje que llega del guardar
 				
@@ -200,16 +127,8 @@ function actualizar_actividad(id_actividad, estado){
 						data.mensaje,
 						'success' //icono
 					);
-	
-					$("#por_editar").find('.td_nom').text(nuevo_nombre);
-					$("#por_editar").find('.td_desc').text(nueva_descripcion);
-					$("#por_editar").find('.td_estado').text(nuevo_estado);
-					
-					if (nuevo_estado == estado) {
-						$("#por_editar").removeAttr("id");
-					} else{
-						$("#por_editar").remove('');
-					}
+					$("#por_editar").find('.td_calificacion').text(nueva_calificacion);
+
 				}
 				else{
 					Swal.fire(data.mensaje);
@@ -235,10 +154,10 @@ function actualizar_actividad(id_actividad, estado){
 	
 
 }
-function eliminar_actividad() {
+function eliminar_asig_empleado() {
 	Swal.fire({
 		title: 'Estas Seguro de Eliminarlo?',
-		text: "Al eliminar la Actividad no lo podras recuperar!!",
+		text: "Al eliminar Asignar Empleado no lo podras recuperar!!",
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#117E09',
@@ -247,15 +166,15 @@ function eliminar_actividad() {
 		cancelButtonText: 'Cancelar'
 	}).then((result) => {
 		if (result.isConfirmed) {
-			var id_actividad = $(this).data('num_id');
+			var id_asig_empleado = $(this).data('num_id');
 			$(this).parents("tr").attr("id","eliminando");
 
 
-			var datos_id = { "id_actividad":id_actividad};
+			var datos_id = { "id_asig_empleado":id_asig_empleado};
 
 			$.ajax({
 				type: "POST",
-				url: URL_BASE+"EliminarActividad",
+				url: URL_BASE+"EliminarAsigEmpleado",
 				data: datos_id,
 				dataType: "json",
 				success: function (response) {
