@@ -1,14 +1,10 @@
 $(document).ready(iniciar);
 
 function iniciar(){
-	$("#btn_registrar_lact").on("click", guardar_loteActividad);
-    $(".act_estado").off("click").on("click", cambiar_estado);
-	$(".editar").off("click").on("click", editar_loteActividad);
-	$(".eliminar").off("click").on("click", eliminar_loteActividad);
 	$(".radioPrimary1").on("click", function(){
 		var opcion = $("input:radio[name=r1]:checked").val();
 		var datos = {'opcion': opcion};
-		jQuery.ajax({
+		jQuery.ajax({ 
 			type:"POST",
 			data:datos, //los datos que quiero enviar 
 			url: URL_BASE+'FiltrarActividadEstado', //a donde quiero llevar los datos
@@ -26,7 +22,7 @@ function iniciar(){
 									<td class="td_ffinal">`+ value.f_fin +`</td>
 									<td class="td_estado">
 										`+ value.estado +`
-										<button type="button" class="btn btn-warning act_estado" data-toggle="modal" data-target="#cambiar_estado" data-num_id="`+value.id+`">
+										<button type="button" class="btn btn-warning act_estado" data-toggle="modal" data-target="#cambiar_estado" data-num_id="`+value.id+`" data-estado="`+value.estado+`">
 											<!-- <i class="fas fa-fan"></i> -->
 											<i class="fas fa-exchange-alt"></i>
 										</button>
@@ -78,6 +74,12 @@ function iniciar(){
 			}
 		});
 	});
+	$("#radioPrimary2").click();
+	$("#btn_registrar_lact").on("click", guardar_loteActividad);
+    $(".act_estado").off("click").on("click", cambiar_estado);
+	$(".editar").off("click").on("click", editar_loteActividad);
+	$(".eliminar").off("click").on("click", eliminar_loteActividad);
+	
 }
 
 function guardar_loteActividad(e) {
@@ -117,7 +119,7 @@ function guardar_loteActividad(e) {
                                     <td class="td_ffinal">`+ fin +`</td>
                                     <td class="td_estado">
                                         Pendiente
-                                        <button type="button" class="btn btn-warning act_estado" data-toggle="modal" data-target="#cambiar_estado" data-num_id="`+response.id+`">
+                                        <button type="button" class="btn btn-warning act_estado" data-toggle="modal" data-target="#cambiar_estado" data-num_id="`+response.id+`" data-estado="Pendiente">
 											<!-- <i class="fas fa-fan"></i> -->
 											<i class="fas fa-exchange-alt"></i>
 										</button>
@@ -253,18 +255,18 @@ function actualizar_loteActividad(id_lote){
 function cambiar_estado(e){
 	e.preventDefault();
 	var id_lot_act = $(this).data('num_id');
-    var estado = $(this).parents("tr").find(".td_estado").text();
+    var estado = $(this).data('estado');
 
 	$(this).parents("tr").attr("id","por_editar");
 	$("#edit_estado").val(estado);
 
 	$("#btn_editar_estado").off('click').on('click',function() { 
-		actualizar_estado(id_lot_act);
+		actualizar_estado(id_lot_act, estado);
 	});
 
 }	
 
-function actualizar_estado(id_lote){
+function actualizar_estado(id_lote, estad){
     var n_estado = $("#edit_estado").val();
 	var nuevo_nom_estado = $('#edit_estado option:selected').text();
 	if (n_estado != '') {
@@ -286,7 +288,7 @@ function actualizar_estado(id_lote){
 						data.mensaje,
 						'success' //icono
 					);
-
+					
                     var campo = nuevo_nom_estado+`
                                 <button type="button" class="btn btn-warning act_estado" data-toggle="modal" data-target="#cambiar_estado" data-num_id="`+id_lote+`">
                                     <!-- <i class="fas fa-fan"></i> -->
@@ -295,9 +297,14 @@ function actualizar_estado(id_lote){
 	
 					$("#por_editar").find('.td_estado').html(campo);
                     $(".act_estado").off("click").on("click", cambiar_estado);
-	
-					$("#por_editar").removeAttr("id");//remover el id
-	
+					console.log(estad);
+					console.log(n_estado);
+					if (estad != n_estado) {
+						$("#por_editar").remove();
+					}else{
+						$("#por_editar").removeAttr("id");
+					}
+					
 				}
 				else{
 					Swal.fire(data.mensaje);
