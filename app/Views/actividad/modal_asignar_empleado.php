@@ -13,21 +13,27 @@
 						<div>
 							<div class="form-group row d-flex justify-content-center">
 								<label for="cod_empleado" class="col-md-10">Empleado:</label>
-								<select class="form-control col-md-10" name="cod_empleado" id="cod_empleado" style="width: 80%;">
+								<select class="form-control col-md-8" name="cod_empleado" id="cod_empleado" style="width: 80%;">
 								<option value="">Seleccione un Empleado</option>
 									<?php foreach ($asig_emp as $asig): ?>
 										<option value="<?php echo $asig['id_empleado']; ?>"><?php echo $asig['nombres']." ". $asig['apellidos']?></option>
 									<?php endforeach; ?>
 								</select>
+								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/Empleados'; ?>" class="nav-link">	
+									<i class="fas fa-plus-square" style="color: white;"></i>
+								</a>
 							</div>
 							<div class="form-group row d-flex justify-content-center">
 								<label for="cod_act" class="col-md-10">Actividad_lote:</label>
-								<select class="form-control  mx-auto" name="cod_act" id="cod_act" style="width: 80%;">
+								<select class="form-control  col-md-8" name="cod_act" id="cod_act" style="width: 80%;">
 								<option value="">Seleccione una Actividad_lote</option>
 									<?php foreach ($actividad_l as $act_lote): ?>
 										<option value="<?php echo $act_lote['id']; ?>"><?php echo $act_lote['nactividad']." - ".$act_lote['nlote'] ?></option>
 									<?php endforeach; ?>
 								</select>
+								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/LoteActividad'; ?>" class="nav-link">	
+									<i class="fas fa-plus-square" style="color: white;"></i>
+								</a>
 							</div>
 						</div>
 					</form>

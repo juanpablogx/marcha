@@ -64,6 +64,9 @@
 										
 									<i class="fas fa-edit"></i>
 									</button>
+									<button type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#eliminarFinca" data-id_finca="<?php echo $finca['id_finca']; ?>">
+										<i class="fas fa-trash-alt"></i>
+									</button>
 								</div>
 							</div>
 						</div>
@@ -158,6 +161,55 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 							<button type="submit" class="btn btn-success" id="btn_editar_finca">Editar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Eliminar Finca-->
+		<div class="modal fade" id="eliminarFinca" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Enviar petición para eliminar Finca</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<form id="formEliminar_f" action="#" method="POST">
+						<div class="modal-body">
+							<div class="col-md-10 mx-auto">
+								<strong>COD SOLICITUD:</strong>
+								<p id="codigo"></p>
+							</div>
+							<div class="col-md-10 mx-auto">
+								<label for="num_user" class="form-label fw-bolder">Numero de Documento:</label>
+								<input type="text" class="form-control" id="num_user" name="num_user" required>
+							</div>
+							<div class="col-md-10 mx-auto">
+								<label for="nombre_user" class="form-label fw-bolder">Nombre de Usuario:</label>
+								<input type="text" class="form-control" id="nombre_user" name="nombre_user" required>
+							</div>
+							<div class="col-md-10 mx-auto">
+								<label for="tel_user" class="form-label fw-bolder">Nombre de la finca:</label>
+								<input type="text" class="form-control" id="tel_user" name="tel_user" required>
+							</div>
+							<div class="col-md-10 mx-auto">
+								<label for="cod_user" class="form-label fw-bolder">Codigo de solicitud:</label>
+								<input type="number" class="form-control" id="cod_user" name="cod_user" placeholder="Se encuentra al inicio de este formulario" required>
+							</div>
+							<div class="col-md-10 mx-auto">
+								<label for="asunto_user" class="form-label fw-bolder">Asunto por la cual desea eliminarlo:</label>
+								<textarea type="number" class="form-control" id="asunto_user" name="asunto_user" required></textarea>
+							</div>
+							<span id="alerta" class="text-danger"></span>
+
+							<hr>
+
+							<p>Por medio de este formulario se le enviara su peticion al correo pruebamarcha351@gmail.com, donde sus dirigentes le daran respuesta</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-success" id="btn_eliminar_finca">Enviar</button>
 						</div>
 					</form>
 				</div>

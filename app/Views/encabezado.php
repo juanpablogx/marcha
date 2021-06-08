@@ -41,8 +41,21 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link text-light">MARCHA</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link text-light">Contactanos</a>
+      <li class="nav-item d-none d-sm-inline-block dropdown">
+        <style>
+        #dropdownContacto::after {display: none;}
+        </style>
+        <a href="#" class="nav-link text-light dropdown-toggle" id="dropdownContacto" data-toggle="dropdown">Contáctanos</a>
+        <div class="dropdown-menu">
+          <h6 class="dropdown-header text-left text-bold">Teléfono</h6>
+          <span class="dropdown-item-text">+57 3333333</span>
+          <h6 class="dropdown-header text-left text-bold">Correo</h6>
+          <span class="dropdown-item-text">pruebamarcha351@gmail.com</span>
+          <h6 class="dropdown-header text-left text-bold">Redes Sociales</h6>
+          <a class="dropdown-item-text text-primary" href="#"><i class="fab fa-facebook"></i> Facebook</a>
+          <a class="dropdown-item-text text-danger" href="#"><i class="fab fa-instagram"></i> Instagram</a>
+          <a class="dropdown-item-text text-info" href="#"><i class="fab fa-twitter"></i> Twitter</a>
+        </div>
       </li>
     </ul>
 

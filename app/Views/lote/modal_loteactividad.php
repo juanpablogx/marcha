@@ -13,31 +13,37 @@
                         <div>
                             <div class="form-group row d-flex justify-content-center">
 								<label for="lote" class="col-md-10">Seleccione un lote:</label>
-								<select class="form-control col-md-10" name="lote" id="lote" required>
+								<select class="form-control col-md-8" name="lote" id="lote" required>
 									<option value="" selected>Seleccione lote</option>
 									<?php foreach ($lotes as $lote): ?>
 										<option value="<?php echo $lote['id_lote']; ?>"><?php echo $lote['nombre'] ?></option>
 									<?php endforeach; ?>
 								</select>
+								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/Lotes'; ?>" class="nav-link">	
+									<i class="fas fa-plus-square" style="color: white;"></i>
+								</a>
 							</div>
                             <div class="form-group row d-flex justify-content-center">
 								<label for="actividad" class="col-md-10">Seleccione una actividad:</label>
-								<select class="form-control col-md-10" name="actividad" id="actividad" required>
+								<select class="form-control col-md-8" name="actividad" id="actividad" required>
 									<option value="" selected>Seleccione actividad</option>
 									<?php foreach ($actividades as $act): ?>
 										<option value="<?php echo $act['id_actividad']; ?>"><?php echo $act['nombre'] ?></option>
 									<?php endforeach; ?>
 								</select>
+								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/Actividades'; ?>" class="nav-link">	
+									<i class="fas fa-plus-square" style="color: white;"></i>
+								</a>
 							</div>
                             <?php $fcha = date("Y-m-d");?>
                             <div class="form-group row d-flex justify-content-center">
                                 <label for="f_inicio" class="col-md-10">Fecha de Inicio:</label>
-                                <input class="form-control"  type="date" id="f_inicio" name="f_inicio"
+                                <input class="form-control col-md-10"  type="date" id="f_inicio" name="f_inicio"
                                     value="<?php echo $fcha;?>">
 							</div>
                             <div class="form-group row d-flex justify-content-center">
                                 <label for="f_fin" class="col-md-10">Fecha de Fin:</label>
-                                <input class="form-control"  type="date" id="f_fin" name="f_fin">
+                                <input class="form-control col-md-10"  type="date" id="f_fin" name="f_fin">
 							</div>
                         </div>
 					</form>
