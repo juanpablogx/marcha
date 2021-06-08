@@ -39,7 +39,7 @@ class HerramientasModel extends Model{
 
     public function get_herramienta($finca) {
 
-        $sql = "SELECT act_inventario.id AS id, act_inventario.cantidad AS cantidad, act_inventario.tipo AS tipo, inventario.nombre AS nombre, actividad.nombre AS actividad, lote.nombre AS lote, actividad.id_actividad AS cod_actividad, lote.id_lote AS cod_lote, inventario.id_producto AS cod_producto, act_inventario.actividad_lot AS id_act_lote FROM act_inventario INNER JOIN inventario ON act_inventario.producto = inventario.id_producto INNER JOIN lote_actividad ON act_inventario.actividad_lot = lote_actividad.id_lot_act INNER JOIN actividad ON lote_actividad.actividad = actividad.id_actividad INNER JOIN lote ON lote_actividad.lote = lote.id_lote WHERE inventario.finca = ?";
+        $sql = "SELECT act_inventario.id AS id, act_inventario.cantidad AS cantidad, act_inventario.tipo AS tipo, inventario.nombre AS nombre, actividad.nombre AS actividad, lote.nombre AS lote, actividad.id_actividad AS cod_actividad, lote.id_lote AS cod_lote, inventario.id_producto AS cod_producto, act_inventario.actividad_lot AS id_act_lote FROM act_inventario INNER JOIN inventario ON act_inventario.producto = inventario.id_producto INNER JOIN lote_actividad ON act_inventario.actividad_lot = lote_actividad.id_lot_act INNER JOIN actividad ON lote_actividad.actividad = actividad.id_actividad INNER JOIN lote ON lote_actividad.lote = lote.id_lote WHERE inventario.finca = ? ORDER BY act_inventario.id DESC";
 
         $registros = $this->db->query($sql, [$finca]);
 

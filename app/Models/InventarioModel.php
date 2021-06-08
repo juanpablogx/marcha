@@ -48,7 +48,7 @@ class InventarioModel extends Model {
     }
 
     public function obtenerListaInventariobyFinca($finca) {
-        $sql = "SELECT * FROM inventario WHERE finca = ? AND NOT stock = 0";
+        $sql = "SELECT * FROM inventario WHERE finca = ? AND NOT stock = 0 ORDER BY id_producto DESC";
 
         $registros = $this->db->query($sql, [$finca]); 
 

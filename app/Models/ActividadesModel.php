@@ -37,7 +37,7 @@ class ActividadesModel extends Model{
     }
 
     public function get_Actividad($finca) {
-        $sql = "SELECT id_actividad, nombre, descripcion FROM actividad WHERE finca = ?";
+        $sql = "SELECT id_actividad, nombre, descripcion FROM actividad WHERE finca = ? ORDER BY id_actividad DESC";
 
         $registros = $this->db->query($sql, [$finca]); 
 

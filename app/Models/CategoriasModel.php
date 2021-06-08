@@ -37,7 +37,7 @@ class CategoriasModel extends Model{
     }
 
     public function obtenerListaCategoriabyFinca($finca) {
-        $sql = "SELECT * FROM categoria WHERE finca = ?";
+        $sql = "SELECT * FROM categoria WHERE finca = ? ORDER BY id_cat DESC";
 
         $registros = $this->db->query($sql, [$finca]); 
 

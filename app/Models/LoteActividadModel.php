@@ -39,7 +39,7 @@ class LoteActividadModel extends Model{
     }
 
     public function obtenerListaLoteActividadbyFinca($finca) {
-        $sql = "SELECT la.id_lot_act AS id, la.lote AS lote, lote.nombre AS nlote, la.actividad AS actividad, actividad.nombre AS nactividad, la.fecha_inicio AS f_inicio, la.fecha_fin AS f_fin, la.estado AS estado FROM lote_actividad AS la INNER JOIN lote ON la.lote = lote.id_lote INNER JOIN actividad ON la.actividad = actividad.id_actividad WHERE lote.finca = ? ORDER BY la.id_lot_act DESC";
+        $sql = "SELECT la.id_lot_act AS id, la.lote AS lote, lote.nombre AS nlote, la.actividad AS actividad, actividad.nombre AS nactividad, la.fecha_inicio AS f_inicio, la.fecha_fin AS f_fin, la.estado AS estado FROM lote_actividad AS la INNER JOIN lote ON la.lote = lote.id_lote INNER JOIN actividad ON la.actividad = actividad.id_actividad WHERE lote.finca = ? ORDER BY la.fecha_inicio ASC";
 
         $registros = $this->db->query($sql, [$finca]);
 
@@ -47,7 +47,7 @@ class LoteActividadModel extends Model{
     }
 
     public function obtenerListaLoteActividadbyFincaEstado($estado, $finca) {
-        $sql = "SELECT la.id_lot_act AS id, la.lote AS lote, lote.nombre AS nlote, la.actividad AS actividad, actividad.nombre AS nactividad, la.fecha_inicio AS f_inicio, la.fecha_fin AS f_fin, la.estado AS estado FROM lote_actividad AS la INNER JOIN lote ON la.lote = lote.id_lote INNER JOIN actividad ON la.actividad = actividad.id_actividad WHERE lote.finca = ? AND la.estado = ? ORDER BY la.id_lot_act DESC";
+        $sql = "SELECT la.id_lot_act AS id, la.lote AS lote, lote.nombre AS nlote, la.actividad AS actividad, actividad.nombre AS nactividad, la.fecha_inicio AS f_inicio, la.fecha_fin AS f_fin, la.estado AS estado FROM lote_actividad AS la INNER JOIN lote ON la.lote = lote.id_lote INNER JOIN actividad ON la.actividad = actividad.id_actividad WHERE lote.finca = ? AND la.estado = ? ORDER BY la.fecha_inicio ASC";
 
         $registros = $this->db->query($sql, [$finca, $estado]);
 

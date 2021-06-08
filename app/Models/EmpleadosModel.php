@@ -38,7 +38,7 @@ class EmpleadosModel extends Model{
     }
 
     public function obtenerListaEmpleadosbyFincaInactivos($finca) {
-        $sql = "SELECT * FROM empleado WHERE finca = ? AND estado = 'inactivo'";
+        $sql = "SELECT * FROM empleado WHERE finca = ? AND estado = 'inactivo' ORDER BY id_empleado DESC";
 
         $registros = $this->db->query($sql, [$finca]);
 
@@ -46,7 +46,7 @@ class EmpleadosModel extends Model{
     }
 
     public function obtenerListaEmpleadosbyFincaActivos($finca) {
-        $sql = "SELECT * FROM empleado WHERE finca = ? AND estado = 'activo'";
+        $sql = "SELECT * FROM empleado WHERE finca = ? AND estado = 'activo' ORDER BY id_empleado DESC";
 
         $registros = $this->db->query($sql, [$finca]); 
 

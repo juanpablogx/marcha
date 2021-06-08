@@ -54,7 +54,7 @@ function guardar_herramienta(e) {
 									</td>
 								</tr>`;
 					
-					$("#listar_herramientas").append(fila);
+					$("#listar_herramientas").prepend(fila);
 	
 					$("#cod_actL").val('');
 					$("#cod_producto").val('');

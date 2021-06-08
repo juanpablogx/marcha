@@ -38,7 +38,7 @@ class LoteModel extends Model{
     }
 
     public function obtenerListaLotebyFinca($finca) {
-        $sql = "SELECT * FROM lote WHERE finca = ? ";
+        $sql = "SELECT * FROM lote WHERE finca = ? ORDER BY id_lote DESC";
 
         $registros = $this->db->query($sql, [$finca]);
 
