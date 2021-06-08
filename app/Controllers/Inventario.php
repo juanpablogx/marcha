@@ -32,7 +32,7 @@ class Inventario extends BaseController
 		echo view('inventario/inventario',$data);
 		echo view('footer');
 		echo view('inventario/modal_inventario',$data);
-		echo view('scripts');
+		echo view('scripts',$data);
 	}
 
 	public function agregarInventario(){

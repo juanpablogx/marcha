@@ -106,7 +106,7 @@ function editar_actividad(e){
 function actualizar_actividad(id_actividad){
 	var nuevo_nombre = $("#edit_nombre").val();
 	var nueva_descripcion = $("#edit_descripcion").val();
-	console.log(nuevo_nombre);
+
 	if (nuevo_nombre != '' && nueva_descripcion != '') {
 
 		var datos = {

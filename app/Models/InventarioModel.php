@@ -21,9 +21,6 @@ class InventarioModel extends Model {
     protected $validationMessages = [];
     protected $skipValidation     = false;
 
-    // ALTER TABLE inventario
-    // ADD finca INT(10) UNSIGNED,
-    // ADD FOREIGN KEY(finca) REFERENCES finca(id_finca);
 
     public function insertarInventario($nombre, $descripcion, $medida, $tipo, $precio_und, $stock, $finca) {
         $nombre = $this->escapeString($nombre);
@@ -86,5 +83,4 @@ class InventarioModel extends Model {
         return $delete;
     }
     
-
 }

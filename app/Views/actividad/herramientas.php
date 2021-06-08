@@ -20,6 +20,14 @@
 	    <div class="content">
 			<div class="container">
 
+				<div class="p-4 mt-2 mb-2 text-white rounded" style="background: #234F1E;">
+					<div class="d-flex justify-content-center">
+						<button type="button" class="btn text-white" data-toggle="modal" data-target="#staticBackdrop" style="background:#77942E;">
+							Agregar Herramienta
+						</button>
+					</div>
+				</div>
+
 				<div class="row">
 			        <div class="col-12">
 			            <div class="card">
@@ -42,58 +50,36 @@
 			              <div class="card-body table-responsive p-0" style="height: 40vh;">
 			                <table class="table table-head-fixed text-nowrap text-center">
 			                  <thead>
-							  <tr>
-			                      <th>ID</th>
+							 	<tr>
 			                      <th>Actividad_Lote</th>
 			                      <th>Producto</th>
 			                      <th>Cantidad</th>
+								  <th>Tipo</th>
                                   <th>Accion</th>
-			                    </tr>
-                                <tr class="bg-dark">
-                                <th></th>
-                                <th>
-                                   <select class="form-control  mx-auto" name="cod_act" id="cod_act" style="width: 80%;">
-                                        <option value="Act_Lote_1">Act_Lote_1</option>
-                                        <option value="Act_Lote_2">Act_Lote_2</option>
-                                        <option value="Act_Lote_3">Act_Lote_3</option>
-				                    </select>
-                                </th>
-                                <th>
-                                   <select class="form-control mx-auto" name="cod_producto" id="cod_producto" style="width: 80%;">
-                                        <option value="Produc_1">Produc_1</option>
-                                        <option value="Produc_2">Product_2</option>
-                                        <option value="Produc_3">Produc_3</option>
-				                    </select>
-                                </th>
-                                <th></th>
-                                <th>
-                                    <button type="submit" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Agregar</button> 
-                                </th>
-                                </tr>
+			                	</tr>
 			                  </thead>
-			                  <tbody>
-			                    <tr>
-			                      <td>1</td>
-			                      <td>Gallinas</td>
-			                      <td>Brucelas</td>
-								  <td>30</td>
-			                      <td>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-primary ver" data-num_id="1">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
+			                  <tbody id="listar_herramientas">
+			                    <?php foreach ($herramientas as $herramienta): ?>
+									<tr>
+										<td class="td_act_lot"><?php echo $herramienta['actividad']."-".$herramienta['lote'] ?></td>
+										<td class="td_producto"><?php echo $herramienta['nombre'] ?></td>
+										<td class="td_cantidad"><?php echo $herramienta['cantidad'] ?></td>
+										<td class="td_tipo"><?php echo $herramienta['tipo'] ?></td>
+										<td>
+											<div class="btn-group" role="group" aria-label="Basic example">
 
-                                            <button type="button" class="btn btn-success editar" data-num_id="1">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
+												<button type="button" class="btn btn-success editar"  data-toggle="modal" data-target="#editar_herramienta" data-num_id="<?php echo $herramienta['id'] ?>" data-num_actl="<?php echo $herramienta['id_act_lote'] ?>" data-num_product="<?php echo $herramienta['cod_producto'] ?>">
+													<i class="fas fa-edit"></i>
+												</button>
 
-                                            <button type="button" class="btn btn-danger eliminar" data-num_id="1">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                            
-                                        </div>
-                                    </td>
-			                    </tr>
+												<button type="button" class="btn btn-danger eliminar" data-num_id="<?php echo $herramienta['id'] ?>">
+													<i class="fas fa-trash-alt"></i>
+												</button>
+													
+											</div>
+										</td>
+									</tr>
+								<?php endforeach; ?>
 			                  </tbody>
 			                </table>
 			              </div>
@@ -104,9 +90,6 @@
 		        </div>
 
 			</div>
-
-
-			
 
 	    </div>
 	<!-- /CONTENEDOR -->

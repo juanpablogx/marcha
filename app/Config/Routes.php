@@ -75,6 +75,7 @@ $routes->post('AgregarLote', 'Lote::agregarLote');
 $routes->post('EditarLote', 'Lote::editarLote');
 $routes->post('EliminarLote', 'Lote::eliminarLote');
 
+// Rutas controlador AsigCategoria
 $routes->get('Asig_Categoria', 'AsigCategoria::vista_asig_categoria');
 $routes->post('AgregarAsigCategoria', 'AsigCategoria::agregarAsigCategoria');
 $routes->post('EditarAsigCategoria', 'AsigCategoria::editarAsigCategoria');
@@ -100,14 +101,17 @@ $routes->post('AgregarActividad', 'Actividad::agregarActividad');
 $routes->post('EditarActividad', 'Actividad::editarActividad');
 $routes->post('EliminarActividad', 'Actividad::eliminarActividad');
 
-
-
+// Rutas controlador AsigEmpleado
 $routes->get('Asig_empleado', 'AsigEmpleado::vista_asig_empleado');
-
-$routes->get('herramientas', 'Actividad::vista_herramientas');
 $routes->post('AgregarAsigEmpleado', 'AsigEmpleado::agregarAsignarEmpleado');
 $routes->post('EditarAsigEmpleado', 'AsigEmpleado::editarAsigEmp');
 $routes->post('EliminarAsigEmpleado', 'AsigEmpleado::eliminarAsigEmpleado');
+
+// Rutas controlador Herramientas
+$routes->get('herramientas', 'Herramientas::vista_herramientas');
+$routes->post('AgregarHerramientas', 'Herramientas::agregarHerramienta');
+$routes->post('EditarHerramientas', 'Herramientas::editarHerramienta');
+$routes->post('EliminarHerramientas', 'Herramientas::eliminarHerramienta');
 
 /*
  * --------------------------------------------------------------------
