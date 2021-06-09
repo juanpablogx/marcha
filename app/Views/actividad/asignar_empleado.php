@@ -46,19 +46,19 @@
 								</tr>
 							</thead>
 							<tbody id="listarAsignacion">
-								<?php foreach ($mostrar_asig_emp as $mostrar_asig): ?>
+								<?php foreach ($asig_empleado as $asig_emp): ?>
 										<tr>
-											<td class="td_nom_empleado"><?php echo $mostrar_asig['nombres']." ".$mostrar_asig['apellidos'] ?></td>
-											<td class="td_act_lote"><?php echo $mostrar_asig['nomact']." - ". $mostrar_asig['nomlote']." - ".$mostrar_asig['f_fin']?></td>
-											<td class="td_calificacion"><?php echo $mostrar_asig['calificacion'] ?></td>
+											<td class="td_nom_empleado"><?php echo $asig_emp['nombres']." ".$asig_emp['apellidos'] ?></td>
+											<td class="td_act_lote"><?php echo $asig_emp['nomact']." - ". $asig_emp['nomlote']." - ".$asig_emp['f_fin']?></td>
+											<td class="td_calificacion"><?php echo $asig_emp['calificacion'] ?></td>
 											<td>
 												<div class="btn-group" role="group" aria-label="Basic example">
 													
-													<button type="button" class="btn btn-success editar"  data-toggle="modal" data-target="#modal_editar_asig_empleado" data-num_id="<?php echo $mostrar_asig['id_asignar'] ?>">
+													<button type="button" class="btn btn-success editar"  data-toggle="modal" data-target="#modal_editar_asig_empleado" data-num_id="<?php echo $asig_emp['id_asignar'] ?>">
 														<i class="fas fa-edit"></i>
 													</button>
 
-													<button type="button" class="btn btn-danger eliminar" data-num_id="<?php echo $mostrar_asig['id_asignar'] ?>">
+													<button type="button" class="btn btn-danger eliminar" data-num_id="<?php echo $asig_emp['id_asignar'] ?>">
 														<i class="fas fa-trash-alt"></i>
 													</button>
 														

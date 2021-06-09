@@ -15,8 +15,8 @@
 								<label for="cod_empleado" class="col-md-10">Empleado:</label>
 								<select class="form-control col-9 col-md-8" name="cod_empleado" id="cod_empleado" style="width: 80%;">
 								<option value="">Seleccione un Empleado</option>
-									<?php foreach ($asig_emp as $asig): ?>
-										<option value="<?php echo $asig['id_empleado']; ?>"><?php echo $asig['nombres']." ". $asig['apellidos']?></option>
+									<?php foreach ($empleados as $empleado): ?>
+										<option value="<?php echo $empleado['id_empleado']; ?>"><?php echo $empleado['nombres']." ". $empleado['apellidos']?></option>
 									<?php endforeach; ?>
 								</select>
 								<a class="btn btn-warning col-2 col-md-1 ml-2" href="<?php echo base_url().'/Empleados'; ?>" class="nav-link">	
@@ -27,8 +27,8 @@
 								<label for="cod_act" class="col-md-10">Actividad_lote:</label>
 								<select class="form-control  col-9 col-md-8" name="cod_act" id="cod_act" style="width: 80%;">
 								<option value="">Seleccione una Actividad_lote</option>
-									<?php foreach ($actividad_l as $act_lote): ?>
-										<option value="<?php echo $act_lote['id']; ?>"><?php echo $act_lote['nomact']." - ".$act_lote['nomlote']." - ".$act_lote['f_fin'] ?></option>
+									<?php foreach ($actividad_lote as $act_lote): ?>
+										<option value="<?php echo $act_lote['id']; ?>"><?php echo $act_lote['nactividad']." - ".$act_lote['nlote']." - ".$act_lote['f_fin']; ?></option>
 									<?php endforeach; ?>
 								</select>
 								<a class="btn btn-warning col-2 col-md-1 ml-2" href="<?php echo base_url().'/LoteActividad'; ?>" class="nav-link">	

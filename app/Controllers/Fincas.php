@@ -114,8 +114,8 @@ class Fincas extends BaseController {
 
 			$config['protocol'] = 'smtp';
 			$config['SMTPHost'] = 'smtp.gmail.com';
-			$config['SMTPUser'] = 'pruebamarcha351@gmail.com';
-			$config['SMTPPass'] = 'marchasena1#';
+			$config['SMTPUser'] = 'salicitudesmarcha@gmail.com';
+			$config['SMTPPass'] = 'marchasena2#';
 			// $config['SMTPPort'] = 465;
 			// $config['SMTPCrypto'] = 'ssl';
 			$config['mailType'] = 'html';
@@ -126,7 +126,7 @@ class Fincas extends BaseController {
 			$user = $this->session->get('session-marcha')['correo'];
 
 			$email->initialize($config);
-			$email->setFrom('pruebamarcha351@gmail.com', 'Solicitudes');
+			$email->setFrom('salicitudesmarcha@gmail.com', 'Solicitudes');
 			$email->setTo('pruebamarcha351@gmail.com');
 
 			$mensaje = '<h1 style="background-color: #234F1E; color: #fff; text-align: center;">Solicitud de Eliminar Finca</h1>

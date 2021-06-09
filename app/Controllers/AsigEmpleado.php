@@ -20,25 +20,24 @@ class AsigEmpleado extends BaseController
 	}
 
 	public function vista_asig_empleado(){
-        $asigempleado_db = new EmpleadosModel();
-		$activida_l_db = new AsigEmpleadoModel();
-		$actividadlote_db = new LoteActividadModel();
+        $empleados_db = new EmpleadosModel();
+		$asig_empleado_db = new AsigEmpleadoModel();
+		$loteactividad_db = new LoteActividadModel();
 		
 		$data = [
-					'titulo' => 'Asignar Empleado',
-					'archivo_js' => 'asignar_empleado.js'
-				];
+			'titulo' => 'Asignar Empleado',
+			'archivo_js' => 'asignar_empleado.js'
+		];
 				
-		$data['actividad_l'] = $activida_l_db->obtenerListaAsigEmpModal($this->session->get('session-finca')['id_finca']);
-		$data['asig_emp'] = $asigempleado_db->obtenerListaEmpleadosbyFincaActivos($this->session->get('session-finca')['id_finca']);
-
-		$data['actividad_lotem'] = $actividadlote_db->obtenerListaLoteActividadbyEstado($this->session->get('session-finca')['id_finca']);
+		$data['actividad_lote'] = $loteactividad_db->obtenerListaLoteActividadbyEstado($this->session->get('session-finca')['id_finca']);
+		$data['empleados'] = $empleados_db->obtenerListaEmpleadosbyFincaActivos($this->session->get('session-finca')['id_finca']);
+		$data['asig_empleado'] = $asig_empleado_db->obtenerListaAsigEmp($this->session->get('session-finca')['id_finca']);
 
 		$data_encabezado['session_finca'] = $this->session->get('session-finca');
-		echo view('encabezado',$data_encabezado);;
-		echo view('actividad/asignar_empleado',$data);
+		echo view('encabezado', $data_encabezado);
+		echo view('actividad/asignar_empleado', $data);
 		echo view('footer');
-		echo view('actividad/modal_asignar_empleado',$data);
+		echo view('actividad/modal_asignar_empleado', $data);
 		echo view('scripts');
 	}
 
