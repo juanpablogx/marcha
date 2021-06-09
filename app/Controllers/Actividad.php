@@ -105,18 +105,29 @@ class Actividad extends BaseController
 		$id_actividad = $this->request->getPost('id_actividad');
 
 		$actividad_db = new ActividadesModel();
-		$respuesta = $actividad_db->eliminarActividad($id_actividad);
+		$respuestavalidacion = $actividad_db->validarActividad($id_actividad);
 
-		if ($respuesta) {
-					$data = [
-						'estado'=>true,
-						'datos'=>$respuesta
-					];
-		}else{
-					$data = [
-						'estado'=>"ERROR"
-					];
+		if ($respuestavalidacion == 0){
+			$respuesta = $actividad_db->eliminarActividad($id_actividad);
+
+			if ($respuesta) {
+						$data = [
+							'estado'=> true,
+							'datos'=> $respuesta
+						];
+			}else{
+						$data = [
+							'estado'=> false,
+							'mensaje'=> "No se pudo eliminar este campo, intentelo mas tarde"
+						];
+			}
+		} else {
+			$data = [
+				'estado'=> false,
+				'mensaje'=> "Este campo no puede ser Eliminado, porque lo esta usando en otra tabla"
+			];
 		}
+
 		echo json_encode($data);
 	}
 	public function filtrarActividad() {

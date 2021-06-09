@@ -74,7 +74,15 @@ class ActividadesModel extends Model{
         $sql = "DELETE FROM actividad WHERE id_actividad = ?;";
 
         $actividades = $this->db->query($sql, [$act]);
-        return $actividades->getResult();
+        return $actividades;
+    }
+
+    public function validarActividad($id_actividad) {
+        $sql = "SELECT COUNT(lote_actividad.actividad) AS repeticiones FROM lote_actividad INNER JOIN actividad ON lote_actividad.actividad = actividad.id_actividad WHERE actividad.id_actividad = ?";
+
+        $registros = $this->db->query($sql, [$id_actividad]); 
+
+        return $registros->getResultArray()[0]['repeticiones']; 
     }
 
 }

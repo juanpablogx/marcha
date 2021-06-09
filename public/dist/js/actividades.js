@@ -181,7 +181,7 @@ function eliminar_actividad() {
 				data: datos_id,
 				dataType: "json",
 				success: function (response) {
-					if (response){
+					if (response.estado){
 						Swal.fire({
 							position: 'center',
 							icon: 'success',
@@ -193,7 +193,7 @@ function eliminar_actividad() {
 						$("#eliminando").remove();
 					}
 					else{
-						Swal.fire('Lo siento, no se pudo eliminar');
+						Swal.fire(response.mensaje);
 					}
 				},
 				error: function (x, r, e) {
