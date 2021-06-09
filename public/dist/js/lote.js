@@ -184,7 +184,7 @@ function eliminar_lote() {
 				data: datos_id,
 				dataType: "json",
 				success: function (response) {
-					if (response){
+					if (response.estado){
 						Swal.fire({
 							position: 'center',
 							icon: 'success',
@@ -196,7 +196,13 @@ function eliminar_lote() {
 						$("#eliminando").remove();
 					}
 					else{
-						Swal.fire('Lo siento, no se pudo eliminar');
+						Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: response.mensaje,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
 					}
 				},
 				error: function (x, r, e) {

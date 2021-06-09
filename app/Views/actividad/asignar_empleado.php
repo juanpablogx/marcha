@@ -49,7 +49,7 @@
 								<?php foreach ($mostrar_asig_emp as $mostrar_asig): ?>
 										<tr>
 											<td class="td_nom_empleado"><?php echo $mostrar_asig['nombres']." ".$mostrar_asig['apellidos'] ?></td>
-											<td class="td_act_lote"><?php echo $mostrar_asig['nomact']." - ". $mostrar_asig['nomlote']?></td>
+											<td class="td_act_lote"><?php echo $mostrar_asig['nomact']." - ". $mostrar_asig['nomlote']." - ".$mostrar_asig['f_fin']?></td>
 											<td class="td_calificacion"><?php echo $mostrar_asig['calificacion'] ?></td>
 											<td>
 												<div class="btn-group" role="group" aria-label="Basic example">

@@ -56,19 +56,6 @@ class ActividadesModel extends Model{
         
     }
 
-    public function editarActividadByFinca($id_actividad, $nombre, $descripcion, $finca) {
-
-        $id_actividad = $this->escapeString($id_actividad);
-        $nombre = $this->escapeString($nombre);
-        $descripcion = $this->escapeString($descripcion);
-        
-        $sql = "UPDATE actividad SET nombre = ?, descripcion = ? WHERE id_actividad = ?;";
-
-        $registros = $this->db->query($sql, [$nombre, $descripcion, $id_actividad]);
-
-        return $registros->getResultArray();
-    }
-
     public function eliminarActividad($id_actividad){
         $act = $this->escapeString($id_actividad);
         $sql = "DELETE FROM actividad WHERE id_actividad = ?;";

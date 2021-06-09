@@ -24,7 +24,6 @@ class Herramientas extends BaseController
 		$inventario_db = new InventarioModel();
 		$lote_actividad_db = new LoteActividadModel();
 
-
 		$data = [
 					'titulo' => 'Herramientas',
 					'archivo_js' => 'herramientas.js'
@@ -33,6 +32,8 @@ class Herramientas extends BaseController
 		$data['herramientas'] = $herramientas_db->get_herramienta($this->session->get('session-finca')['id_finca']);
 
 		$data['inventario'] = $inventario_db->obtenerListaInventariobyFinca($this->session->get('session-finca')['id_finca']);
+
+		$data['actividad_lotem'] = $lote_actividad_db->obtenerListaLoteActividadbyEstado($this->session->get('session-finca')['id_finca']);
 
 		$data['actividad_l'] = $lote_actividad_db->obtenerListaLoteActividadbyFinca($this->session->get('session-finca')['id_finca']);
 

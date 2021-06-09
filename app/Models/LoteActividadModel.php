@@ -46,6 +46,14 @@ class LoteActividadModel extends Model{
         return $registros->getResultArray();
     }
 
+    public function obtenerListaLoteActividadbyEstado($finca) {
+        $sql = "SELECT la.id_lot_act AS id, la.lote AS lote, lote.nombre AS nlote, la.actividad AS actividad, actividad.nombre AS nactividad, la.fecha_inicio AS f_inicio, la.fecha_fin AS f_fin, la.estado AS estado FROM lote_actividad AS la INNER JOIN lote ON la.lote = lote.id_lote INNER JOIN actividad ON la.actividad = actividad.id_actividad WHERE lote.finca = ? AND la.estado NOT LIKE 'Terminada' ORDER BY la.fecha_inicio ASC";
+
+        $registros = $this->db->query($sql, [$finca]);
+
+        return $registros->getResultArray();
+    }
+
     public function obtenerListaLoteActividadbyFincaEstado($estado, $finca) {
         $sql = "SELECT la.id_lot_act AS id, la.lote AS lote, lote.nombre AS nlote, la.actividad AS actividad, actividad.nombre AS nactividad, la.fecha_inicio AS f_inicio, la.fecha_fin AS f_fin, la.estado AS estado FROM lote_actividad AS la INNER JOIN lote ON la.lote = lote.id_lote INNER JOIN actividad ON la.actividad = actividad.id_actividad WHERE lote.finca = ? AND la.estado = ? ORDER BY la.fecha_inicio ASC";
 
@@ -76,6 +84,22 @@ class LoteActividadModel extends Model{
         $sql = "DELETE FROM lote_actividad WHERE id_lot_act = ?;";
 
         $lotes = $this->db->query($sql, [$loteactividad]);
-        return $lotes->getResult();
+        return $lotes;
+    }
+
+    public function validarLoteActividaduno($id_loteact) {
+        $sql = "SELECT COUNT(act_inventario.actividad_lot) AS repeticiones FROM act_inventario INNER JOIN lote_actividad ON act_inventario.actividad_lot = lote_actividad.id_lot_act WHERE lote_actividad.id_lot_act = ?";
+
+        $registros = $this->db->query($sql, [$id_loteact]); 
+
+        return $registros->getResultArray()[0]['repeticiones']; 
+    }
+
+    public function validarLoteActividaddos($id_loteact) {
+        $sql = "SELECT COUNT(asignar_empleado.actividad_l) AS repeticiones FROM asignar_empleado INNER JOIN lote_actividad ON asignar_empleado.actividad_l = lote_actividad.id_lot_act WHERE lote_actividad.id_lot_act = ?";
+
+        $registros = $this->db->query($sql, [$id_loteact]); 
+
+        return $registros->getResultArray()[0]['repeticiones']; 
     }
 }

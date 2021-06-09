@@ -49,7 +49,7 @@ class LoteModel extends Model{
         $data = array(
             'id_lote'=> $id_lote,
             'nombre' => $nombre,
-            'finca' => $finca,
+            'finca' => $finca, 
             'extencion' => $extencion
         );
         $respuesta = $this->update($id_lote, $data);
@@ -61,6 +61,14 @@ class LoteModel extends Model{
         $sql = "DELETE FROM lote WHERE id_lote = ?;";
 
         $lotes = $this->db->query($sql, [$lote]);
-        return $lotes->getResult();
+        return $lotes;
+    }
+
+    public function validarLote($id_lote) {
+        $sql = "SELECT COUNT(cat_lote.lote) AS repeticiones, COUNT(lote_actividad.lote) AS repeticiones2 FROM cat_lote INNER JOIN lote ON cat_lote.lote = lote.id_lote INNER JOIN lote_actividad ON lote_actividad.lote = lote.id_lote WHERE lote.id_lote = ?";
+
+        $registros = $this->db->query($sql, [$id_lote]); 
+
+        return $registros->getResultArray()[0]['repeticiones']; 
     }
 }

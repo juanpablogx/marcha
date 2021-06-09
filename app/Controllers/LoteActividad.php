@@ -141,17 +141,30 @@ class LoteActividad extends BaseController
 		$id_loteact = $this->request->getPost('id_lote');
 
 		$loteactividad_db = new LoteActividadModel();
-		$respuesta = $loteactividad_db->eliminarLoteActividad($id_loteact);
 
-		if ($respuesta) {
-					$data = [
-						'estado'=>true,
-						'datos'=>$respuesta
-					];
-		}else{
-					$data = [
-						'estado'=>"ERROR"
-					];
+		$respuestavalidacion1 = $loteactividad_db->validarLoteActividaduno($id_loteact);
+
+		$respuestavalidacion2 = $loteactividad_db->validarLoteActividaddos($id_loteact);
+
+		if ($respuestavalidacion1 == 0 && $respuestavalidacion2 == 0){
+			$respuesta = $loteactividad_db->eliminarLoteActividad($id_loteact);
+
+			if ($respuesta) {
+						$data = [
+							'estado'=>true,
+							'datos'=>$respuesta
+						];
+			}else{	
+				$data = [
+					'estado'=> false,
+					'mensaje'=> "No se pudo eliminar este campo, intentelo mas tarde"
+				];
+			}
+		} else {
+			$data = [
+				'estado'=> false,
+				'mensaje'=> "Este campo no puede ser Eliminado, porque lo esta usando en otra tabla"
+			];
 		}
 		echo json_encode($data);
 	}

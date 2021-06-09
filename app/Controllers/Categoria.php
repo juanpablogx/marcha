@@ -88,17 +88,27 @@ class Categoria extends BaseController
 		$id_categoria = $this->request->getPost('id_categoria');
 
 		$categoria_db = new CategoriasModel();
-		$respuesta = $categoria_db->eliminarCategoria($id_categoria);
 
-		if ($respuesta) {
-					$data = [
-						'estado'=>true,
-						'datos'=>$respuesta
-					];
-		}else{
-					$data = [
-						'estado'=>"ERROR"
-					];
+		$respuestavalidacion = $categoria_db->validarCategoria($id_categoria);
+
+		if ($respuestavalidacion == 0){
+			$respuesta = $categoria_db->eliminarCategoria($id_categoria);
+
+			if ($respuesta) {
+						$data = [
+							'estado'=>true,
+							'datos'=>$respuesta
+						];
+			}else{
+						$data = [
+							'estado'=>"ERROR"
+						];
+			}
+		} else {
+			$data = [
+				'estado'=> false,
+				'mensaje'=> "Este campo no puede ser Eliminado, porque lo esta usando en otra tabla"
+			];
 		}
 		echo json_encode($data);
 	}

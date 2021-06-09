@@ -49,7 +49,7 @@
 			                  <tbody id="listar_herramientas">
 			                    <?php foreach ($herramientas as $herramienta): ?>
 									<tr>
-										<td class="td_act_lot"><?php echo $herramienta['actividad']."-".$herramienta['lote'] ?></td>
+										<td class="td_act_lot"><?php echo $herramienta['actividad']."-".$herramienta['lote']."-".$herramienta['f_fin'] ?></td>
 										<td class="td_producto"><?php echo $herramienta['nombre'] ?></td>
 										<td class="td_cantidad"><?php echo $herramienta['cantidad'] ?></td>
 										<td class="td_tipo"><?php echo $herramienta['tipo'] ?></td>

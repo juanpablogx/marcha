@@ -221,7 +221,7 @@ function eliminar_inventario() {
 				data: datos,
 				dataType: "json",
 				success: function (response) {
-					if (response.estado == 'ok'){
+					if (response.estado){
 						Swal.fire({
 							position: 'center',
 							icon: 'success',

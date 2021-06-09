@@ -51,6 +51,7 @@ $routes->post('getMunicipios', 'Fincas::obtenerMunicipios');
 $routes->post('registrarFinca', 'Fincas::agregarFinca');
 $routes->get('logOut', 'Inicio::cerrarSesion');
 $routes->post('EditarFinca', 'Fincas::editarFincas');
+$routes->post('EliminarFinca', 'Fincas::peticionEliminarFinca');
 
 $routes->get('Dashboard/(:num)', 'Dashboard::inicio_dashboard/$1');
 

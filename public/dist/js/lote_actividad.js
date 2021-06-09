@@ -14,6 +14,8 @@ function iniciar(){
 				if (response.estado) {
 					
 					$("#listar_lote_actividad").html('');
+
+					
 					$.each(response.datos, function (key, value) {
 					var fila = `<tr>
 									<td class="td_lote">`+ value.nlote +`</td>
@@ -28,18 +30,21 @@ function iniciar(){
 										</button>
 									</td>
 									<td>
-										<div class="btn-group" role="group" aria-label="Basic example">
-											<button type="button" class="btn btn-success editar" data-toggle="modal" data-target="#actualizar" data-num_id="`+value.id+`">
-												<i class="fas fa-edit"></i>
-											</button>
+										<div class="btn-group" role="group" aria-label="Basic example">`;
 
-											<button type="button" class="btn btn-danger eliminar" data-num_id="`+value.id+`">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-											
-										</div>
-									</td>
-								</tr>`;
+					if (value.estado != 'Terminada') {
+						fila += `<button type="button" class="btn btn-success editar" 	data-toggle="modal" data-target="#actualizar" data-num_id="`+value.id+`">
+							<i class="fas fa-edit"></i>
+						</button>`;
+					}
+					
+					fila += `<button type="button" class="btn btn-danger eliminar" data-num_id="`+value.id+`">
+								<i class="fas fa-trash-alt"></i>
+							</button>
+							
+						</div>
+					</td>
+				</tr>`;	
 					
 					$("#listar_lote_actividad").prepend(fila);
 
@@ -356,7 +361,8 @@ function eliminar_loteActividad() {
 				data: datos_id,
 				dataType: "json",
 				success: function (response) {
-					if (response){
+					console.log(response);
+					if (response.estado){
 						Swal.fire({
 							position: 'center',
 							icon: 'success',
@@ -368,7 +374,13 @@ function eliminar_loteActividad() {
 						$("#eliminando").remove();
 					}
 					else{
-						Swal.fire('Lo siento, no se pudo eliminar');
+						Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: response.mensaje,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
 					}
 				},
 				error: function (x, r, e) {

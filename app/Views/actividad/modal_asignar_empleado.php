@@ -13,25 +13,25 @@
 						<div>
 							<div class="form-group row d-flex justify-content-center">
 								<label for="cod_empleado" class="col-md-10">Empleado:</label>
-								<select class="form-control col-md-8" name="cod_empleado" id="cod_empleado" style="width: 80%;">
+								<select class="form-control col-9 col-md-8" name="cod_empleado" id="cod_empleado" style="width: 80%;">
 								<option value="">Seleccione un Empleado</option>
 									<?php foreach ($asig_emp as $asig): ?>
 										<option value="<?php echo $asig['id_empleado']; ?>"><?php echo $asig['nombres']." ". $asig['apellidos']?></option>
 									<?php endforeach; ?>
 								</select>
-								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/Empleados'; ?>" class="nav-link">	
+								<a class="btn btn-warning col-2 col-md-1 ml-2" href="<?php echo base_url().'/Empleados'; ?>" class="nav-link">	
 									<i class="fas fa-plus-square" style="color: white;"></i>
 								</a>
 							</div>
 							<div class="form-group row d-flex justify-content-center">
 								<label for="cod_act" class="col-md-10">Actividad_lote:</label>
-								<select class="form-control  col-md-8" name="cod_act" id="cod_act" style="width: 80%;">
+								<select class="form-control  col-9 col-md-8" name="cod_act" id="cod_act" style="width: 80%;">
 								<option value="">Seleccione una Actividad_lote</option>
 									<?php foreach ($actividad_l as $act_lote): ?>
-										<option value="<?php echo $act_lote['id']; ?>"><?php echo $act_lote['nactividad']." - ".$act_lote['nlote'] ?></option>
+										<option value="<?php echo $act_lote['id']; ?>"><?php echo $act_lote['nomact']." - ".$act_lote['nomlote']." - ".$act_lote['f_fin'] ?></option>
 									<?php endforeach; ?>
 								</select>
-								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/LoteActividad'; ?>" class="nav-link">	
+								<a class="btn btn-warning col-2 col-md-1 ml-2" href="<?php echo base_url().'/LoteActividad'; ?>" class="nav-link">	
 									<i class="fas fa-plus-square" style="color: white;"></i>
 								</a>
 							</div>
@@ -79,18 +79,9 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					<button type="submit" id="btn_editar_asig_empleado" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Editar Empleado</button>
+					<button type="submit" id="btn_editar_asig_empleado" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Editar</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-<!-- futuro actualizar -->
-<!-- <div class="form-group row d-flex justify-content-center">
-				                <label for="edit_estado" class="col-md-10">Estado:</label>
-				                <select class="form-control col-md-10" name="edit_estado" id="edit_estado">
-				                    <option value="Pendiente">Pendiente</option>
-				                    <option value="Proceso">Proceso</option>
-				                    <option value="Terminada">Terminada</option>
-				                </select>
-				            </div> -->
+	

@@ -4,7 +4,7 @@ function iniciar(){
 	$("#btn_registrar").on("click", guardar_categoria);
     $(".eliminar").on("click", eliminar_categoria);
     $(".editar").on("click", editar_categoria);
-    listar_categorias();
+
 }
 
 function guardar_categoria(e) {
@@ -99,7 +99,7 @@ function eliminar_categoria(){
 				data: datos_id,
 				dataType: "json",
 				success: function (response) {
-					if (response){
+					if (response.estado){
 						Swal.fire({
 							position: 'center',
 							icon: 'success',
@@ -111,7 +111,13 @@ function eliminar_categoria(){
 						$("#eliminando").remove();
 					}
 					else{
-						Swal.fire('Lo siento, no se pudo eliminar');
+						Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: response.mensaje,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });;
 					}
 				},
 				error: function (x, r, e) {

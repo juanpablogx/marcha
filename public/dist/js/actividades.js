@@ -193,7 +193,13 @@ function eliminar_actividad() {
 						$("#eliminando").remove();
 					}
 					else{
-						Swal.fire(response.mensaje);
+						Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: response.mensaje,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
 					}
 				},
 				error: function (x, r, e) {

@@ -27,7 +27,7 @@ class Lote extends BaseController
 
 		$data_encabezado['session_finca'] = $this->session->get('session-finca');
 		echo view('encabezado',$data_encabezado);;
-		echo view('lote/lote',$data);
+		echo view('lote/lote',$data); 
 		echo view('footer');
 		echo view('lote/modal_lote',$data);
 		echo view('scripts',$data);
@@ -114,19 +114,30 @@ class Lote extends BaseController
 	public function eliminarLote(){
 		$id_lote = $this->request->getPost('id_lote');
 
-		$lotes_db = new LoteModel();
-		$respuesta = $lotes_db->eliminarLote($id_lote);
 
-		if ($respuesta) {
-					$data = [
-						'estado'=>true,
-						'datos'=>$respuesta
-					];
-		}else{
-					$data = [
-						'estado'=>"ERROR"
-					];
+		$lotes_db = new LoteModel();
+		$respuestavalidacion = $lotes_db->validarlote($id_lote);
+
+		if ($respuestavalidacion == 0){
+
+			$respuesta = $lotes_db->eliminarLote($id_lote);
+
+			if ($respuesta) {
+						$data = [
+							'estado'=>true,
+							'datos'=>$respuesta
+						];
+			}else{
+						$data = [
+							'estado'=>"ERROR"
+						];
+			}
+		} else {
+			$data = [
+				'estado'=> false,
+				'mensaje'=> "Este campo no puede ser Eliminado, porque lo esta usando en otra tabla"
+			];
 		}
-		echo json_encode($data);
+			echo json_encode($data);
 	}
 }

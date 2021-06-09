@@ -44,7 +44,7 @@
 										<form action="#" id="formRegistrar">
 											<th>
 												<div class="d-flex">
-													<select class="form-control" name="categoria" id="categoria" style="width: 80%;">
+													<select class="form-control" name="categoria" id="categoria" style="width: 80%; min-width: 150px;">
 													<?php foreach ($categorias as $cate): ?>
 														<option value="<?php echo $cate['id_cat'] ?>"><?php echo $cate['categoria'] ?></option>
 														<?php endforeach; ?>
@@ -56,7 +56,7 @@
 											</th>
 											<th>
 												<div class="d-flex">
-													<select class="form-control" name="lote" id="lote" style="width: 80%;">
+													<select class="form-control" name="lote" id="lote" style="width: 80%; min-width: 150px;">
 														<?php foreach ($lotes as $lote): ?>
 														<option value="<?php echo $lote['id_lote'] ?>"><?php echo $lote['nombre'] ?></option>
 														<?php endforeach; ?>

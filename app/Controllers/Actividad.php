@@ -130,22 +130,4 @@ class Actividad extends BaseController
 
 		echo json_encode($data);
 	}
-	public function filtrarActividad() {
-		$finca = $this->session->get('session-finca')['id_finca'];
-		$opcion = $this->request->getPost('opcion');
-		
-		$actividad_db = new ActividadesModel();
-		$respuesta = $actividad_db->ListaActividad($finca, $opcion);
-		if (count($respuesta) > 0) {
-			$data = [
-				'estado'=>true,
-				'datos'=>$respuesta
-			];
-		}else{
-			$data = [
-				'estado'=> false
-			];
-		}
-		return json_encode($data);
-	}
 }

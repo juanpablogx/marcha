@@ -82,5 +82,13 @@ class InventarioModel extends Model {
         $delete = $this->db->query($sql, [$id]);
         return $delete;
     }
+
+    public function validarInventario($id_producto) {
+        $sql = "SELECT COUNT(act_inventario.producto) AS repeticiones FROM act_inventario INNER JOIN inventario ON act_inventario.producto = inventario.id_producto WHERE inventario.id_producto = ?";
+
+        $registros = $this->db->query($sql, [$id_producto]); 
+
+        return $registros->getResultArray()[0]['repeticiones']; 
+    }
     
 }

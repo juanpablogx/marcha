@@ -114,18 +114,28 @@ class Inventario extends BaseController
 		$id_producto = $this->request->getPost('id_producto');
 
 		$inventario_db = new InventarioModel();
-		$respuesta = $inventario_db->eliminarInventario($id_producto);
 
-		if ($respuesta) {
-			$data = array(
-				'estado' => 'ok',
-				'mensaje' => 'Se eliminó el articulo exitosamente',
-			);
-		}else{
-			$data = array(
-				'estado' => 'error',
-				'mensaje' => 'Ocurrió un error al eliminar el articulo'
-			);
+		$respuestavalidacion = $inventario_db->validarInventario($id_producto);
+
+		if ($respuestavalidacion == 0){
+			$respuesta = $inventario_db->eliminarInventario($id_producto);
+
+			if ($respuesta) {
+				$data = array(
+					'estado' => true,
+					'mensaje' => 'Se eliminó el articulo exitosamente',
+				);
+			}else{
+				$data = array(
+					'estado' => false,
+					'mensaje' => 'Ocurrió un error al eliminar el articulo'
+				);
+			}
+		} else {
+			$data = [
+				'estado'=> false,
+				'mensaje'=> "Este campo no puede ser Eliminado, porque lo esta usando en otra tabla"
+			];
 		}
 		echo json_encode($data);
 	}

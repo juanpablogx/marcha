@@ -13,25 +13,25 @@
                         <div>
                             <div class="form-group row d-flex justify-content-center">
 								<label for="lote" class="col-md-10">Seleccione un lote:</label>
-								<select class="form-control col-md-8" name="lote" id="lote" required>
+								<select class="form-control col-9 col-md-8" name="lote" id="lote" required>
 									<option value="" selected>Seleccione lote</option>
 									<?php foreach ($lotes as $lote): ?>
 										<option value="<?php echo $lote['id_lote']; ?>"><?php echo $lote['nombre'] ?></option>
 									<?php endforeach; ?>
 								</select>
-								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/Lotes'; ?>" class="nav-link">	
+								<a class="btn btn-warning col-2 col-md-1 ml-2" href="<?php echo base_url().'/Lotes'; ?>" class="nav-link">	
 									<i class="fas fa-plus-square" style="color: white;"></i>
 								</a>
 							</div>
                             <div class="form-group row d-flex justify-content-center">
 								<label for="actividad" class="col-md-10">Seleccione una actividad:</label>
-								<select class="form-control col-md-8" name="actividad" id="actividad" required>
+								<select class="form-control col-9 col-md-8" name="actividad" id="actividad" required>
 									<option value="" selected>Seleccione actividad</option>
 									<?php foreach ($actividades as $act): ?>
 										<option value="<?php echo $act['id_actividad']; ?>"><?php echo $act['nombre'] ?></option>
 									<?php endforeach; ?>
 								</select>
-								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/Actividades'; ?>" class="nav-link">	
+								<a class="btn btn-warning col-2 col-md-1 ml-2" href="<?php echo base_url().'/Actividades'; ?>" class="nav-link">	
 									<i class="fas fa-plus-square" style="color: white;"></i>
 								</a>
 							</div>
@@ -92,7 +92,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					<button type="submit" class="btn text-white" id="btn_editar_lact" data-dismiss="modal" style="background:#77942E;">Agregar Lote Actividad</button>
+					<button type="submit" class="btn text-white" id="btn_editar_lact" data-dismiss="modal" style="background:#77942E;">Editar</button>
 				</div>
 			</div>
 		</div>
@@ -124,7 +124,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					<button type="submit" class="btn btn-warning text-white" id="btn_editar_estado" data-dismiss="modal">Actualizar</button>
+					<button type="submit" class="btn btn-warning text-white" id="btn_editar_estado" data-dismiss="modal">Editar</button>
 				</div>							
 			</div>
 		</div>

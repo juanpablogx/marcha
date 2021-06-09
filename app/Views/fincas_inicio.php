@@ -64,7 +64,7 @@
 										
 									<i class="fas fa-edit"></i>
 									</button>
-									<button type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#eliminarFinca" data-id_finca="<?php echo $finca['id_finca']; ?>">
+									<button type="button" class="btn btn-danger mb-3 eliminar" data-bs-toggle="modal" data-bs-target="#eliminarFinca" data-id_finca="<?php echo $finca['id_finca']; ?>" data-nom_finca="<?php echo $finca['nombre'] ?>">
 										<i class="fas fa-trash-alt"></i>
 									</button>
 								</div>
@@ -123,7 +123,7 @@
 								<label for="extension" class="form-label">Extensión (metros cuadrados)</label>
 								<input type="number" class="form-control" id="extension" name="extension" required>
 							</div>
-							<span id="alerta" class="text-danger"></span>
+							<span id="alertaAgregar" class="text-danger"></span>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -156,7 +156,7 @@
 								<label for="edit_extension" class="form-label">Nueva extensión (metros cuadrados)</label>
 								<input type="number" class="form-control" id="edit_extension" name="edit_extension" required>
 							</div>
-							<span id="alerta" class="text-danger"></span>
+							<span id="alertaEditar" class="text-danger"></span>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -178,30 +178,14 @@
 					<form id="formEliminar_f" action="#" method="POST">
 						<div class="modal-body">
 							<div class="col-md-10 mx-auto">
-								<strong>COD SOLICITUD:</strong>
-								<p id="codigo"></p>
+								<strong>Finca a Eliminar: </strong>
+								<p id="nom_finca"></p>
 							</div>
 							<div class="col-md-10 mx-auto">
-								<label for="num_user" class="form-label fw-bolder">Numero de Documento:</label>
-								<input type="text" class="form-control" id="num_user" name="num_user" required>
+								<label for="asuntoEliminar" class="form-label fw-bolder">Asunto por la cual desea eliminarlo:</label>
+								<textarea type="number" class="form-control" id="asuntoEliminar" name="asuntoEliminar" required></textarea>
 							</div>
-							<div class="col-md-10 mx-auto">
-								<label for="nombre_user" class="form-label fw-bolder">Nombre de Usuario:</label>
-								<input type="text" class="form-control" id="nombre_user" name="nombre_user" required>
-							</div>
-							<div class="col-md-10 mx-auto">
-								<label for="tel_user" class="form-label fw-bolder">Nombre de la finca:</label>
-								<input type="text" class="form-control" id="tel_user" name="tel_user" required>
-							</div>
-							<div class="col-md-10 mx-auto">
-								<label for="cod_user" class="form-label fw-bolder">Codigo de solicitud:</label>
-								<input type="number" class="form-control" id="cod_user" name="cod_user" placeholder="Se encuentra al inicio de este formulario" required>
-							</div>
-							<div class="col-md-10 mx-auto">
-								<label for="asunto_user" class="form-label fw-bolder">Asunto por la cual desea eliminarlo:</label>
-								<textarea type="number" class="form-control" id="asunto_user" name="asunto_user" required></textarea>
-							</div>
-							<span id="alerta" class="text-danger"></span>
+							<span id="alertaEliminar" class="text-danger"></span>
 
 							<hr>
 
@@ -209,7 +193,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-							<button type="submit" class="btn btn-success" id="btn_eliminar_finca">Enviar</button>
+							<button type="submit" class="btn btn-success" id="btnEliminar">Enviar</button>
 						</div>
 					</form>
 				</div>

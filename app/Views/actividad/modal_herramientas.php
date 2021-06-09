@@ -13,23 +13,23 @@
 						<div>
                             <div class="form-group row d-flex justify-content-center">
                                 <label for="cod_actL" class="col-md-10">Actividad_Lote: </label>
-                                <select class="form-control col-md-8" name="cod_actL" id="cod_actL">
-                                    <?php foreach ($actividad_l as $act_l): ?>
-                                		<option value="<?php echo $act_l['id']; ?>"><?php echo $act_l['nactividad']."-".$act_l['nlote'] ?></option>
+                                <select class="form-control col-9 col-md-8" name="cod_actL" id="cod_actL">
+                                    <?php foreach ($actividad_lotem as $act_lom): ?>
+                                		<option value="<?php echo $act_lom['id']; ?>"><?php echo $act_lom['nactividad']."-".$act_lom['nlote']."-".$act_lom['f_fin']; ?></option>
 									<?php endforeach; ?>
                                 </select>
-								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/LoteActividad'; ?>" class="nav-link">	
+								<a class="btn btn-warning col-2 col-md-1 ml-2" href="<?php echo base_url().'/LoteActividad'; ?>" class="nav-link">	
 									<i class="fas fa-plus-square" style="color: white;"></i>
 								</a>
                             </div>
                             <div class="form-group row d-flex justify-content-center">
                             	<label for="cod_producto" class="col-md-10">Producto: </label>
-                            	<select class="form-control col-md-8" name="cod_producto" id="cod_producto">
+                            	<select class="form-control col-9 col-md-8" name="cod_producto" id="cod_producto">
                             		<?php foreach ($inventario as $inv): ?>
                                     	<option value="<?php echo $inv['id_producto']; ?>"><?php echo $inv['nombre'] ?></option>
 									<?php endforeach; ?>
 			                    </select>
-								<a class="btn btn-warning col-md-1 ml-2" href="<?php echo base_url().'/Inventario'; ?>" class="nav-link">	
+								<a class="btn btn-warning col-2 col-md-1 ml-2" href="<?php echo base_url().'/Inventario'; ?>" class="nav-link">	
 									<i class="fas fa-plus-square" style="color: white;"></i>
 								</a>
 							</div>

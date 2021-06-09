@@ -49,7 +49,7 @@ class CategoriasModel extends Model{
         $sql = "DELETE FROM categoria WHERE id_cat = ?;";
 
         $categorias = $this->db->query($sql, [$id]);
-        return $categorias->getResult();
+        return $categorias; 
     }
 
     public function editarCategoria($id_categoria, $categoria, $tipo, $produce) {
@@ -63,5 +63,12 @@ class CategoriasModel extends Model{
         return $actualizacion;
     }
 
+    public function validarCategoria($id_categoria) {
+        $sql = "SELECT COUNT(cat_lote.categoria) AS repeticiones FROM cat_lote INNER JOIN categoria ON cat_lote.categoria = categoria.id_cat WHERE categoria.id_cat = ?";
+
+        $registros = $this->db->query($sql, [$id_categoria]); 
+
+        return $registros->getResultArray()[0]['repeticiones']; 
+    }
 
 }

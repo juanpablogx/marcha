@@ -10,7 +10,7 @@ class AsigEmpleadoModel extends Model{
     protected $returnType = 'array';
     protected $useSoftDeletes = false; 
 
-    protected $allowedFields = ['empleado', 'actividad_l', 'calificacion'];
+    protected $allowedFields = ['empleado', 'actividad_lot', 'calificacion'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
@@ -22,10 +22,10 @@ class AsigEmpleadoModel extends Model{
     protected $skipValidation     = false;
 
 
-    public function insertarAsignarEmpleado($empleado, $actividad_l) {
+    public function insertarAsignarEmpleado($empleado, $actividad_lot) {
         $data = array(
             'empleado' => $empleado,
-            'actividad_l' => $actividad_l
+            'actividad_lot' => $actividad_lot
         );
         $respuesta = $this->insert($data);
         if($respuesta) {
@@ -37,7 +37,7 @@ class AsigEmpleadoModel extends Model{
 
     public function obtenerListaAsigEmp($finca) {
 
-        $sql = "SELECT asignar_empleado.id_asignar, asignar_empleado.empleado, asignar_empleado.actividad_l, asignar_empleado.calificacion, empleado.nombres, empleado.apellidos, actividad.nombre AS nomact, lote.nombre AS nomlote FROM asignar_empleado INNER JOIN empleado ON asignar_empleado.empleado = empleado.id_empleado INNER JOIN lote_actividad ON  asignar_empleado.actividad_l = lote_actividad.id_lot_act INNER JOIN lote ON lote_actividad.lote = lote.id_lote INNER JOIN actividad ON lote_actividad.actividad = actividad.id_actividad WHERE empleado.finca = ? ORDER BY asignar_empleado.id_asignar DESC";
+        $sql = "SELECT asignar_empleado.id_asignar, asignar_empleado.empleado, asignar_empleado.actividad_lot, asignar_empleado.calificacion, empleado.nombres, empleado.apellidos, actividad.nombre AS nomact, lote.nombre AS nomlote FROM asignar_empleado INNER JOIN empleado ON asignar_empleado.empleado = empleado.id_empleado INNER JOIN lote_actividad ON  asignar_empleado.actividad_lot = lote_actividad.id_lot_act INNER JOIN lote ON lote_actividad.lote = lote.id_lote INNER JOIN actividad ON lote_actividad.actividad = actividad.id_actividad WHERE empleado.finca = ? ORDER BY asignar_empleado.id_asignar DESC";
 
         $registros = $this->db->query($sql, [$finca]);
 

@@ -7,6 +7,7 @@ function iniciar() {
         agregarfinca();
     });
     $(".editar").off("click").on("click", editar_finca);
+    $(".eliminar").off("click").on("click", eliminar_finca);
 }
 
 function obtenerMunicipios() {
@@ -49,7 +50,14 @@ function agregarfinca() {
             data: datos,
             dataType: "json",
             success: function (response) {
-                console.log(response);
+
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: response.mensaje,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
         
                 if(response.estado == 'ok') {
                     var card = `<div class="col-sm-8 col-md-4 col-lg-3">
@@ -62,22 +70,36 @@ function agregarfinca() {
                                             </div>
                                         </a>
                                         <div>
-                                            <button type="button" class="btn btn-success mb-3 editar" data-bs-toggle="modal" data-bs-target="#editarFinca" data-id_finca="<?php echo $finca['id_finca']; ?>">
-                                                
-                                            <i class="fas fa-edit"></i>
+                                            <button type="button" class="btn btn-success mb-3 editar" data-bs-toggle="modal" data-bs-target="#editarFinca" data-id_finca="`+response.id+`">   
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-danger mb-3 eliminar" data-bs-toggle="modal" data-bs-target="#eliminarFinca" data-id_finca="`+response.id+`" data-nom_finca="`+nombre+`">
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </div>`;
+
                     $('#seccion_fincas').append(card);
                     $(".editar").off("click").on("click", editar_finca);
+                    $(".eliminar").off("click").on("click", eliminar_finca);
 
                     $('#nombre').val('');       
                     $('#departamento').val('');
                     $('#municipio').val('');
                     $('#extension').val('');
                 } else {
-                    Swal.fire(response.mensaje);
+                    Swal.fire({
+						position: 'center',
+						icon: 'error',
+						title: response.mensaje,
+						showConfirmButton: false,
+						timer: 2000
+					});
+                    $('#nombre').val('');       
+                    $('#departamento').val('');
+                    $('#municipio').val('');
+                    $('#extension').val('');
                 }
             },
             error: function (r, x, e) {
@@ -161,4 +183,57 @@ function actualizar_finca(id_finca){
 	
 	
 
+}
+
+function eliminar_finca() {
+    var id_finca = $(this).data('id_finca');
+    var nom_finca = $(this).data('nom_finca');
+
+    $('#nom_finca').text(nom_finca);
+    $('#btnEliminar').data('id_finca', id_finca);
+
+    $("#btnEliminar").on('click',peticion_eliminar_finca);
+}
+
+function peticion_eliminar_finca(e) {
+    e.preventDefault();
+    var id_finca = $(this).data('id_finca');
+    var asunto = $('#asuntoEliminar').val();
+
+    if(id_finca != '' && asunto != '') {
+
+        $("#btnEliminar").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando...');
+
+        $("#btnEliminar").attr('disabled', true);
+        $.ajax({
+            type: "POST",
+            url: "http://localhost/marcha/public/EliminarFinca",
+            data: {'id_finca': id_finca, 'asunto': asunto},
+            dataType: "json",
+            success: function (response) {
+                if(response.estado) {
+                    Swal.fire({
+						position: 'center',
+						icon: 'success',
+						title: response.mensaje,
+						showConfirmButton: false,
+						timer: 2000
+					});
+                    $('#asuntoEliminar').val('');
+                    $("#btnEliminar").html('Enviar');
+                    $("#btnEliminar").attr('disabled', false);
+                } else {
+                    // alert('No se pudo enviar la petición');
+                    $('#alertaEliminar').text(response.mensaje);
+                }
+            },
+            error: function (x, r, e) {
+                console.log(x);
+                console.log(r);
+                console.log(e);
+            }
+        });
+    } else {
+        $('#alertaEliminar').text('Los campos son obligatorios');
+    }
 }

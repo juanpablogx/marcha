@@ -37,6 +37,14 @@ class FincasModel extends Model{
         }
     }
 
+    public function cantidad_fincas($usuario){
+        $sql = "SELECT COUNT(id_finca) AS fincas FROM finca WHERE usuario = ?";
+
+        $respuesta = $this->db->query($sql, [$usuario]);
+
+        return $respuesta->getResultArray()[0]['fincas'];
+    }
+
     public function obtenerListaFincasbyUser($usuario) {
         // $registros = $this->join('departamentos', 'finca.departamento = departamentos.id_departamento')->join('municipios', 'finca.municipio = municipios.id_municipio')->select(['finca.nombre', 'finca.extencion'])->select('departamentos.departamento')->select('municipios.municipio')->where(['finca.usuario'=>$usuario])->find();
 
