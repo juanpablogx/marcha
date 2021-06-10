@@ -38,10 +38,10 @@ function guardar_asig_empleado(e) {
 									<td class="td_calificacion">Pendiente</td>
 									<td>
 										<div class="btn-group" role="group" aria-label="Basic example">
-											<button type="button" class="btn btn-success editar"  data-num_id="" data-toggle="modal" data-target="#modal_editar_asig_empleado">
+											<button type="button" class="btn btn-success editar" data-num_id="`+response.id+`" data-toggle="modal" data-target="#modal_editar_asig_empleado">
 												<i class="fas fa-edit"></i>
 											</button>
-											<button type="button" class="btn btn-danger eliminar"  data-num_id="">
+											<button type="button" class="btn btn-danger eliminar" data-num_id="`+response.id+`">
 												<i class="fas fa-trash-alt"></i>
 											</button>
 												
