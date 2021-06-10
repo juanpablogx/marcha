@@ -149,7 +149,6 @@ function actualizar_finca(id_finca){
 			url:"http://localhost/marcha/public/EditarFinca", //a donde quiero llevar los datos
 			dataType: 'json',
 			success:function(data){ //mensaje que llega del guardar
-				console.log(data);
 	
 				if (data.estado == 'ok'){
 					Swal.fire(
