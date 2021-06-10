@@ -152,7 +152,7 @@
               <li class="nav-item">
                 <a href="<?php echo base_url().'/herramientas'; ?>" class="nav-link">
                   <i class="far fa-circle nav-icon" style="color: white;"></i>
-                  <p class="text-light">Herramientas</p>
+                  <p class="text-light">Asignar Herramientas</p>
                 </a>
               </li>
               <li class="nav-item">

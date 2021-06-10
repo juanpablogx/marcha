@@ -21,7 +21,10 @@
 
 		<nav class="navbar navbar-expand-lg navbar-dark" id="menuPrincipal" style="background-color: #234F1E ;border-bottom: none;">
 			<div class="container">
-				<a class="navbar-brand" href="#">MARCHA</a>
+				<a class="navbar-brand" href="#">
+                    <img src="<?php echo base_url();?>/dist/img/icono5.png" alt="Logo" class="d-inline-block pd-5 img-fluid" style="opacity: 1; width:35px;">
+                    <span class="align-text-top">MARCHA</span> 
+                </a>
 				<!-- <a href="<?php echo base_url('logOut') ?>" class="btn mx-4 text-white" style="background: #7A3600; border: 1px solid white;">Cerrar Sesión</a> -->
 				<a href="<?php echo base_url('logOut') ?>" class="btn btn-success">
 					<i class="fas fa-sign-out-alt nav-icon mx-2" style="color: white;"></i>

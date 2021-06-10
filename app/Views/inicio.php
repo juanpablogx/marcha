@@ -14,7 +14,12 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark" id="menuPrincipal" style="background-color: #234F1E;border-bottom: none; ">
 			<div class="container">
-				<a class="navbar-brand" href="index.html">MARCHA</a>
+                
+				<a class="navbar-brand" href="<?php echo base_url(); ?>">
+                    <img src="<?php echo base_url();?>/dist/img/icono5.png" alt="Logo" class="d-inline-block pd-5 img-fluid" style="opacity: 1; width:35px;">
+                    <span class="align-text-top">MARCHA</span> 
+                </a>
+
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -104,7 +109,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <img class="img-fluid p-2" src="<?php echo base_url('dist/img/campo1.jpg'); ?>" alt="foto participantes">
+                                    <img class="img-fluid p-2" src="<?php echo base_url('dist/img/campo4.jpg'); ?>" alt="foto participantes">
                                 </div>
                             </div>
                         </div>
@@ -113,7 +118,7 @@
                         <div class="card mb-3" style=" border-radius: 10px;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img class="img-fluid p-2" src="<?php echo base_url('dist/img/campo2.jpg'); ?>" alt="mision" style=" border-radius: 10px;">
+                                    <img class="img-fluid p-2" src="<?php echo base_url('dist/img/campo5.jpg'); ?>" alt="mision" style=" border-radius: 10px;">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -134,7 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <img class="img-fluid p-2" src="<?php echo base_url('dist/img/campo3.jpg'); ?>" alt="vision">
+                                    <img class="img-fluid p-2" src="<?php echo base_url('dist/img/campo6.jpg'); ?>" alt="vision">
                                 </div>
                             </div>
                         </div>

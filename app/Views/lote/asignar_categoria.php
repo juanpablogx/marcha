@@ -46,7 +46,7 @@
 												<div class="d-flex">
 													<select class="form-control" name="categoria" id="categoria" style="width: 80%; min-width: 150px;">
 													<?php foreach ($categorias as $cate): ?>
-														<option value="<?php echo $cate['id_cat'] ?>"><?php echo $cate['categoria'] ?></option>
+														<option value="<?php echo $cate['id_cat'] ?>"><?php echo $cate['categoria'].' - '.$cate['produce'] ?></option>
 														<?php endforeach; ?>
 													</select>
 													<a class="btn btn-warning ml-2" href="<?php echo base_url().'/Categorias'; ?>" class="nav-link">	
@@ -78,7 +78,7 @@
 								<tbody id="lista_asig_categoria">
 								<?php foreach ($asigcategoria as $asigcate): ?>
 									<tr>
-										<td class="td_categoria"><?php echo $asigcate['categoria'] ?></td>
+										<td class="td_categoria"><?php echo $asigcate['categoria'].' - '.$asigcate['produce'] ?></td>
 										<td class="td_lote"><?php echo $asigcate['lote'] ?></td>
 										<td style="width: 25%;" class="td_cantidad"><?php echo $asigcate['cantidad'] ?></td>
 										<td>
