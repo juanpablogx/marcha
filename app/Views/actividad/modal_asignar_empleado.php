@@ -40,7 +40,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-					<button type="submit" id="btn_registrar_asig_empleado" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Agregar Empleado</button>
+					<button type="submit" id="btn_registrar_asig_empleado" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Agregar</button>
 				</div>
 			</div>
 		</div>
@@ -51,7 +51,7 @@
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="staticBackdropLabel">EDITAR EMPLEDO ASIGNADO</h5>
+					<h5 class="modal-title" id="staticBackdropLabel">EDITAR CALIFICACION</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>

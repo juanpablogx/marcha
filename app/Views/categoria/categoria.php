@@ -81,7 +81,5 @@
 
 	    </div>
 	<!-- /CONTENEDOR -->
-
-	SE MOSTRARA EN TABLA
 	</div>
 	

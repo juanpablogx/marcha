@@ -23,7 +23,7 @@
 					</div>
 			      	<div class="modal-footer">
 			        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-			        	<button type="submit" id="btn_registrar" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Agregar</button>
+			        	<button type="submit" id="btn_registrar" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Agregar Actividad</button>
 			      	</div>
 				</form>
 	    	</div>
@@ -60,7 +60,7 @@
 					</div>
 			      	<div class="modal-footer">
 			        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-			        	<button type="submit" id="btn_editar" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Editar</button>
+			        	<button type="submit" id="btn_editar" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Editar Actividad</button>
 			      	</div>
 				</form>
 	    	</div>

@@ -75,7 +75,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="submit" id="btn_editar_cate" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Actualizar categoria</button>
+						<button type="submit" id="btn_editar_cate" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Editar categoria</button>
 					</div>
 				</form>
 			</div>
