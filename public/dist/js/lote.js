@@ -99,6 +99,8 @@ function editar_lote(e){
 	$("#edit_nom_lot").val(nom_lote);
 	$("#edit_tam_lote").val(extencion);
 
+	$("#btn_editar_lote").data('ant_extencion', extencion);
+
 	$("#btn_editar_lote").off('click').on('click',function() { 
 		actualizar_lote(id_lote);
 	});
@@ -108,12 +110,16 @@ function editar_lote(e){
 function actualizar_lote(id_lote){
 	var nuevo_nom_lote = $("#edit_nom_lot").val();
 	var nueva_extencion = $("#edit_tam_lote").val();
+	var anterior_extencion = $("#btn_editar_lote").data('ant_extencion');
+
+	console.log(anterior_extencion);
 
 	if (nuevo_nom_lote != '' && nueva_extencion != '') {
 		var datos = {
 			'id_lote':id_lote,
 			'edit_nom_lot': nuevo_nom_lote,
-			'edit_tam_lote': nueva_extencion
+			'edit_tam_lote': nueva_extencion,
+			'ant_tam_lote': anterior_extencion
 		};
 		jQuery.ajax({
 			type:"POST",

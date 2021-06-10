@@ -122,6 +122,8 @@ function editar_finca(e){
 	$("#edit_nombre").val(nom_finca);
 	$("#edit_extension").val(extension);
 
+    $("#btn_editar_finca").data('ant_extension', extension);
+
 	$("#btn_editar_finca").off('click').on('click',function(e) { 
         e.preventDefault();
 		actualizar_finca(id_finca);
@@ -132,12 +134,14 @@ function editar_finca(e){
 function actualizar_finca(id_finca){
 	var nuevo_nom_finca = $("#edit_nombre").val();
 	var nueva_extension = $("#edit_extension").val();
+    var anterior_extension = $("#btn_editar_finca").data('ant_extension');
 
 	if (nuevo_nom_finca != '' && nueva_extension != '') {
 		var datos = {
 			'id_finca':id_finca,
 			'edit_nombre': nuevo_nom_finca,
-			'edit_extension': nueva_extension
+			'edit_extension': nueva_extension,
+            'ant_extension': anterior_extension
 		};
 		jQuery.ajax({
 			type:"POST",
