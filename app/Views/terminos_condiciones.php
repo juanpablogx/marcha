@@ -7,7 +7,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('dist/css/bootstrap.css'); ?>">
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('dist/css/estilosPropios.css'); ?>">
 
 			<!-- Tempusdominus Bootstrap 4 -->
 		<link rel="stylesheet" href="<?php echo base_url('dist/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'); ?>">
@@ -29,12 +28,69 @@
 		</nav>
 
 		<main class="container-fluid p-5" style="background: #D3D0CB ;min-height: 87vh;">
+            <section class="container">
+                <div>
+                    <h1 class="text-center">Terminos y Condiciones MARCHA</h1>
+                </div>
+                <div class="card">
+                    <h5 class="card-header">Terminos y Condiciones</h5>
+                    <div class="card-body">
+                        <div class="row position-relative overflow-auto" style="height: 60vh;">
+                            <div class="col-4 col-md-4 col-lg-3 position-fixed">
+                                <div id="list-example" class="list-group">
+                                    <a class="list-group-item list-group-item-action" href="#list-item-1">Advertencia</a>
+                                    <a class="list-group-item list-group-item-action" href="#list-item-2">Propiedad de la información</a>
+                                    <a class="list-group-item list-group-item-action" href="#list-item-3">Consultas y Operaciones habilitadas</a>
+                                    <a class="list-group-item list-group-item-action" href="#list-item-4">Alcance de la información</a>
+                                    <a class="list-group-item list-group-item-action" href="#list-item-5">Acceso al sistema, código de acceso, contraseña y seguridad</a>
+                                    <a class="list-group-item list-group-item-action" href="#list-item-6">Transmisión de datos</a>
+                                    <a class="list-group-item list-group-item-action" href="#list-item-7">Terminación del acceso</a>
+                                    <a class="list-group-item list-group-item-action" href="#list-item-8">Modificaciones y revisiones al presente acuerdo</a>
+                                    <a class="list-group-item list-group-item-action" href="#list-item-9">Aceptación</a>
+                                </div>
+                            </div>
+                            <div class="col-7 col-md-6 col-lg-7 position-absolute end-0 pl-3">
+                                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+                                    <p>El acceso a este sistema y la utilización de la clave autorizada, con llevan la aceptación del usuario a todas las estipulaciones de este documento y las condiciones aplicables. Este documento constituye un acuerdo para el acceso al sistema de <strong>MARCHA</strong> (Manejo Responsable Campestre de Hogares Agropecuarios), entre el paciente, intermediario o usuario, en adelante denominado el USUARIO que accede a este servicio. </p>
 
-			<div class="container">
-				<h1 class="text-center">Terminos y Condiciones</h1>
-				
-				
-			</div>
+                                    <h4 id="list-item-1">Advertencia</h4>
+                                    <p> Los términos y condiciones aquí contenidos serán de obligatorio cumplimiento y aceptación por parte de quienes accedan a la información o realicen consulta de resultados que <strong>MARCHA</strong> tiene disponibles. Por favor lea estos términos y condiciones cuidadosamente. Al acceder a este sistema de operación y a cualquiera de sus páginas, el USUARIO acepta los términos y condiciones que aparecen a continuación, así como también aquellas obligaciones que surgen de la naturaleza de la herramienta tecnológica que se está utilizando y de la buena fe que impone el ordenamiento jurídico colombiano. Si no está de acuerdo con los términos y condiciones a continuación presentados, NO debe continuar y debe SALIR del sistema.</p>
+
+                                    <h4 id="list-item-2">Propiedad de la información</h4>
+                                    <p><strong>MARCHA</strong> es el titular de los derechos de autor y propiedad intelectual sobre los signos distintivos en general y marcas comerciales, contenidos en estas páginas. Los derechos de autor sobre las páginas, las imágenes y en general todo lo que aparece en pantalla, así como sobre la información y el material contenido en las mismas, es propiedad de <strong>MARCHA</strong> salvo indicación en contrario. </p>
+
+                                    <h4 id="list-item-3">Consultas y Operaciones habilitadas</h4>
+                                    <p>El usuario mediante la utilización de este sistema podrá realizar el manejo completo del CRUD en diferentes campos de informacion.</p>
+
+                                    <h4 id="list-item-4">Alcance de la información</h4>
+                                    <p><strong>MARCHA</strong> ha dispuesto sus mejores esfuerzos para que la información y los materiales aquí contenidos, incluyendo los textos, gráficos, enlaces y demás
+                                    ítems, sean idóneos para la correcta operación por parte del USUARIO. Sin embargo, MARCHA no asumirá pagos por concepto de daños directos, indirectos, accidentales,
+                                    consecuenciales, punitivos, incluyendo pérdidas y lucro cesante que subjetivamente se imputen a: (i) la información contenida en la Página Web de <strong>MARCHA</strong>, (ii) cualquier información transmitida vía la Página Web de NOMBRE DE LA EMPRESA o (iii) el funcionamiento o no de cualquier Página Web de <strong>MARCHA</strong>. <strong>MARCHA</strong> no asumirá monto alguno por daños o pérdidas de equipo o software que se imputen subjetivamente a virus, defectos o mal funcionamiento relativos a accesos o utilización de la Página Web <strong>MARCHA</strong>.</p>
+
+                                    <h4 id="list-item-5">Acceso al sistema, código de acceso, contraseña y seguridad</h4>
+                                    <p>El USUARIO será responsable por la confidencialidad y uso de su número de acceso, contraseña y número de cuenta. El USUARIO será responsable por todas las órdenes transmitidas a través de su número de acceso, contraseña, y cualquier orden recibida por <strong>MARCHA</strong> de esta manera se supondrá emitida por el USUARIO. Todas las órdenes emitidas, se supondrán realizadas en el momento en que sean recibidas por <strong>MARCHA</strong>, salvo que el reglamento o las normas legales que regulan cada producto o servicio, dispongan otra cosa. El USUARIO acepta que notificará a <strong>MARCHA</strong> cualquiera de las siguientes situaciones: *Pérdida o robo de su código de acceso, contraseña y/o número de cuenta. *Uso no autorizado de su código de acceso o contraseña. * Alguna falla, error o hecho inusual, al recibir algún mensaje relacionado con una orden iniciada por el USUARIO a través del sistema electrónico, o que haya sido recibida y/o ejecutada a través del mismo. * La confirmación de alguna orden que el USUARIO no emitió, o alguna imprecisión o desacuerdo en la transmisión de la información.</p>
+
+                                    <h4 id="list-item-6">Transmisión de datos</h4>
+                                    <p><strong>MARCHA</strong> ha dispuesto de una organización tecnológica en procura de que el usuario pueda efectuar la transmisión de datos a través de Internet, o utilizando otro tipo de comunicación en red, o cualquier otra vía electrónica. Antes de suministrar cualquier información el USUARIO deberá autorizar a <strong>MARCHA</strong> para almacenar y tratar sus datos. Dichos datos serán tratados con altas medidas de confidencialidad.</p>
+
+                                    <h4 id="list-item-7">Terminación del acceso</h4>
+                                    <p><strong>MARCHA</strong> se reserva el derecho de cancelar unilateralmente el acceso a este sistema de operación y transacción en cualquier tiempo, sin que para ello tenga que aducir alguna justa causa. La cancelación del acceso no implica la terminación de las relaciones contractuales que tenga el USUARIO a <strong>MARCHA</strong>.</p>
+
+                                    <h4 id="list-item-8">Modificaciones y revisiones al presente acuerdo</h4>
+                                    <p><strong>MARCHA</strong> se reserva el derecho de revisar el presente acuerdo en cualquier momento y de modificarlo sin previo aviso.</p>
+
+                                    <h4 id="list-item-9">Aceptación</h4>
+                                    <p> El acceso a este sistema y la utilización de la clave autorizada, conllevan la aceptación del usuario a todas las estipulaciones de este acuerdo.</p>
+
+                                </div>    
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+			
 
 		</main>
 

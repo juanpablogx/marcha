@@ -79,7 +79,7 @@
 			<footer class="container py-4 px-3">
 				<div class="d-flex justify-content-around">
 					<span class="text-light">Copyright MARCHA&copy; 2021.</span>
-					<a href="#" class="link-light">Términos y Condiciones</a>
+					<a href="<?php echo base_url('TerminosCondiciones'); ?>" target="_blank" class="link-light">Términos y Condiciones</a>
 				</div>
 			</footer>
 		</div>

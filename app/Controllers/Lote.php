@@ -33,19 +33,6 @@ class Lote extends BaseController
 		echo view('scripts',$data);
 	}
 
-	public function vista_asig_actividad(){
-
-		$data = [
-					'titulo' => 'Categoria-Actividad',
-					'archivo_js' => 'lote.js'
-				];
-
-		$data_encabezado['session_finca'] = $this->session->get('session-finca');
-		echo view('encabezado',$data_encabezado);;
-		echo view('lote/asignar_actividad',$data);
-		echo view('footer');
-		echo view('scripts');
-	}
 	public function agregarLote(){
 
 		$nombre = $this->request->getPost('nom_lot'); 
