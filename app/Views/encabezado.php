@@ -39,7 +39,7 @@
         <a class="nav-link text-light" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link text-light">MARCHA</a>
+        <span class="nav-link text-light">MARCHA</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block dropdown">
         <style>
