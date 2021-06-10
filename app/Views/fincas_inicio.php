@@ -25,6 +25,28 @@
                     <img src="<?php echo base_url();?>/dist/img/icono5.png" alt="Logo" class="d-inline-block pd-5 img-fluid" style="opacity: 1; width:35px;">
                     <span class="align-text-top">MARCHA</span> 
                 </a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navnav">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navnav">
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown">
+							<style>
+							#dropdownContacto::after {display: none;}
+							</style>
+							<a href="#" class="nav-link text-light dropdown-toggle" id="dropdownContacto" data-bs-toggle="dropdown">Contáctanos</a>
+							<div class="dropdown-menu">
+								<h6 class="dropdown-header text-left text-bold">Para contactarse con nosotros y solicitar actualizaciones en sus datos:</h6>
+								<span class="dropdown-item-text">Teléfono: +57 3333333</span>
+								<span class="dropdown-item-text">Correo: pruebamarcha351@gmail.com</span>
+								<h6 class="dropdown-header text-left text-bold">Redes Sociales</h6>
+								<a class="dropdown-item-text text-primary" href="#"><i class="fab fa-facebook"></i> Facebook</a>
+								<a class="dropdown-item-text text-danger" href="#"><i class="fab fa-instagram"></i> Instagram</a>
+								<a class="dropdown-item-text text-info" href="#"><i class="fab fa-twitter"></i> Twitter</a>
+							</div>
+						</li>
+					</ul>
+				</div>
 				<!-- <a href="<?php echo base_url('logOut') ?>" class="btn mx-4 text-white" style="background: #7A3600; border: 1px solid white;">Cerrar Sesión</a> -->
 				<a href="<?php echo base_url('logOut') ?>" class="btn btn-success">
 					<i class="fas fa-sign-out-alt nav-icon mx-2" style="color: white;"></i>
