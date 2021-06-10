@@ -104,7 +104,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-						<button type="submit" id="btn_editar_em" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Agregar Empleado</button>
+						<button type="submit" id="btn_editar_em" class="btn text-white" data-dismiss="modal" style="background:#77942E;">Editar Empleado</button>
 					</div>
 				</form>
 			</div>

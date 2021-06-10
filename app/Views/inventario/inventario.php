@@ -22,7 +22,7 @@
 				<div class="p-4 mt-2 mb-2 text-white rounded" style="background: #234F1E;">
 					<div class="d-flex justify-content-center">
 						<button type="button" class="btn text-white" data-toggle="modal" data-target="#modalRegistrar" style="background:#77942E;">
-						  	Agregar Articulo a Inventario 
+						  	Agregar Producto 
 						</button>
 					</div>
 				</div>
