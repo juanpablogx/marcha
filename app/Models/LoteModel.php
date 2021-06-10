@@ -71,4 +71,12 @@ class LoteModel extends Model{
 
         return $registros->getResultArray()[0]['repeticiones']; 
     }
+
+    public function tamanioLotesbyFinca($finca) {
+        $sql = "SELECT SUM(extencion) AS extension_lotes FROM lote WHERE finca = ?";
+
+        $registros = $this->db->query($sql, [$finca]);
+
+        return $registros->getResultArray()[0]['extension_lotes'];
+    }
 }

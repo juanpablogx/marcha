@@ -54,21 +54,39 @@ class Lote extends BaseController
 
 		if ($nombre != '' && $extencion != '') {
 
-			$lotes_db = new LoteModel();
-			$respuesta = $lotes_db->insertarLote($nombre, $finca, $extencion);
+			if($extencion <= $this->session->get('session-finca')['extencion']) {
+				$lotes_db = new LoteModel();
+				$tamanio_lotes = $lotes_db->tamanioLotesbyFinca($this->session->get('session-finca')['id_finca']);
 
-			if($respuesta != false) {
-				$data = array(
-					'estado' => 'ok',
-					'mensaje' => 'Se agrego el Lote exitosamente',
-					'id' => $respuesta
-				);
+				if($extencion <= ($this->session->get('session-finca')['extencion'] - $tamanio_lotes)) {
+					$respuesta = $lotes_db->insertarLote($nombre, $finca, $extencion);
+
+					if($respuesta != false) {
+						$data = array(
+							'estado' => 'ok',
+							'mensaje' => 'Se agrego el Lote exitosamente',
+							'id' => $respuesta
+						);
+					} else {
+						$data = array(
+							'estado' => 'error',
+							'mensaje' => 'Ocurrió un error al editar el Lote'
+						);
+					}
+				} else {
+					$data = array(
+						'estado' => 'error',
+						'mensaje' => 'No hay suficiente espacio para el lote (extensión)'
+					);
+				}
+
 			} else {
 				$data = array(
 					'estado' => 'error',
-					'mensaje' => 'Ocurrió un error al editar el Lote'
+					'mensaje' => 'La extensión del lote no puede sobrepasar la de la finca'
 				);
 			}
+
 		}else{
 			$data = array(
 				'estado' => 'error',
@@ -83,24 +101,59 @@ class Lote extends BaseController
 		$id_lote = $this->request->getPost('id_lote'); 
 		$nombre = $this->request->getPost('edit_nom_lot'); 
 		$extencion = $this->request->getPost('edit_tam_lote');
+		$ant_extencion = $this->request->getPost('ant_tam_lote');
 		$finca = $this->session->get('session-finca')['id_finca'];  
 
 		if ($nombre != '' && $extencion != '') {
 
-			$lotes_db = new LoteModel();
-			$respuesta = $lotes_db->editarLote($id_lote, $nombre, $finca ,$extencion);
+			if($extencion <= $this->session->get('session-finca')['extencion']) {
+				$lotes_db = new LoteModel();
+				if($extencion > $ant_extencion) {
+					$tamanio_lotes = $lotes_db->tamanioLotesbyFinca($this->session->get('session-finca')['id_finca']);
 
-			if($respuesta) {
-				$data = array(
-					'estado' => 'ok',
-					'mensaje' => 'Se edito el Lote exitosamente'
-				);
+					if(($extencion - $ant_extencion) <= ($this->session->get('session-finca')['extencion'] - $tamanio_lotes)) {
+						$respuesta = $lotes_db->editarLote($id_lote, $nombre, $finca ,$extencion);
+
+						if($respuesta) {
+							$data = array(
+								'estado' => 'ok',
+								'mensaje' => 'Se edito el Lote exitosamente'
+							);
+						} else {
+							$data = array(
+								'estado' => 'error',
+								'mensaje' => 'Ocurrió un error al editar el Lote'
+							);
+						}
+					} else {
+						$data = array(
+							'estado' => 'error',
+							'mensaje' => 'La extensión que intenta agregar sobrepasa el tamaño de la finca'
+						);
+					}
+
+				} else {
+					$respuesta = $lotes_db->editarLote($id_lote, $nombre, $finca ,$extencion);
+
+					if($respuesta) {
+						$data = array(
+							'estado' => 'ok',
+							'mensaje' => 'Se edito el Lote exitosamente'
+						);
+					} else {
+						$data = array(
+							'estado' => 'error',
+							'mensaje' => 'Ocurrió un error al editar el Lote'
+						);
+					}
+				}
 			} else {
 				$data = array(
 					'estado' => 'error',
-					'mensaje' => 'Ocurrió un error al editar el Lote'
+					'mensaje' => 'La extensión del lote no puede sobrepasar la de la finca'
 				);
 			}
+
 		}else{
 			$data = array(
 				'estado' => 'error',
