@@ -4,6 +4,7 @@ use CodeIgniter\Controller;
 use App\Models\DepartamentosModel;
 use App\Models\MunicipiosModel;
 use App\Models\FincasModel;
+use App\Models\LoteModel;
 
 class Fincas extends BaseController {
 	
@@ -78,21 +79,48 @@ class Fincas extends BaseController {
 		$id_finca = $this->request->getPost('id_finca'); 
 		$nombre = $this->request->getPost('edit_nombre');  
 		$extension = $this->request->getPost('edit_extension'); 
+		$ant_extension = $this->request->getPost('ant_extension');
 		if ($nombre != '' && $extension != '') {
 
 			$finca_db = new  FincasModel();
-			$respuesta = $finca_db->editarFinca($id_finca, $nombre, $extension);
+			if($ant_extension > $extension) {
+				$lotes_db = new LoteModel();
+				$tamanio_lotes = $lotes_db->tamanioLotesbyFinca($id_finca);
 
-			if($respuesta) {
-				$data = array(
-					'estado' => 'ok',
-					'mensaje' => 'Se edito la finca exitosamente'
-				);
+				if(($ant_extension - $tamanio_lotes) >= ($ant_extension - $extension)) {
+					$respuesta = $finca_db->editarFinca($id_finca, $nombre, $extension);
+
+					if($respuesta) {
+						$data = array(
+							'estado' => 'ok',
+							'mensaje' => 'Se editó la finca exitosamente'
+						);
+					} else {
+						$data = array(
+							'estado' => 'error',
+							'mensaje' => 'Ocurrió un error al editar la finca'
+						);
+					}
+				} else {
+					$data = array(
+						'estado' => 'error',
+						'mensaje' => 'Solo puede reducir extensión que no esté siendo utilizada por lotes (Extensión sin utilizar: '.($ant_extension - $tamanio_lotes).'mts2)'
+					);
+				}
 			} else {
-				$data = array(
-					'estado' => 'error',
-					'mensaje' => 'Ocurrió un error al editar la finca'
-				);
+				$respuesta = $finca_db->editarFinca($id_finca, $nombre, $extension);
+
+				if($respuesta) {
+					$data = array(
+						'estado' => 'ok',
+						'mensaje' => 'Se editó la finca exitosamente'
+					);
+				} else {
+					$data = array(
+						'estado' => 'error',
+						'mensaje' => 'Ocurrió un error al editar la finca'
+					);
+				}
 			}
 		}else{
 			$data = array(
