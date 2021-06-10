@@ -42,7 +42,7 @@ function crear_usuario() {
 					var alerta = `<div class="alert alert-success alert-dismissible fade show" role="alert">
 									<strong>Felicidades:</strong> <p>`+ resultado.mensaje +`</p>
 									<strong>Ingrese a este link para iniciar sesion:</strong> 
-									<a class="nav-link " href="http://localhost/marcha/public/Ingreso">Ingreso</a>
+									<a class="nav-link " href="http://localhost/marcha/public/Ingreso">Link para Ingresar</a>
 									<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 								</div>`;
 
