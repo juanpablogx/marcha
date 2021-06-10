@@ -63,7 +63,7 @@ class Empleado extends BaseController
 		$salario = $this->request->getPost('salario');
 		$finca = $this->session->get('session-finca')['id_finca'];  
 
-		if ($cedula != '' && $nombres != '' && $apellido != '' && $correo != '' && $telefono != '' && $tipo_contrato != '' && $salario != '') {
+		if ($cedula != '' && $nombres != '' && $apellido != '' && $telefono != '' && $tipo_contrato != '' && $salario != '') {
 			$empleado_db = new EmpleadosModel();
 			$respuesta = $empleado_db->insertarEmpleado($cedula, $nombres, $apellido, $correo, $telefono, $tipo_contrato, $salario, $finca);
 
@@ -99,7 +99,7 @@ class Empleado extends BaseController
 		$salario = $this->request->getPost('edit_salario'); 
 		$finca = $this->session->get('session-finca')['id_finca']; 
 
-		if ($cedula != '' && $nombres != '' && $apellido != '' && $correo != '' && $telefono != '' && $tipo_contrato != '' && $salario != '') {
+		if ($cedula != '' && $nombres != '' && $apellido != '' && $telefono != '' && $tipo_contrato != '' && $salario != '') {
 
 			$empleado_db = new EmpleadosModel();
 			$respuesta = $empleado_db->editarEmpleado($cedula, $nombres, $apellido, $correo, $telefono, $tipo_contrato, $salario, $finca);

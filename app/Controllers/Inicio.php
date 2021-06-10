@@ -153,18 +153,29 @@ class Inicio extends BaseController {
 		if ($pass == $conpass){
 
 			$usuario_db = new UsuariosModel();
-			$resultado = $usuario_db->insertarRegistro($doc, $nom, $ape, $email, $pass);
+			$resultadoval = $usuario_db->validarCorreo($email);
+			$resultadovalced = $usuario_db->validarCedula($doc);
 
-			if ($resultado) {
-				$datos = array(
-							"estado" => "OK", 
-							"mensaje" => "Registro Exitoso "
-							);
+			if (COUNT($resultadoval) < 1 && COUNT($resultadovalced) < 1) {
+
+				$resultado = $usuario_db->insertarRegistro($doc, $nom, $ape, $email, $pass);
+
+				if ($resultado) {
+					$datos = array(
+								"estado" => "OK", 
+								"mensaje" => "Registro Exitoso "
+								);
+				} else {
+					$datos = array("estado" => "ERROR", 
+									"mensaje" => "Algo salió mal. Por favor intentelo nuevamente"
+									);
+				}
 			} else {
 				$datos = array("estado" => "ERROR", 
-								"mensaje" => "Algo salió mal. Por favor intentelo nuevamente"
+								"mensaje" => "Su cedula o Correo ya fueron registrados."
 								);
 			}
+
 		} else {
 			$datos = array(
 						"estado" => "ERROR", 

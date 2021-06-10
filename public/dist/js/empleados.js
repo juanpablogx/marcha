@@ -116,7 +116,7 @@ function guardar_empleado(e) {
 	var cel = $("#cel").val();
     var contra = $("#t_contrato").val();
 	var sal = $("#salario").val();
-	if (ced != '' && nom != ''  && ape != ''  && email != ''  && cel != ''  && contra != ''  && sal != '') {
+	if (ced != '' && nom != ''  && ape != ''  && cel != ''  && contra != ''  && sal != '') {
 
 		jQuery.ajax({
 			type:"POST",
@@ -235,7 +235,7 @@ function actualizar_empleado(ced){
 	var nuevo_contra = $("#edit_contrato option:selected").text();
 	var nuevo_sal = $("#edit_salario").val();
 
-	if (nuevo_nom != ''  && nuevo_apellido != ''  && nuevo_correo != ''  && nuevo_cel != ''  && nuevo_contra != ''  && nuevo_sal != '') {
+	if (nuevo_nom != ''  && nuevo_apellido != ''  && nuevo_cel != ''  && nuevo_contra != ''  && nuevo_sal != '') {
 		var datos = {
 			'edit_cedula': ced,
 			'edit_nombre': nuevo_nom,

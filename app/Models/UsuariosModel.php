@@ -31,7 +31,7 @@ class UsuariosModel extends Model{
                             );
 
         $respuesta = $this->insert($datos_insert);
-        return ($respuesta==0)? true:false;
+        return ($respuesta == 0)? true:false;
     }
 
     public function obtenerListaUsuarios(){
@@ -59,6 +59,14 @@ class UsuariosModel extends Model{
         $correo = $this->escapeString($correo);
         $sql = "SELECT id_usuario FROM usuario WHERE correo = ?";
         $registros = $this->db->query($sql, [$correo]);
+
+        return $registros->getResultArray();
+    }
+
+    public function validarCedula($documento) {
+        $cedula = $this->escapeString($documento);
+        $sql = "SELECT id_usuario FROM usuario WHERE id_usuario = ?";
+        $registros = $this->db->query($sql, [$cedula]);
 
         return $registros->getResultArray();
     }

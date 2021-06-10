@@ -35,8 +35,6 @@ function crear_usuario() {
 				data: datos_usuario
 			})
 			.done(function(resultado) {
-				console.log("success");
-				console.log(resultado);
 
 				if (resultado.estado == 'OK') {
 					var alerta = `<div class="alert alert-success alert-dismissible fade show" role="alert">
