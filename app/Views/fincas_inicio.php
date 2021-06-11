@@ -61,7 +61,7 @@
 		<main class="container-fluid" style="background: #D3D0CB ;min-height: 87vh;">
 
 			<div class="container">
-				<h1 class="text-center">Bienvenid@ <?php echo $session['nombres']." ".$session['apellidos'];?> </h1>
+				<h1 class="text-center pt-4 pb-4">Bienvenid@ <?php echo $session['nombres']." ".$session['apellidos'];?> </h1>
 				
 				<div class="row justify-content-center mt-4" id="seccion_fincas">
 					<div class="col-sm-8 col-md-4 col-lg-3">

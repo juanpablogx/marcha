@@ -154,11 +154,11 @@ class Lote extends BaseController
 	public function eliminarLote(){
 		$id_lote = $this->request->getPost('id_lote');
 
-
 		$lotes_db = new LoteModel();
-		$respuestavalidacion = $lotes_db->validarlote($id_lote);
+		$respuestavalidacionuno = $lotes_db->validarloteuno($id_lote);
+		$respuestavalidaciondos = $lotes_db->validarlotedos($id_lote);
 
-		if ($respuestavalidacion == 0){
+		if ($respuestavalidacionuno == 0 && $respuestavalidaciondos == 0){
 
 			$respuesta = $lotes_db->eliminarLote($id_lote);
 

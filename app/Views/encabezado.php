@@ -16,6 +16,8 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url();?>/dist/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
+  <link rel="icon" type="image/x-icon" href="<?php echo base_url('dist/img/icono2.png'); ?>" />
+
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url();?>/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->

@@ -64,8 +64,16 @@ class LoteModel extends Model{
         return $lotes;
     }
 
-    public function validarLote($id_lote) {
-        $sql = "SELECT COUNT(cat_lote.lote) AS repeticiones, COUNT(lote_actividad.lote) AS repeticiones2 FROM cat_lote INNER JOIN lote ON cat_lote.lote = lote.id_lote INNER JOIN lote_actividad ON lote_actividad.lote = lote.id_lote WHERE lote.id_lote = ?";
+    public function validarLoteuno($id_lote) {
+        $sql = "SELECT COUNT(cat_lote.lote) AS repeticiones FROM cat_lote INNER JOIN lote ON cat_lote.lote = lote.id_lote WHERE lote.id_lote = ?";
+
+        $registros = $this->db->query($sql, [$id_lote]); 
+
+        return $registros->getResultArray()[0]['repeticiones']; 
+    }
+
+    public function validarLotedos($id_lote) {
+        $sql = "SELECT COUNT(lote_actividad.lote) AS repeticiones FROM lote INNER JOIN lote_actividad ON lote.id_lote = lote_actividad.lote WHERE lote.id_lote = ?";
 
         $registros = $this->db->query($sql, [$id_lote]); 
 
