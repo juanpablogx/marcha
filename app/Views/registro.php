@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('dist/css/bootstrap.css'); ?>">
 
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url('dist/img/icono2.png'); ?>" />
     <title>MARCHA | Avanza</title>
   </head>
   <body>
