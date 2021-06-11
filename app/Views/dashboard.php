@@ -21,7 +21,7 @@
 			<div class="container-fluid">
 
 				<div class="row">
-					<div class="col-8">
+					<div class="col-12 col-md-8">
 						<div class="callout callout-success">
                             <h4>Comencemos.</h4>
                             <p>Elige una de las opciones del menú lateral.</p>

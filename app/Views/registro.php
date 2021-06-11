@@ -23,24 +23,26 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<ul class="navbar-nav">
-						<li class="nav-item ms-4">
-								<a class="nav-link" href="<?php echo base_url(); ?>">Inicio</a>
+						<li class="nav-item ms-1 ms-md-4">
+								<a class="nav-link active  " href="<?php echo base_url(); ?>">Inicio</a>
 						</li>
-						<li class="nav-item ms-4">
-								<a class="nav-link active" href="<?php echo base_url('Registro'); ?>">Registro</a>
+						<li class="nav-item ms-1 ms-md-4">
+								<a class="nav-link" href="<?php echo base_url('Registro'); ?>">Registro</a>
 						</li>
-						<li class="nav-item ms-4">
+						<li class="nav-item ms-1 ms-md-4">
 								<a class="nav-link " href="<?php echo base_url('Ingreso'); ?>">Ingreso</a>
 						</li>
-						<li class="nav-item dropdown ms-4">
+                        <li class="nav-item ms-1 dropdown ms-md-4">
 							<style>
 							#dropdownContacto::after {display: none;}
 							</style>
 							<a href="#" class="nav-link text-light dropdown-toggle" id="dropdownContacto" data-bs-toggle="dropdown">Contáctanos</a>
-							<div class="dropdown-menu">
-								<h6 class="dropdown-header text-left text-bold">Para contactarse con nosotros y solicitar actualizaciones en sus datos:</h6>
+							<div class="dropdown-menu" style="min-width: 280px;">
+								<h6 class="dropdown-header text-left text-bold">Para contactarse con nosotros y <br>solicitar actualizaciones en sus datos:</h6>
+                                <h6 class="dropdown-header text-left">Teléfono:</h6>
 								<span class="dropdown-item-text">Teléfono: +57 3333333</span>
-								<span class="dropdown-item-text">Correo: pruebamarcha351@gmail.com</span>
+                                <h6 class="dropdown-header text-left">Correo:</h6>
+								<span class="dropdown-item-text">pruebamarcha351@gmail.com</span>
 								<h6 class="dropdown-header text-left text-bold">Redes Sociales</h6>
 								<a class="dropdown-item-text text-primary" href="#"><i class="fab fa-facebook"></i> Facebook</a>
 								<a class="dropdown-item-text text-danger" href="#"><i class="fab fa-instagram"></i> Instagram</a>

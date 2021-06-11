@@ -25,20 +25,22 @@
                     <img src="<?php echo base_url();?>/dist/img/icono5.png" alt="Logo" class="d-inline-block pd-5 img-fluid" style="opacity: 1; width:35px;">
                     <span class="align-text-top">MARCHA</span> 
                 </a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navnav">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navnav">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navnav">
 					<ul class="navbar-nav">
-						<li class="nav-item dropdown">
+                        <li class="nav-item ms-1 dropdown ms-md-4">
 							<style>
 							#dropdownContacto::after {display: none;}
 							</style>
 							<a href="#" class="nav-link text-light dropdown-toggle" id="dropdownContacto" data-bs-toggle="dropdown">Contáctanos</a>
-							<div class="dropdown-menu">
-								<h6 class="dropdown-header text-left text-bold">Para contactarse con nosotros y solicitar actualizaciones en sus datos:</h6>
+							<div class="dropdown-menu" style="min-width: 280px;">
+								<h6 class="dropdown-header text-left text-bold">Para contactarse con nosotros y <br>solicitar actualizaciones en sus datos:</h6>
+                                <h6 class="dropdown-header text-left">Teléfono:</h6>
 								<span class="dropdown-item-text">Teléfono: +57 3333333</span>
-								<span class="dropdown-item-text">Correo: pruebamarcha351@gmail.com</span>
+                                <h6 class="dropdown-header text-left">Correo:</h6>
+								<span class="dropdown-item-text">pruebamarcha351@gmail.com</span>
 								<h6 class="dropdown-header text-left text-bold">Redes Sociales</h6>
 								<a class="dropdown-item-text text-primary" href="#"><i class="fab fa-facebook"></i> Facebook</a>
 								<a class="dropdown-item-text text-danger" href="#"><i class="fab fa-instagram"></i> Instagram</a>
@@ -46,16 +48,16 @@
 							</div>
 						</li>
 					</ul>
+					<a href="<?php echo base_url('logOut') ?>" class="btn btn-success">
+						<i class="fas fa-sign-out-alt nav-icon mx-2" style="color: white;"></i>
+						Cerrar Sesión
+					</a>
 				</div>
-				<!-- <a href="<?php echo base_url('logOut') ?>" class="btn mx-4 text-white" style="background: #7A3600; border: 1px solid white;">Cerrar Sesión</a> -->
-				<a href="<?php echo base_url('logOut') ?>" class="btn btn-success">
-					<i class="fas fa-sign-out-alt nav-icon mx-2" style="color: white;"></i>
-					Cerrar Sesión
-				</a>
+				
 			</div>
 		</nav>
 
-		<main class="container-fluid p-5" style="background: #D3D0CB ;min-height: 87vh;">
+		<main class="container-fluid" style="background: #D3D0CB ;min-height: 87vh;">
 
 			<div class="container">
 				<h1 class="text-center">Bienvenid@ <?php echo $session['nombres']." ".$session['apellidos'];?> </h1>
