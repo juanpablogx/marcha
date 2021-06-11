@@ -14,6 +14,8 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="<?php echo base_url();?>/dist/plugins/fontawesome-free/css/all.min.css">
 
+        <link rel="icon" type="image/x-icon" href="<?php echo base_url('dist/img/icono2.png'); ?>" />
+
 		<title>MARCHA | Avanza</title>
 	</head>
 	<body>
