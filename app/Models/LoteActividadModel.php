@@ -81,7 +81,7 @@ class LoteActividadModel extends Model{
 
     public function eliminarLoteActividad($id_loteact){
         $loteactividad = $this->escapeString($id_loteact);
-        $sql = "DELETE FROM lote_actividad WHERE id_lot_act = ?;";
+        $sql = "DELETE FROM lote_actividad WHERE id_lot_act = ?";
 
         $lotes = $this->db->query($sql, [$loteactividad]);
         return $lotes;
@@ -96,7 +96,7 @@ class LoteActividadModel extends Model{
     }
 
     public function validarLoteActividaddos($id_loteact) {
-        $sql = "SELECT COUNT(asignar_empleado.actividad_l) AS repeticiones FROM asignar_empleado INNER JOIN lote_actividad ON asignar_empleado.actividad_l = lote_actividad.id_lot_act WHERE lote_actividad.id_lot_act = ?";
+        $sql = "SELECT COUNT(asignar_empleado.actividad_lot) AS repeticiones FROM asignar_empleado INNER JOIN lote_actividad ON asignar_empleado.actividad_lot = lote_actividad.id_lot_act WHERE lote_actividad.id_lot_act = ?";
 
         $registros = $this->db->query($sql, [$id_loteact]); 
 
